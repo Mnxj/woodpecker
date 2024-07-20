@@ -3,6 +3,10 @@ const path = require('path');
 const fs = require('fs');
 const curPath = path.resolve('./');
 const taskQueue = [];
+const relativeFilePathFilter = [
+    '/.idea',
+    '/public'
+];
 
 const NameMap = {
     '2code': '代码题',
@@ -11,8 +15,6 @@ const NameMap = {
     'java': 'java',
     'Interview-experience': '面试经验'
 }
-
-const PUBLIC = '/public';
 
 function countCharacter(str) {
     const charCounts = str.split('').filter(char => char === '/').length;
@@ -27,7 +29,7 @@ function walkSync(currentDirPath, prefixBlank, callback) {
             callback(filePath, stat);
         } else if (stat.isDirectory() && ".git" != path.basename(filePath) && '_' != path.basename(filePath).substr(0, 1)) {
             const relativeFilePath = filePath.substr(curPath.length);
-            if (relativeFilePath !== PUBLIC) {
+            if (relativeFilePathFilter.every(value => value !== relativeFilePath)) {
                 const name = NameMap[path.basename(filePath)] || path.basename(filePath);
                 sidebarTxt += prefixBlank + '* [' + name + '](' + relativeFilePath + '/index.md)\n';
                 const level = countCharacter(relativeFilePath);
