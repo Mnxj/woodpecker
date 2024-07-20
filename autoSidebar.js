@@ -8,6 +8,8 @@ const relativeFilePathFilter = [
     '/public'
 ];
 
+const SIDE_BAR = '/_sidebar.md'
+
 const NameMap = {
     '2code': '代码题',
     '1foundations': '基础',
@@ -19,7 +21,7 @@ const NameMap = {
 function countCharacter(str) {
     const charCounts = str.split('').filter(char => char === '/').length;
     return charCounts;
-  }
+}
 
 function walkSync(currentDirPath, prefixBlank, callback) {
     fs.readdirSync(currentDirPath).forEach(function (name) {
@@ -31,10 +33,10 @@ function walkSync(currentDirPath, prefixBlank, callback) {
             const relativeFilePath = filePath.substr(curPath.length);
             if (relativeFilePathFilter.every(value => value !== relativeFilePath)) {
                 const name = NameMap[path.basename(filePath)] || path.basename(filePath);
-                sidebarTxt += prefixBlank + '* [' + name + '](' + relativeFilePath + '/index.md)\n';
                 const level = countCharacter(relativeFilePath);
                 taskQueue.push({
                     value: '* [' + name + '](' + relativeFilePath + '/index.md)',
+                    filePath: relativeFilePath + '/index.md',
                     key: relativeFilePath,
                     level
                 });
@@ -48,30 +50,38 @@ walkSync(curPath, '', function (filePath, stat) {
         && '_' != path.basename(filePath).substr(0, 1)
         && 'README.md' != path.basename(filePath)) {
         var relativeFilePath = filePath.substr(curPath.length);
-        //console.log("file:"+ path.basename(filePath).slice(1));
         var itemText = relativeFilePath.substr(1, relativeFilePath.length - 4);
         while (itemText.indexOf('/') > 0) {
             itemText = itemText.substr(itemText.indexOf('/') + 1);
-            if (relativeFilePath.substr(-8, 8) == 'index.md') {
-                sidebarTxt += '';
-            }
-            else {
-                sidebarTxt += '  ';
-            }
         }
-        if (relativeFilePath.substr(-8, 8) == 'index.md') {
-            sidebarTxt += '';
-        } else {
-            sidebarTxt += '- [' + itemText + '](' + relativeFilePath + ')\n';
-            console.log('- [' + itemText + '](' + relativeFilePath + ')\n');
+        if (relativeFilePath.substr(-8, 8) !== 'index.md') {
+            const level = countCharacter(relativeFilePath);
+            const name = NameMap[itemText] || itemText;
+            taskQueue.push({
+                value: '- [' + itemText + '](' + relativeFilePath + ')',
+                key: relativeFilePath,
+                level
+            });
         }
     }
 });
 
-console.log(taskQueue);
+function writeFile(filePath, text) {
+    fs.writeFile(path.resolve('./') + filePath, text, function (err) {
+        if (err) {
+            console.error(err);
+        }
+    });
+}
 
-fs.writeFile(path.resolve('./') + '/_sidebar.md', sidebarTxt, function (err) {
-    if (err) {
-        console.error(err);
+//
+while (taskQueue.length > 0) {
+    const item = taskQueue.shift();
+    if (item.filePath) {
+        const validItem = taskQueue.filter(value => value.key.startsWith(item.key) && value.level === item.level + 1)
+            .map(value => ' '.repeat(value.level - 1) + value.value.replace('*', '-')).join('\n');
+        writeFile(item.filePath, validItem)
     }
-});
+    sidebarTxt+='  '.repeat(item.level - 1) + item.value+'\n';
+}
+writeFile(SIDE_BAR, sidebarTxt)
