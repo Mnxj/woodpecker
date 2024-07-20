@@ -1,4 +1,4 @@
-<!-- docs/_sidebar.md -->
+<!-- _sidebar.md -->
 - [FrontEnd(前端)](/front-end/front-end)
   - [css](/front-end/css)
 - [code(代码题)](/code/code)
