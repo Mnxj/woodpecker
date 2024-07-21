@@ -17,11 +17,12 @@ const NameMap = {
     '1foundations': '基础',
     'front-end': '大前端',
     '3scene-questions': '场景题',
-    'java': 'java',
+    'back-end': '后端',
     'network': '网络',
     'test': '测试',
     'data-base': '数据库',
-    'Interview-experience': '面试经验'
+    'Interview-experience': '面试经验',
+    'leet-code':'力扣'
 }
 
 function countCharacter(str) {

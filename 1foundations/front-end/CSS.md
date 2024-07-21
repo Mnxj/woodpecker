@@ -136,6 +136,56 @@ flex: 1 相当于同时设置了 flex-grow: 1、flex-shrink: 1 和 flex-basis: 0
    - `visibility`：元素的可见性
 
 
+### Transform 
+
+`transform` 属性可以应用于元素的变换，常见的用例包括：
+
+- 平移（Translate）：使用 `translateX` 和 `translateY` 函数可以在水平和垂直方向上对元素进行平移。例如：
+
+```css
+transform: translateX(100px);
+transform: translateY(-50%);
+```
+
+- 旋转（Rotate）：使用 `rotate` 函数可以对元素进行旋转。例如：
+
+```css
+transform: rotate(45deg);
+```
+
+- 缩放（Scale）：使用 `scale` 函数可以对元素进行缩放。例如：
+
+```css
+transform: scale(1.5);
+```
+
+- 斜切（Skew）：使用 `skewX` 和 `skewY` 函数可以对元素进行斜切变换。例如：
+
+```css
+transform: skewX(20deg);
+transform: skewY(-10deg);
+```
+
+- 3D 变换（3D Transform）：`transform` 属性还支持 3D 变换，可以在 3D 空间中对元素进行变换。例如：
+
+```
+transform: translate3d(100px, 50px, 0);
+transform: rotate3d(1, 0, 0, 45deg);
+transform: scale3d(1.5, 1.5, 1.5);
+```
+
+- 多重变换（Multiple Transforms）：可以通过在 `transform` 属性中使用多个变换函数来组合多个变换效果。例如：
+
+```css
+transform: translateX(100px) rotate(45deg) scale(1.5);
+```
+
+**注意事项**
+
+- 不会影响文档流中的其他元素，但会影响元素的布局，特别是当使用 `translate()` 变换时。
+- 性能通常很好，使用GPU加速，但大量使用时可能会影响性能，。
+- `transform` 属性可以与 `transition` 属性结合使用，创建平滑的动画效果。
+
 ### animation 动画
 
 ```css

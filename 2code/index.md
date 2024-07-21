@@ -1,1 +1,3 @@
  - [大前端](/2code/front-end/index.md)
+ - [力扣](/2code/leet-code/index.md)
+ - [设计模式](/2code/设计模式.md)

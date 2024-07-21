@@ -21,17 +21,31 @@
     </a>
 </center>
 
-* select from 
+
 `右上角`可以查看仓库，欢迎大家`fork`，共同完善
 
 ### **本地启动方式：**
 ```shell
-1、
-npm insatll / yarn
-2、
-npm run prepare / yarn prepare
-3、
-npm run dev/ yarn dev
+1、npm insatll / yarn
+2、npm run prepare / yarn prepare
+3、npm run dev/ yarn dev
+```
+
+### `url`和`目录`映射关系:
+
+```json
+const NameMap = {
+    '2code': '代码题',
+    '1foundations': '基础',
+    'front-end': '大前端',
+    '3scene-questions': '场景题',
+    'back-end': '后端',
+    'network': '网络',
+    'test': '测试',
+    'data-base': '数据库',
+    'Interview-experience': '面试经验',
+    'leet-code':'力扣'
+}
 ```
 
 面经也可以选择投稿`773178360@qq.com`或者提MR
