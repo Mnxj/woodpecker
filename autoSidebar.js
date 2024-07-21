@@ -41,7 +41,7 @@ function walkSync(currentDirPath, prefixBlank, callback) {
                 const name = NameMap[path.basename(filePath)] || path.basename(filePath);
                 const level = countCharacter(relativeFilePath);
                 taskQueue.push({
-                    value: '* [' + name + '](' + relativeFilePath + '/index.md)',
+                    value: '- [' + name + '](' + relativeFilePath + '/index.md)',
                     filePath: relativeFilePath + '/index.md',
                     key: relativeFilePath,
                     level

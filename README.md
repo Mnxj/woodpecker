@@ -5,6 +5,7 @@
 ## 文档结构:
 - [基础](/1foundations/index.md)
 - [代码题](/2code/index)
+- [场景题](/3scene-questions/index.md)
 - [面试经验](/Interview-experience/index.md)
 
 
@@ -20,12 +21,17 @@
     </a>
 </center>
 
-
+* select from 
 `右上角`可以查看仓库，欢迎大家`fork`，共同完善
 
 ### **本地启动方式：**
 ```shell
-docsify serve
+1、
+npm insatll / yarn
+2、
+npm run prepare / yarn prepare
+3、
+npm run dev/ yarn dev
 ```
 
 面经也可以选择投稿`773178360@qq.com`或者提MR

@@ -5,7 +5,8 @@
   "main": "autoSidebar.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "dev": "docsify serve"
   },
   "author": "",
   "license": "ISC",
