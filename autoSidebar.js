@@ -63,7 +63,6 @@ walkSync(curPath, '', function (filePath, stat) {
         }
         if (relativeFilePath.substr(-8, 8) !== 'index.md') {
             const level = countCharacter(relativeFilePath);
-            const name = NameMap[itemText] || itemText;
             taskQueue.push({
                 value: '- [' + itemText + '](' + relativeFilePath + ')',
                 key: relativeFilePath,

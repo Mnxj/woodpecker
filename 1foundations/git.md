@@ -47,10 +47,19 @@
 
 ### git常见命令
 
-Git init 初始化， git clone 从远程克隆一份 git add 添加到缓存区 git status 查看缓存区状态 git diff 比较文件的不同，
-
-git commnit 缓存区提交到本地仓库， git rest 回退版本（从暂存区撤回到工作区）git restore 回退（会生成新的提交）git checkout 撤回（撤回到上一个提交状态） git rm 删除工作区文件
-
-git log查看历史提交记录 git remote 远程操控操作 git pull 下载代码， git push 上传 git reflog
-
-`git rebase` 主要用于将一个分支的提交历史迁移到另一个分支上
+git init 初始化
+git clone 从远程克隆一份
+git add 添加到缓存区
+git status 查看缓存区状态 
+git diff 比较文件的不同，
+git commnit 缓存区提交到本地仓库
+git rest 回退版本（从暂存区撤回到工作区）
+git restore 回退（会生成新的提交）
+git checkout 撤回（撤回到上一个提交状态） 
+git rm 删除工作区文件
+git log查看历史提交记录 
+git remote 远程操控操作 
+git pull 下载代码
+git push 上传 
+git reflog
+git rebase 主要用于将一个分支的提交历史迁移到另一个分支上

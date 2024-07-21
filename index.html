@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,6 +19,7 @@
     <div id="app">loading...</div>
     <script>
         window.$docsify = {
+
             homepage: 'README.md',
             // 项目名称
             name: 'Woodpecker',
@@ -29,10 +29,10 @@
             loadSidebar: true,
             sidebarDisplayLevel: 1,
             alias: {
-            '/.*/_sidebar.md': '/_sidebar.md'
+                '/.*/_sidebar.md': '/_sidebar.md'
             },
             // 导航栏支持，默认加载的是项目根目录下的_navbar.md 文件
-            loadNavbar: true,
+            loadNavbar: false,
             // 最大支持渲染的标题层级
             maxLevel: 5,
             // 自定义侧边栏后默认不会再生成目录，设置生成目录的最大层级（建议配置为 2-4）
@@ -42,18 +42,18 @@
             auto2top: true,
             //Latex 设置
             latex: {
-            inlineMath   : [['$', '$'], ['\\(', '\\)']],
-            displayMath  : [['$$', '$$']],
-            customOptions: {}
-          },
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$']],
+                customOptions: {}
+            },
             pagination: {
-            previousText: '上一章节',
-            nextText: '下一章节',
-           },
+                previousText: '上一章节',
+                nextText: '下一章节',
+            },
             /*搜索相关设置*/
             search: {
                 paths: 'auto',// 注意：仅适用于 paths: 'auto' 模式
-                placeholder: '搜索',              
+                placeholder: '搜索',
                 // 支持本地化
                 placeholder: {
                     '/zh-cn/': '搜索',
@@ -64,19 +64,22 @@
                 hideOtherSidebarContent: false,
                 namespace: 'Docsify-Guide',
             },
-
-            count:{
-            countable: true,
-            position: 'top',
-            margin: '10px',
-            float: 'right',
-            fontsize:'0.9em',
-            color:'rgb(90,90,90)',
-            language:'chinese',
-            isExpected: true
-        }
+            key: 'OViYMuIBIKjKZGaZM9NFjvn5Raq97DAAOo0idWetk9s=',
+            iv: 'flYHlfKQUE5EtZrmBGiwoQ==',
+            count: {
+                countable: true,
+                position: 'top',
+                margin: '10px',
+                float: 'right',
+                fontsize: '0.9em',
+                color: 'rgb(90,90,90)',
+                language: 'chinese',
+                isExpected: true
+            }
         }
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+    <script src='./woodpecker.js'></script>
     <!-- MathJax -->
     <script src="//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="//cdn.jsdelivr.net/npm/docsify-latex@0"></script>
@@ -90,14 +93,15 @@
     <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
 
     <!-- code render-->
-  <script src="//cdn.jsdelivr.net/npm/prismjs@latest/components/prism-bash.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@latest/components/prism-python.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/docsify-pagination@latest/dist/docsify-pagination.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code"></script>
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script> 
-  <!--字数统计-->
-  <script src="//unpkg.com/docsify-count/dist/countable.js"></script>
-<!-- 侧边栏折叠 -->
-  <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/prismjs@latest/components/prism-bash.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/prismjs@latest/components/prism-python.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/docsify-pagination@latest/dist/docsify-pagination.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/docsify-copy-code"></script>
+    <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+    <!--字数统计-->
+    <script src="//unpkg.com/docsify-count/dist/countable.js"></script>
+    <!-- 侧边栏折叠 -->
+    <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
 </body>
+
 </html>
