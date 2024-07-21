@@ -1,5 +1,8 @@
 * [基础](/1foundations/index.md)
+  - [Rx.js](/1foundations/Rx.js.md)
   * [数据库](/1foundations/data-base/index.md)
+    - [Mongodb](/1foundations/data-base/Mongodb.md)
+    - [Redis](/1foundations/data-base/Redis.md)
   * [大前端](/1foundations/front-end/index.md)
     - [Angular](/1foundations/front-end/Angular.md)
     - [CSS](/1foundations/front-end/CSS.md)

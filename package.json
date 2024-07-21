@@ -1,0 +1,15 @@
+{
+  "name": "woodpecker",
+  "version": "1.0.0",
+  "description": "努力更新中`ing`...",
+  "main": "autoSidebar.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "husky": "^9.1.1"
+  }
+}

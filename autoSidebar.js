@@ -5,7 +5,9 @@ const curPath = path.resolve('./');
 const taskQueue = [];
 const relativeFilePathFilter = [
     '/.idea',
-    '/public'
+    '/public',
+    '/node_modules',
+    '/.husky',
 ];
 
 const SIDE_BAR = '/_sidebar.md'

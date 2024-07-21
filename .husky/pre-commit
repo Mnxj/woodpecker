@@ -1,0 +1,3 @@
+echo "Running pre-commit hook"
+node autoSidebar.js
+git add .
