@@ -1,2 +1,8 @@
+ - [数据库](/1foundations/data-base/index.md)
  - [大前端](/1foundations/front-end/index.md)
+ - [git](/1foundations/git.md)
  - [java](/1foundations/java/index.md)
+ - [网络](/1foundations/network/index.md)
+ - [npm](/1foundations/npm.md)
+ - [测试](/1foundations/test/index.md)
+ - [设计模式](/1foundations/设计模式.md)

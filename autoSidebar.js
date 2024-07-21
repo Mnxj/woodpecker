@@ -14,7 +14,11 @@ const NameMap = {
     '2code': '代码题',
     '1foundations': '基础',
     'front-end': '大前端',
+    '3scene-questions': '场景题',
     'java': 'java',
+    'network': '网络',
+    'test': '测试',
+    'data-base': '数据库',
     'Interview-experience': '面试经验'
 }
 
