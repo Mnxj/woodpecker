@@ -1,4 +1,5 @@
    - [Arrary](/2code/front-end/JavaScript/Arrary.md)
+   - [DOM](/2code/front-end/JavaScript/DOM.md)
    - [Promise](/2code/front-end/JavaScript/Promise.md)
    - [WebComponent](/2code/front-end/JavaScript/WebComponent.md)
    - [compose](/2code/front-end/JavaScript/compose.md)

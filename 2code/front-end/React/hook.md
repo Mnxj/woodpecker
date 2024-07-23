@@ -20,6 +20,39 @@ function useEffect(callback, dependencies) {
 }
 ```
 
+### 简化版的 `useState` 源码
+
+```js
+function useState(initialValue) {
+  let _val = initialValue;
+  function setState(newVal) {
+    _val = newVal;
+  }
+  function getState() {
+    return _val;
+  }
+  return [getState, setState];
+}
+```
+
+### useInterval实现
+
+```js
+import { useCallback, useEffect } from 'react';
+
+function useInterval(callback, delay) {
+  const savedCallback = useCallback(callback,[callback])
+
+  // 设置定时器
+  useEffect(() => {
+
+    if (delay !== null) {
+      const id = setInterval(savedCallback, delay);
+      return () => clearInterval(id);
+    }
+  }, [delay]);
+}
+```
 
 
 ### 自己封装hook
