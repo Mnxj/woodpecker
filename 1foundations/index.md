@@ -1,4 +1,3 @@
- - [JPA](/1foundations/JPA/index.md)
  - [Rx.js](/1foundations/Rx.js.md)
  - [后端](/1foundations/back-end/index.md)
  - [数据库](/1foundations/data-base/index.md)
@@ -6,6 +5,5 @@
  - [git](/1foundations/git.md)
  - [网络](/1foundations/network/index.md)
  - [npm](/1foundations/npm.md)
- - [springboot](/1foundations/springboot/index.md)
  - [测试](/1foundations/test/index.md)
  - [设计模式](/1foundations/设计模式.md)
