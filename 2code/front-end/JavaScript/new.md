@@ -1,16 +1,38 @@
 ### **new一个对象，到底发生什么？**
 
-1）创建一个对象，该对象的原型指向构造函数的原型
-
-2）调用该构造函数改变this指向新的对象
-
-3）判断构造函数是否有返回值，如果有返回值且返回值是一个对象或一个方法，则返回该值；否则返回新生成的对象
-
 ```js
-function selfNew(fn, ...args) {
-  // 创建一个instance对象，该对象的原型是fn.prototype  let instance = Object.create(fn.prototype);
-  let res = fn.apply(instance, args);
-  // 如果fn函数有返回值，并且返回值是一个对象或方法，则返回该对象，否则返回新生成的instance对象
-  return typeof res === "object" || typeof res === "function" ? res : instance;
+/**
+ * new 的执行过程
+ * 1. 创建一个对象obj
+ * 2. 该对象的__proto__指向构造函数Fn的原型prototype
+ * 3. 执行构造函数Fn的代码，往新创建的对象obj上添加成员属性和方法
+ * 4. 返回这个新的对象obj
+ */
+
+const _new = function (func, ...args) {
+  if (typeof func !== 'function') {
+    throw 'func must be a function'
+  }
+  let obj = {}
+  obj.__proto__ = func.prototype
+  let result = func.apply(obj, args)
+
+  return !!result&& typeof result === 'object' || typeof result === 'function' ? result : obj
+}
+
+let Person = function (name, sex) {
+  this.name = name
+  this.sex = sex
+}
+
+Person.prototype.showInfo = function () {
+  console.log(this.name, this.sex)
+}
+
+let p1 = _new(Person, '111', 'sex')
+
+console.log(p1)
+console.log(p1.showInfo)
+n typeof res === "object" || typeof res === "function" ? res : instance;
 }
 ```
