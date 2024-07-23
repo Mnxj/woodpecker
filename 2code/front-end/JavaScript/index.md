@@ -13,5 +13,6 @@
    - [柯里化](/2code/front-end/JavaScript/柯里化.md)
    - [模块加载器](/2code/front-end/JavaScript/模块加载器.md)
    - [类型转换](/2code/front-end/JavaScript/类型转换.md)
+   - [自定义函数](/2code/front-end/JavaScript/自定义函数.md)
    - [表单验证](/2code/front-end/JavaScript/表单验证.md)
    - [请求处理](/2code/front-end/JavaScript/请求处理.md)
