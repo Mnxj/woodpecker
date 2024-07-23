@@ -79,3 +79,4 @@
   - [大前端](/3scene-questions/大前端.md)
 - [面试经验](/Interview-experience/index.md)
   - [大前端](/Interview-experience/front-end/index.md)
+    - [miniMax](/Interview-experience/front-end/miniMax.md)
