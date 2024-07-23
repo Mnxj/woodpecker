@@ -1,3 +1,216 @@
+## 基本使用
+
+webpack是一个`静态资源打包工具`
+
+输出编译好的文件（bundle），放在浏览器可以直接运行
+
+## 功能介绍
+
+webpack本身功能有限
+
+- 开发模式：仅能编译js中的`ES Module`语法
+- 生产模式：能编译js中的`ES Module`语法，还能压缩JS代码
+
+## 开始使用
+
+### 1、资源目录
+
+```js
+// ./src/main.js
+import count from './js/count'
+import sum from './js/sum'
+
+console.log(count(2,1))
+console.log(sum(1,2,3,4))
+
+//./src/js/sum.js
+export default function count(x,y) {
+    return x-y;
+}
+//./src/js/count.js
+export default function sum(...args) {
+    return args.reduce((p,c) => p+c,0)
+}
+//./public/index.html
+    <h1> hello webpack</h1>
+    <script src="../src/main.js"></script>
+```
+
+> 运行index.html 看不到log信息
+
+### 2、打包
+
+```shell
+# init package.json
+npm init -y
+
+# install
+npm i webpack webpack-cli -D
+
+# build
+npx webpack ./src/main.js --mode=development
+
+#./public/index.html
+  <script src="../dist/main.js"></script>
+```
+
+> 日志显示不过会有eval提示 ,dev环境仅能编译js语法，不能压缩
+
+```shell
+# 开发模式不会有eval提示
+npx webpack ./src/main.js --mode=production 
+```
+
+### 基本配置
+
+在开始使用 `webpack`之前，我们需要对`webpack`的配置有一定的认识。
+
+#### 5大核心概念
+
+1. Entry(入口) 提示webpack从哪个文件开始打包
+2. Output（输出） 指示webpack打包完的文件输出到哪里去，如何命名等
+3. Loader(加载器) webpack本身只能处理js\json等资源，其他资源需要借助loader,webpack才能解析
+4. Plugin(插件) 拓展webpack的功能
+5. Mode(模式) development, production
+
+#### 准备Webpack配件文件
+
+在项目根目录新建，webpack.config.js
+
+> 是需要在node.js中运行的所以模块化都是common模块化
+
+```js
+const path = require("path")
+module.exports = {
+    entry: "./src/main.js",
+    output: {
+        path: path.resolve(__dirname, "dist"), //绝对路径
+        filename: "main.js",
+    },
+    // 加载器
+    module: {
+        rules: [
+       ]
+    },
+    plugins: [
+    ],
+    mode: "development",
+}
+```
+## 基本使用
+
+webpack是一个`静态资源打包工具`
+
+输出编译好的文件（bundle），放在浏览器可以直接运行
+
+## 功能介绍
+
+webpack本身功能有限
+
+- 开发模式：仅能编译js中的`ES Module`语法
+- 生产模式：能编译js中的`ES Module`语法，还能压缩JS代码
+
+## 开始使用
+
+### 1、资源目录
+
+```js
+// ./src/main.js
+import count from './js/count'
+import sum from './js/sum'
+
+console.log(count(2,1))
+console.log(sum(1,2,3,4))
+
+//./src/js/sum.js
+export default function count(x,y) {
+    return x-y;
+}
+//./src/js/count.js
+export default function sum(...args) {
+    return args.reduce((p,c) => p+c,0)
+}
+//./public/index.html
+    <h1> hello webpack</h1>
+    <script src="../src/main.js"></script>
+```
+
+> 运行index.html 看不到log信息
+
+### 2、打包
+
+```shell
+# init package.json
+npm init -y
+
+# install
+npm i webpack webpack-cli -D
+
+# build
+npx webpack ./src/main.js --mode=development
+
+#./public/index.html
+  <script src="../dist/main.js"></script>
+```
+
+> 日志显示不过会有eval提示 ,dev环境仅能编译js语法，不能压缩
+
+```shell
+# 开发模式不会有eval提示
+npx webpack ./src/main.js --mode=production 
+```
+
+### 基本配置
+
+在开始使用 `webpack`之前，我们需要对`webpack`的配置有一定的认识。
+
+#### 5大核心概念
+
+1. Entry(入口) 提示webpack从哪个文件开始打包
+2. Output（输出） 指示webpack打包完的文件输出到哪里去，如何命名等
+3. Loader(加载器) webpack本身只能处理js\json等资源，其他资源需要借助loader,webpack才能解析
+4. Plugin(插件) 拓展webpack的功能
+5. Mode(模式) development, production
+
+#### 准备Webpack配件文件
+
+在项目根目录新建，webpack.config.js
+
+> 是需要在node.js中运行的所以模块化都是common模块化
+
+```js
+const path = require("path")
+module.exports = {
+    entry: "./src/main.js",
+    output: {
+        path: path.resolve(__dirname, "dist"), //绝对路径
+        filename: "main.js",
+    },
+    // 加载器
+    module: {
+        rules: [
+       ]
+    },
+    plugins: [
+    ],
+    mode: "development",
+}
+```
+
+#### 开发模式介绍
+
+开发时使用的模式：
+
+1. 编译代码，使浏览器能识别运行（样式、图片、字体，webpack默认都不能处理这些资源，所以我们要加载配置来编译这些资源）
+2. 代码质量检查，树立代码规范
+
+#### 开发模式介绍
+
+开发时使用的模式：
+
+1. 编译代码，使浏览器能识别运行（样式、图片、字体，webpack默认都不能处理这些资源，所以我们要加载配置来编译这些资源）
+2. 代码质量检查，树立代码规范
+
 ### webpack 中chunkHash与contentHash区别
 
 > 有效地控制文件的缓存行为，提高应用的加载速度和性能。
