@@ -1,3 +1,4 @@
+- [.vercel](/.vercel/index.md)
 - [基础](/1foundations/index.md)
   - [Rx.js](/1foundations/Rx.js.md)
   - [后端](/1foundations/back-end/index.md)
@@ -80,3 +81,6 @@
 - [面试经验](/Interview-experience/index.md)
   - [大前端](/Interview-experience/front-end/index.md)
     - [miniMax](/Interview-experience/front-end/miniMax.md)
+- [issue](/issue/index.md)
+  - [colima](/issue/colima.md)
+  - [umi](/issue/umi.md)
