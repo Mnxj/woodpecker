@@ -81,7 +81,7 @@
 - [面试经验](/Interview-experience/index.md)
   - [大前端](/Interview-experience/front-end/index.md)
     - [miniMax](/Interview-experience/front-end/miniMax.md)
-- [好工具方式分享](/good-share/index.md)
+- [好工具分享](/good-share/index.md)
 - [issue](/issue/index.md)
   - [colima](/issue/colima.md)
   - [umi](/issue/umi.md)
