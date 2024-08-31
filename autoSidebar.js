@@ -23,7 +23,8 @@ const NameMap = {
     'data-base': '数据库',
     'Interview-experience': '面试经验',
     'leet-code':'力扣',
-    'good-share': '好工具分享'
+    'good-share': '好工具分享',
+    'issue': '遇到的问题',
 }
 
 function countCharacter(str) {
