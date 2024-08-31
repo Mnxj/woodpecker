@@ -1,4 +1,3 @@
-- [.vercel](/.vercel/index.md)
 - [基础](/1foundations/index.md)
   - [Rx.js](/1foundations/Rx.js.md)
   - [后端](/1foundations/back-end/index.md)
