@@ -81,6 +81,7 @@
   - [大前端](/Interview-experience/front-end/index.md)
     - [miniMax](/Interview-experience/front-end/miniMax.md)
 - [好工具分享](/good-share/index.md)
+  - [Yalc(药吃)](/good-share/Yalc(药吃).md)
 - [遇到的问题](/issue/index.md)
   - [colima](/issue/colima.md)
   - [umi](/issue/umi.md)

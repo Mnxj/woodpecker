@@ -8,6 +8,7 @@ const relativeFilePathFilter = [
     '/public',
     '/node_modules',
     '/.husky',
+    'LICENSE'
 ];
 
 const SIDE_BAR = '/_sidebar.md'
