@@ -75,7 +75,7 @@ yarn link ui
 >
 > `yalc` 是一个简单的、基于[文件系统](https://so.csdn.net/so/search?q=文件系统&spm=1001.2101.3001.7020)的包管理器，它可以让你在本地开发和测试你的 npm 模块，而不需要发布到 npm 仓库。
 
-### 
+
 
 1. 借助 `nodemon` 和 `yalc` 来实现组件库的本地联调。
 
