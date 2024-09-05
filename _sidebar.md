@@ -81,6 +81,7 @@
 - [面试经验](/Interview-experience/index.md)
   - [大前端](/Interview-experience/front-end/index.md)
     - [miniMax](/Interview-experience/front-end/miniMax.md)
+  - [测试](/Interview-experience/test/index.md)
 - [好工具分享](/good-share/index.md)
   - [Yalc(药吃)](/good-share/Yalc(药吃).md)
 - [遇到的问题](/issue/index.md)
