@@ -109,6 +109,8 @@ https://sourl.cn/MQkq9G
 
 ### SQL注入
 
+> SQL注入攻击是通过在Web表单输入或URL查询字符串中插入恶意SQL代码，当这些输入被服务器端的数据库查询处理时，攻击者可以执行任意SQL命令，从而获取数据库中的敏感信息、修改数据等。
+
 ![image-20240907234503390](./../images/image-20240907234503390.png)
 
 输入 1' UNION SELECT 1,database() from information_schema.schemata#
