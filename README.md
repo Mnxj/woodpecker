@@ -9,10 +9,11 @@
 - [代码题](/2code/index)
 - [场景题](/3scene-questions/index.md)
 - [面试经验](/Interview-experience/index.md)
+- [好工具分享](/good-share/index.md)
+- [遇到的问题](/issue/index.md)
 
 
-
-### **目前共创：**
+### **目前共创：**s
 
 <center class ='img'>
     <a href='https://github.com/mnxj' target="_blank">
@@ -46,7 +47,9 @@ const NameMap = {
     'test': '测试',
     'data-base': '数据库',
     'Interview-experience': '面试经验',
-    'leet-code':'力扣'
+    'leet-code':'力扣',
+    'good-share': '好工具分享',
+    'issue': '遇到的问题',
 }
 ```
 

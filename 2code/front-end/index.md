@@ -1,3 +1,3 @@
-  - [CSS](/2code/front-end/CSS/index.md)
+  - [CSS](/2code/front-end/CSS.md)
   - [JavaScript](/2code/front-end/JavaScript/index.md)
   - [React](/2code/front-end/React/index.md)

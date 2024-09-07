@@ -33,7 +33,7 @@
   - [设计模式](/1foundations/设计模式.md)
 - [代码题](/2code/index.md)
   - [大前端](/2code/front-end/index.md)
-    - [CSS](/2code/front-end/CSS/index.md)
+    - [CSS](/2code/front-end/CSS.md)
     - [JavaScript](/2code/front-end/JavaScript/index.md)
       - [Arrary](/2code/front-end/JavaScript/Arrary.md)
       - [Call-apply-bind](/2code/front-end/JavaScript/Call-apply-bind.md)
