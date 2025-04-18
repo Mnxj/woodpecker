@@ -14,7 +14,7 @@
 - [遇到的问题](/issue/index.md)
 
 
-### **目前共创：**s
+### **目前共创：**
 
 
 <center class ='img'>
