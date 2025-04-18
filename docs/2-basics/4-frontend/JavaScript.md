@@ -19,13 +19,13 @@ Math.round((6.8-0.9)*10); //四舍五入59
 
 大数使用bitInt，字符串表示小数可以避免丢失
 
-### var a ={b:1} 存放在那
+### `var a = {b:1}` 存放在那
 
-对象 {b: 1} 存储在堆中，变量 a 存储在栈中，指向堆中的对象
+对象 `{b: 1}` 存储在堆中，变量 a 存储在栈中，指向堆中的对象
 
-### var a ={b:{c:1}} 存放在那
+### `var a ={b:{c:1}}` 存放在那
 
-`{b: {c: 1}}` 是一个嵌套对象储存在堆，a在栈。
+`{b: {c: 1}}` 是一个嵌套对象储存在堆，a 在栈。
 
 ### 栈和堆的区别
 
@@ -284,9 +284,7 @@ Math.round((6.8-0.9)*10); //四舍五入59
 
 例如，你可以为JavaScript的 Array 对象添加新的⽅法：
 
-
-
-Array.prototype.myCustomFeature = function() {*// implementation };
+`Array.prototype.myCustomFeature = function() {*// implementation };`
 
 ### 怎么判断是自己的方法和变量，还是原型上的
 
@@ -1260,9 +1258,9 @@ Promise.resolve(1)
 
 ### **JS 放在 head 里和放在 body 里有什么区别？**
 
-在 <head> 里会在页面加载之前执行 JavaScript 代码，导致页面渲染延迟，
+在 `<head>` 里会在页面加载之前执行 JavaScript 代码，导致页面渲染延迟，
 
-而放在 <body> 里会在页面加载后执行 减少这种影响。
+而放在 `<body>` 里会在页面加载后执行 减少这种影响。
 
 ### 预加载资
 
@@ -1866,7 +1864,7 @@ JS内置对象，提供了一种更加简洁和一致的方式来操作对象。
 nprogress
 
 - 一个轻量级的进度条插件
-- Nprogress.configure({showSpinner: false})
+- `Nprogress.configure({showSpinner: false})`
 - 监听load（nprogress.done）和readystatechange z状态是interactive progress.start else progress.done
 
 ### js为什么0.1+0.2!=0.3，怎么做能保证精确

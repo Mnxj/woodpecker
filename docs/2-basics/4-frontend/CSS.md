@@ -526,7 +526,7 @@ Top：0
 
 1.自定义：页面加载时,根据当前设备的屏幕尺寸和分辨率,计算并设置合适的 font-size 值
 
-2.px->转为rem:postcss在postcss.config.js里面的plugins加入postcss-pxtorem: { rootValue:16,propList:[*],selectorBlanckList:[]}
+2.px->转为`rem:postcss`在postcss.config.js里面的plugins加入 `postcss-pxtorem: { rootValue:16,propList:[*],selectorBlanckList:[]}`
 
 3.webcomponent 定义rem组件
 

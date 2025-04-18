@@ -416,7 +416,7 @@ JSX 是 JavaScript 的一种语法扩展，允许在 js 代码中直接嵌入 HT
 
 如果组件返回多个元素，那么 React 将无法确定如何将这些元素正确地插入到父组件的 DOM 结构中
 
-使用： <div>、<Fragment> 或简写的 <>
+使用： `<div>`、`<Fragment>` 或简写的 `<>`
 
 ### React生命周期
 
@@ -2193,7 +2193,7 @@ export default ConnectedComponent;
 
 - React-router onEnter
 
-    - ```js
+```js
     <Router path="/home" componnt={App} onEnter={(nextState,repalace)=> {
       if(nextState.location.pathename !== '/' {
          // 根据参数判断用户信息
@@ -2207,7 +2207,7 @@ export default ConnectedComponent;
     }>
       
     or 写成一个privateRouter组件
-    ```
+```
 
 ### 单页应用
 
@@ -2379,7 +2379,7 @@ SEO 主要涉及以下几个方面:
 
     - 对组件的 props 和 state 进行浅比较
 
-    - ```react
+    ```react
      class MyComponent extends React.PureComponent {
      ```
 

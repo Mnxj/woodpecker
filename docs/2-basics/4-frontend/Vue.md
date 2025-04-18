@@ -340,7 +340,7 @@ export default {
 - 如果需要传递参数和事件对象，可以使用 `$event`。 v-on:click="handleClick('Hello Vue!', $event)"
 - 支持动态事件名 v-on:[eventName]="handleClick"
 - **多个事件处理函数** v-on:click="handleClick1(); handleClick2()"
-- **对象语法** v-on="{ click: handleClick, mouseover: handleMouseOver }"
+- **对象语法** v-on="`{ click: handleClick, mouseover: handleMouseOver }`"
 - 组件上使用 `v-on` 可以监听子组件触发的自定义事件 子组件用this.$emit发送
 
 **常用修饰符：**

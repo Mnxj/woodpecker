@@ -308,7 +308,7 @@ c. 集成到构建过程：将ESLint添加到你的构建脚本中，可以使�
 
 3. 报告：遍历之后，会⽣成⼀份报告。说明了它在代码中找到的任何问题。问题被分类为错误或警告。
 
-4. 修复： ESLint 尝试⾃动修复。editor[哎].codeActionOnSave{source.fixAll: true}
+4. 修复： ESLint 尝试⾃动修复。`editor[哎].codeActionOnSave{source.fixAll: true}`
 
 5. 集成：可以集成到 IDE 中，可以在代码编写过程中即时提供反馈。也可以被集成到构建⼯具如 Webpack
 
@@ -1243,9 +1243,9 @@ chainWebpack: function (config, { webpack }) {
 
 3. externals
 
-- `externals`用于将一些第三方库排除出打包过程，不出现在最终的打包结果中。再通过其他方式引入它们，比如<script>标签引入。
+- `externals`用于将一些第三方库排除出打包过程，不出现在最终的打包结果中。再通过其他方式引入它们，比如`<script>`标签引入。
 
-- `externals`的值是一个对象，其中`key`的值是第三方库的名字，`value`的值是通过<script>标签引入的全局变量的名字。
+- `externals`的值是一个对象，其中`key`的值是第三方库的名字，`value`的值是通过`<script>`标签引入的全局变量的名字。
 -  我们把`antd` / `moment` / `react` / `react-dom` / `xlsx`全部配置到`externals`中，并通过cdn引入它们。这样，就可以实现把它们排除出*umi.js*。每次更新、发布新版本，如果用户之前访问过，有缓存，就不需要重新下载它们了。
 
 ```js

@@ -22,50 +22,50 @@
 
     - `Partial<T>`、[ˈpɑrʃl]  变为可选属性
 
-      Type Partial<T> = {[k in keyof T]?: T[K]}
+      `Type Partial<T> = {[k in keyof T]?: T[K]}`
     - `Required<T>`、 变为必选属性
 
-      Type required<T> = {[K in keyof T]-?: T[k]}
+      `Type required<T> = {[K in keyof T]-?: T[k]}`
     - `Readonly<T>`、 变为只读属性
 
-      Type Readonly<T> = { readonly [K in keyof T]:T[K]}
+      `Type Readonly<T> = { readonly [K in keyof T]:T[K]}`
     - `Pick<T, K>`、  从T选取属性K
 
-      Type Pick<T, K extends keyof T> = { [P in K]: T[P]}
+      `Type Pick<T, K extends keyof T> = { [P in K]: T[P]}`
     - `Omit<T, K>`    从T中移除属性K
 
-      Type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T,K>>
+      `Type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T,K>>`
 
 4.  **工具类型**
 - `Exclude<T, U>`  从T中中移除可以赋值给类型 U 的部分
 
-  **type** Exclude<T,U> = T **extends** U? never:T;
+  **type** `Exclude<T,U>` = T **extends** U? `never:T`;
 
 - `Extract<T, U>` 从T中选取可以赋值给类型 U 的部分
 
-  **type** Extract<T,U> = T **extends** U? T:never;
+  **type** `Extract<T,U>` = T **extends** U? `T:never`;
 
 - `NonNullable<T>` T 中排除 null 和 undefined
 
-  Type Nonullable<T> = T extends null | undefind ? never: T;
+  `Type Nonullable<T> = T extends null | undefind ? never: T;`
 
 - `ReturnType<T>`  获取返回类型
 
-  Type ReturnType<T extends (...args:any) =>any > = T extends (...args: any) => infer R? R:never
+  `Type ReturnType<T extends (...args:any) =>any > = T extends (...args: any) => infer R? R:never`
 
   `Parameters `以元组的方式获得函数的入参类型。
 
-  Type Parameter<T extends (...args:any)=> any> = T extends (...args:infer P) => any? P :never
+  `Type Parameter<T extends (...args:any)=> any> = T extends (...args:infer P) => any? P :never`
 
   `ConstructorParameters `以元组的方式获得构造函数的入参类型
 
-  Type constructorParamets <T extends new(...args:any)=> any> = T extends new (...args: infer R) => any ? R : never
+  `Type constructorParamets <T extends new(...args:any)=> any> = T extends new (...args: infer R) => any ? R : never`
 
   `InstanceType `获得构造函数返回值的类型
 
-  type InstanceType <T extends new(..args:any) =>any > = T extends new(...args:any) => infer R ? R : never
+  `type InstanceType <T extends new(..args:any) =>any > = T extends new(...args:any) => infer R ? R : never`
 
-  嵌套数组的类型 type NestedArray<T>=T | NestedArray<T>[]
+  嵌套数组的类型 `type NestedArray<T>=T | NestedArray<T>[]`
 
     18. ```typescript
          type NestedArray<T> = T | NestedArray<T>[];
@@ -178,7 +178,7 @@
 - 参数 traget对象原型、propertyKey参数的名称、index参数数组中的位置
 - 访问器
 
-### 范型的理解 <>
+### 范型的理解 `<>`
 
 可以声明接口、函数、类、索引类型、约束类型
 
