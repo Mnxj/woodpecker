@@ -1,6 +1,6 @@
 ### React 19更新了啥
 
-1. **新的 APIs**: 
+1. **新的 APIs**:
 
    useFormStatus() ，表单提交状态反馈 pending true
 
@@ -47,18 +47,14 @@ root.unmount()
 ```
 
 - 去掉了对IE浏览器支持
-
 - flush[flʌʃ]Sync
-
-- React 组件返回值更新
-  - react 17 return null if返回undefined报错
-  - React 18 支持null undefined
-- Concurrent 并行模式
-- Hook. 
-  - `useId`、`useSyncExternalStore` 
-  - useTransition 来标记低优先的 state 更新
-  - useDeferredValue ：可以⽤来标记低优先的变量
-
+- 组件返回值undefined
+    - react 17 return null if返回undefined报错
+    - React 18 支持null undefined
+- Hook.
+    - `useId`、`useSyncExternalStore`
+    - useTransition 来标记低优先的 state 更新
+    - useDeferredValue ：可以⽤来标记低优先的变量
 - Suspense
 
 ### React v15和v16的区别 生命周期函数
@@ -312,7 +308,7 @@ React 在提交阶段设置更新 DOM 后，React 立即将它们设置到相应
   }
   ```
 
-  
+
 
 - 传入变量
 
@@ -330,7 +326,7 @@ React 在提交阶段设置更新 DOM 后，React 立即将它们设置到相应
    console.log(this.myRef.current)
   ```
 
-  
+
 
 - 传入函数
 
@@ -389,54 +385,58 @@ JSX 是 JavaScript 的一种语法扩展，允许在 js 代码中直接嵌入 HT
 2. **创建元素对象**：然后，会创建一个包含元素类型、属性和子元素的虚拟 DOM 元素。
 3. **返回虚拟 DOM 元素**；
 
+
+
 ### React渲染流程
 
 1.	babel把 jsx代码转为 React.createElement（16），jsx(17 react/jsx-runtime） 形式又叫render方法。
 2.	render方法会返回虚拟dom
 3.	react会把虚拟dom转为fiber，过程有分为beighwork和completeWork
-   1.	beighwork 从下往上 将vdom 转 fiber，比较虚拟 DOM 和旧虚拟DOM，找出需要更新的部分，
+1.	beighwork 从下往上 将vdom 转 fiber，比较虚拟 DOM 和旧虚拟DOM，找出需要更新的部分，
       1.	对于需要更新的部分，React 会创建一个更新队列，并按照优先级顺序依次更新 DOM
       2.	在更新过程中，React 会递归地渲染子组件,
       3.	在渲染过程中，React 会调用组件的生命周期钩子 如果组件的状态发生变化
       4.	再次调用render()方法，并重复上述渲染流程
-   2.	completeWork 从上往下 按顺序创建元素，组装成一个 dom 树。
+2.	completeWork 从上往下 按顺序创建元素，组装成一个 dom 树。
 
 ### [服务端渲染原理](https://zhuanlan.zhihu.com/p/622415299)
 
 1. 用户在浏览器中输入 URL 并发起请求。
 2. 服务器接收到客户端的请求，并根据请求的 URL 查找路由表到对应的组件，拿到需要请求的数据，
 3. 将数据作为 props、context或者store 形式传⼊组件
-4. react 使用renderToString() 把组件渲染为 html 字符串，
-5. 服务器将生成的 HTML 页面发送给客户端浏览器。
-6. 客户端浏览器接收到服务器发送的 HTML 页面后开始执行hydrate， 
-7. hydrate是在 beginWork 阶段，依次判断 dom 是否可以复用到当前 fiber，可以的话就设置到 fiber.stateNode，
-8. 然后在 completeWork 阶段就可以跳过节点的创建。
+4. react 使用renderToString() 或 ReactDOMServer.renderToStaticMarkup()进行渲染
+5. 在渲染过程中，React 会将组件树渲染为 HTML 字符串，
+6. 服务器将生成的 HTML 页面发送给客户端浏览器。
+7. 一旦 HTML 页面加载完，浏览器会加载并执行 React 的 JavaScript 文件。
+8. React 在客户端执行时，会进行“水合”（hydration），即将客户端的 React 应用与服务端返回的 HTML 内容进行绑定。这个过程会确保 JavaScript 中的事件处理器和 React 组件的状态与服务端渲染的 HTML 内容一致页面后开始执行hydrate，
+9. hydrate是在 beginWork 阶段，依次判断 dom 是否可以复用到当前 fiber，可以的话就设置到 fiber.stateNode，
+10. 然后在 completeWork 阶段就可以跳过节点的创建。
 
 ### React 组件为什不能不能返回多个元素
 
 如果组件返回多个元素，那么 React 将无法确定如何将这些元素正确地插入到父组件的 DOM 结构中
 
-使用： `<div>`、`<Fragment>` 或简写的 `<>`
+使用： <div>、<Fragment> 或简写的 <>
 
 ### React生命周期
 
 函数没有，只有类组件有
 
 - 挂载 16.3后
-  - constructor
-  - Static getDerivedStateFromProps 判断state是否需要更新
-  - render 创建Vdom 阶段
-  - componentDidMount 挂载生成真实dom
+    - constructor
+    - Static getDerivedStateFromProps 判断state是否需要更新
+    - render 创建Vdom 阶段
+    - componentDidMount 挂载生成真实dom
 
 - 更新
-  - Static props 发生变化
-  - Static getDerivedStateFromProps 判断state是否需要更新
-  - shouldComponentUpadte 根据props和state判断是否需要更新组件
-  - render更新Vdom
-  - getSnapshotBeforupdate获取更新前状态 [ˈsnæpʃɑt]
-  - componentDidUpate 完成更新后调用
+    - Static props 发生变化
+    - Static getDerivedStateFromProps 判断state是否需要更新
+    - shouldComponentUpadte 根据props和state判断是否需要更新组件
+    - render更新Vdom
+    - getSnapshotBeforupdate获取更新前状态 [ˈsnæpʃɑt]
+    - componentDidUpate 完成更新后调用
 - 卸载
-  - componentWillUnmount 组件被移除
+    - componentWillUnmount 组件被移除
 
 
 
@@ -539,7 +539,7 @@ Transition
   }
   ```
 
-  
+
 
 - 隔层传递 Context   或者使用redux
 
@@ -556,15 +556,71 @@ Transition
 - 类： 需要继承              函数：不需要
 - 类：面向对象方法，1、封装->组件属性方法 封装到组件内部 2、继承extends 函数：函数式编程思想
 
+### hooks和class写法性能对比
+
+**渲染性能**：在大多数情况下，**Hooks 和 Class 组件的渲染性能没有显著差异**。React 的优化机制能够有效地管理两者的渲染过程。
+
+**更新性能**：对于复杂的更新场景，**Hooks** 提供了更加高效和灵活的机制，尤其是配合 `useMemo`、`useCallback`、`useEffect` 等优化工具使用时，可以减少不必要的渲染和副作用执行。
+
+**内存和实例开销**：函数组件和 Hooks 通常具有更低的内存开销，因为它们不会像类组件那样创建实例。
+
+**开发体验**：使用 **Hooks** 可以提高开发效率、代码简洁性和可维护性，避免 `this` 和复杂的生命周期管理。
+
 ### React的插槽怎么实现
 
 使用 `props.children` or  React 的 `cloneElement` API 来渲染到指定的插槽位置。
 
 应用： 比如 React Router 的 `<Route>` 组件、React Bootstrap 的 `<Modal>` 组件
 
-### 如果if语句里写useEffect会有什么表现？
+### **基本类型和引用类型在 React 中需要注意什么？**
 
-放入if后不能保证每次渲染时被执行，会破坏掉hooks的调用顺序，会导致状态不一致和难以追踪的bug
+- **基本类型（如 string、number、boolean）**：
+    - 在 React 中，基本类型的比较是值比较，可以直接用于依赖项（如 `useEffect` 的依赖数组）。
+- **引用类型（如 object、array、function）**：
+    - 在 React 中，引用类型的比较是引用地址比较，即使内容相同，引用地址不同也会被认为是不同的值。
+    - **注意事项**：
+        - 避免在渲染时创建新的引用类型（如直接在 JSX 中写 `style={{}}` 或 `onClick={() => {}}`），这会导致不必要的重新渲染。
+        - 使用 `useMemo` 或 `useCallback` 缓存引用类型，避免重复创建。
+
+---
+
+###  **React 的 useContext 因为value变化导致组件刷新怎么解决？**
+
+1. **避免直接将复杂对象作为 Context 的 value**
+
+React 会比较上下文的 `value` 来判断是否需要更新组件。默认的比较是浅比较（shallow comparison），如果上下文的 `value` 是一个复杂对象（例如数组、对象或函数），即使内容没有改变，引用的变化也会触发组件重新渲染。
+
+解决方案：
+
+- 避免每次渲染时都创建新的对象或数组作为 `value`，因为引用的变化会导致组件重新渲染。
+- 使用 `useMemo` 或 `useCallback` 来缓存 `value`，确保只有在值实际变化时，`value` 的引用才会改变。
+
+2. **拆分 Context，减少不必要的重新渲染**
+
+如果你的上下文包含了多个值（例如用户信息、主题设置等），而你只关心其中一部分的变化，可以考虑将上下文拆分成多个独立的上下文，避免一部分的变化触发其他部分的组件重新渲染。
+
+3. **使用 `React.memo` 或 `useMemo` 优化组件**
+
+`React.memo` 是一个高阶组件，用于包裹子组件并避免不必要的重新渲染。可以结合 `useContext` 使用，以确保当上下文变化时，只有需要更新的子组件才会重新渲染。
+
+4. **避免过多的 Context 订阅**
+
+如果一个组件使用多个上下文，且这些上下文的 `value` 经常变化，可以考虑将多个上下文合并到一个上下文中，减少组件的订阅数量。
+
+通过将多个相关的值组合到一个对象中，并使用 `useMemo` 或 `useCallback` 来优化，能够有效减少组件的重新渲染。
+
+5. **使用 `useReducer` 优化 Context 中的状态管理**
+
+在一些复杂的场景中，使用 `useReducer` 来管理 Context 的状态可以比直接使用 `useState` 更高效。通过集中处理更新逻辑，可以避免因为每个状态变化都触发重新渲染的问题。
+
+---
+
+### **`useEffect(() => {}, [])` 能获取 DOM 吗？如果里面使用 `useState(false)`**
+
+- **能获取 DOM**：`useEffect` 的回调函数会在组件挂载后执行，此时 DOM 已经渲染完成，因此可以通过 `document.getElementById` 或 `ref` 获取 DOM。
+- **`useState(false)` 的影响**：
+    - 如果 `useState(false)` 的状态变化触发了组件的重新渲染，`useEffect` 不会再次执行（因为依赖数组为空）。
+    - 如果需要在状态变化时执行某些逻辑，可以将状态添加到依赖数组中，例如 `useEffect(() => {}, [state])`。
 
 ### useEffect使用
 
@@ -678,21 +734,29 @@ hooks规则约束
 - useMemo  记忆化计算结果
 - useEffectLayout 是 [`useEffect`](https://react.docschina.org/reference/react/useEffect) 的一个版本，在浏览器重新绘制屏幕之前触发。
 - useCallback 记忆化回调函数
-  - 应用场景：
-    - 当将函数作为属性传递给子组件时，可以确保子组件在父组件重新渲染时不会收到新的函数引用
-    - 避免在 useEffect 中创建新的函数
-    - 缓存复杂的计算函数
+    - 应用场景：
+        - 当将函数作为属性传递给子组件时，可以确保子组件在父组件重新渲染时不会收到新的函数引用
+        - 避免在 useEffect 中创建新的函数
+        - 缓存复杂的计算函数
 - useContext 使用上下文
 - useState 声明状态对象
 - useReducer 替代Redux的一种状态管理方案
-- useTransition 在不阻塞 UI 的情况下更新状态的 React Hook. 
-  - `isPending`，告诉你是否存在待处理的 transition。
-  - [`startTransition` 函数](https://react.docschina.org/reference/react/useTransition#starttransition)，你可以使用此方法将状态更新标记为 transition。
+- useTransition 在不阻塞 UI 的情况下更新状态的 React Hook.
+    - `isPending`，告诉你是否存在待处理的 transition。
+    - [`startTransition` 函数](https://react.docschina.org/reference/react/useTransition#starttransition)，你可以使用此方法将状态更新标记为 transition。
 - useSyncExternalStore 用内置的 Hook 订阅外部 store
 - useDeferredValue 延迟加载配置suspense
 - useId 生成唯一id
 - `useInsertionEffect` 在布局副作用触发之前将元素插入到 DOM 中
 - 自定义hook 复用状态逻辑
+
+### 为什么react的hook不能放在条件表达式里面
+
+- React 内部是通过一个调用栈来跟踪组件的状态和副作用。
+
+- 如果Hook 在某些条件下被跳过或重新排列，React 就无法追踪和管理状态，可能导致 bugs 或不符合预期的行为。
+
+- React 的 Hook 是在函数组件每次`渲染时`被执行的。如果条件语句（如 `if`）控制 Hook 的执行顺序，那就意味着某些 Hook 可能在某次渲染中被调用，而在其他渲染中则不被调用，这就破坏了 Hook 的调用顺序。
 
 ### React中 Class组件中的this和Hook中的this分别指向什么
 
@@ -702,9 +766,9 @@ hooks规则约束
 ### Hook和Class组件分别对应生命周期的情况有哪些
 
 1. **constructor**：初始化状态 `useState`。
-2. **componentDidMount**：在组件挂载到 DOM 后调用,`useEffect` 传入一个空数组 
+2. **componentDidMount**：在组件挂载到 DOM 后调用,`useEffect` 传入一个空数组
 3. **componentDidUpdate**：在组件更新后调用。 `useEffect`省略依赖数组来模拟
-4. **componentWillUnmount**：在组件卸载前调用。 `useEffect` Hook 并返回一个清理函数来模拟 
+4. **componentWillUnmount**：在组件卸载前调用。 `useEffect` Hook 并返回一个清理函数来模拟
 5. **getDerivedStateFromProps**：在组件接收到新的 props 时调用。 `useState` 和 `useEffect` 来根据 props 更新状态。
 
 ### useEffect原理，他用了什么数据结构
@@ -715,7 +779,7 @@ hooks规则约束
 
 3. 组件卸载时，会执行之前存储的清理函数（如果有的话）
 
-   
+
 
 数据结构包括：
 
@@ -796,14 +860,14 @@ React 事件都会挂载在document对象上
 ### react的mixin、hoc、继承的区别、优缺点
 
 - Mixin
-  - **优点**：可以在多个组件中共享代码和方法。
-  - **缺点**：导致隐式依赖和命名冲突。
+    - **优点**：可以在多个组件中共享代码和方法。
+    - **缺点**：导致隐式依赖和命名冲突。
 - HOC
-  - **优点**：包装组件来增强其功能。
-  - **缺点**：导致嵌套过深和命名冲突的问题。
+    - **优点**：包装组件来增强其功能。
+    - **缺点**：导致嵌套过深和命名冲突的问题。
 - 继承
-  - **优点**：可以基于现有的组件创建新的组件，继承其属性和方法。
-  - **缺点**：会导致继承链过长。
+    - **优点**：可以基于现有的组件创建新的组件，继承其属性和方法。
+    - **缺点**：会导致继承链过长。
 
 
 
@@ -827,8 +891,8 @@ React 事件都会挂载在document对象上
 
    这种形式接受一个函数作为参数。这个函数会接收两个参数:
 
-   - `prevState`: 表示更新前的状态。
-   - `props`: 表示当前组件的 props。
+    - `prevState`: 表示更新前的状态。
+    - `props`: 表示当前组件的 props。
 
 使用函数形式的 `setState()` 有以下优势:
 
@@ -880,6 +944,32 @@ React 事件都会挂载在document对象上
 2. `闭包`的方式返回一个数组，其中第一个元素是当前状态的值，第二个元素是一个函数，用于更新这个状态。
 3. 当你调用更新函数时，React 会将新的状态值保存起来，并安排组件重新渲染。在渲染过程中，React 会使用最新的状态值。
 4. 如果在多次调用状态更新函数，React 可能会将这些更新合并为一次渲染
+
+### react用那种方式拿到了useState更新后的值？
+
+当你调用 `setState`（即 `useState` 返回的更新函数）时，它会把新的状态值加入到更新队列中，等待下次渲染时进行应用。
+
+**在下一次渲染时，React 会使用最新的状态值来重新渲染组件**。
+
+### useState为什么能引起组件的刷新？
+
+**状态变化**：调用 `setState` 更新状态。
+
+**更新队列**：React 将状态更新任务添加到更新队列中。
+
+**重新渲染**：当队列中的更新准备就绪时，React 会重新渲染受影响的组件。
+
+**虚拟 DOM 比较**：React 会通过虚拟 DOM 来比较新的 UI 和旧的 UI，确保只有变化的部分被更新。
+
+**实际 DOM 更新**：最后，React 会将更新应用到真实的 DOM 上。
+
+### 为什么setState的箭头函数会在dom更新后执行？
+
+`setState` 的更新是 **异步的**，React 通过批处理更新机制将状态更新操作`合并和延迟`执行。
+
+当更新状态时，会等到组件重新渲染并更新 DOM 后再执行这些回调函数。
+
+###### 
 
 ### useState 为什么使用数组而不是对象
 
@@ -944,15 +1034,15 @@ const { state: counter,setState:setCounter} = useState(0);
 
 ### legacy 同步阻塞模式
 
- 开始react更新-> 协调fiber tree -> 处理effect（j s代码一直运行，主线程一直被占用）
+开始react更新-> 协调fiber tree -> 处理effect（j s代码一直运行，主线程一直被占用）
 
- 更新结束 (js引擎推出主线程)-> 浏览器渲染（渲染引擎开始工作）
+更新结束 (js引擎推出主线程)-> 浏览器渲染（渲染引擎开始工作）
 
 ### **concurrent 并行模式**
 
- 开始react更新-> 是否协调完成 N -> 协调fiber tree -> 让出主线程 （fiber tree协调分段执行，时间短尾5ms，超过会让出主线程）
+开始react更新-> 是否协调完成 N -> 协调fiber tree -> 让出主线程 （fiber tree协调分段执行，时间短尾5ms，超过会让出主线程）
 
- Y-> 处理effect -> 更新结束 -> 浏览器渲染
+Y-> 处理effect -> 更新结束 -> 浏览器渲染
 
 - 不会长时间阻塞浏览器渲染
 - 高优先级更新可以中断低优先级更新，优先渲染
@@ -964,8 +1054,6 @@ const { state: counter,setState:setCounter} = useState(0);
 `messageChannel`允许我们在两个不同的 JavaScript 执行上下文之间进行通信。
 
 
-
-每触发一次 **react** 更新，意味着一次 **fiber tree** 的**协调**，但**协调**并不会在更新触发时立刻**同步**进行。相反，**react** 会为这一次更新，生成一个 **task**，并添加到 **taskQueue** 中，**fiber tree** 的**协调**方法会作为新建 **task** 的 **callback**。当 **wookLoop** 开始处理该 **task** 时，才会触发 **task** 的 **callback**，开始 **fiber tree** 的**协调**。
 
 ### preact
 
@@ -985,7 +1073,7 @@ React-dom/server的renderToString,不需要做vdom-> fiber转换，hook存在全
 
 函数组件内用的hook在fiber节点对应的是`memorizedState`链表,使用next串联，不同hook在memorizedState上值不同。
 
-memorizedState分为创建阶段和更新阶段， 
+memorizedState分为创建阶段和更新阶段，
 
 useXXX最终实现为mountXX和updateXX
 
@@ -996,6 +1084,25 @@ hook.memorizedState = [nextValue,nextDeps]
 
 把hook存在fiber.memorizedState节点上。
 
+### React 的调度机制
+
+React 的调度机制主要包括以下几个关键部分：
+
+1. **渲染过程与任务调度**：React 会根据组件的状态更新或者属性变化决定什么时候重新渲染组件。更新的优先级和时机由 React 的调度系统决定。
+2. **Fiber 架构**可以更精确地控制渲染的过程，分配计算资源，使得渲染可以分割成多个小任务.
+3. React 根据不同类型的更新（如用户交互、网络请求等）设定不同的优先级,从而优化性能。
+4. **事件池和事件系统**对于用户交互（如点击、滚动等）产生的事件作为高优先级的处理。
+5. **异步渲染**机制，能够在后台进行渲染和计算，允许中途暂停和恢复渲染过程。这意味着即使页面上有大量更新，React 也能分段渲染，从而避免了“卡顿”现象。
+6. **批处理更新**：会批量处理一系列的状态更新，这意味着多个 `setState` 或其他更新操作在一次渲染周期中会被合并成一次渲染，从而避免了不必要的重复渲染。
+
+### 更新原理
+
+1. React会将这个新的状态对象放入一个更新队列中。
+2. 调用组件的`render`方法来生成新的虚拟DOM树。
+3. 调度器会从任务队列中取出任务并执行。每个任务通常是创建一个新的Fiber节点。React会使用浏览器的`requestIdleCallback`方法来检查当前帧是否有足够的时间来执行下一个任务。如果有，继续执行；如果没有，任务会暂停，等待下一个帧。
+4. 当所有的Fiber节点都创建完成后，React会使用Diff算法比较新旧Fiber树，找出需要更新的部分。
+5. 最后，React会将需要更新的部分提交到渲染器（Renderer），渲染器会将这些更新应用到实际的DOM上，完成UI的重新渲染。
+
 ### Fiber
 
 **Fiber是什么**
@@ -1004,15 +1111,39 @@ hook.memorizedState = [nextValue,nextDeps]
 
 一种数据结构
 
-fiber有一个父 Fiber 和子 Fiber，形成一个链式结构
+**核心作用**:
+
+在 React 16 之前，React 的渲染过程是同步执行的，一旦开始渲染一个组件，整个渲染过程就会阻塞直到完成。这意味着，长时间的渲染过程（例如复杂的组件树或大量 DOM 操作）会导致 UI 卡顿，影响用户体验。
+
+**Fiber 的引入**让 React 渲染变成了一个异步的任务，可以根据浏览器的空闲时间来分配和暂停任务，从而避免阻塞主线程。
 
 三个阶段： schedule、reconcile、commit
 
-```
-![image-20240428112555574](./前端面经.assets/image-20240428112555574.png)
-```
 
-### Fiber更新机制	
+
+### **Fiber 如何实现**
+
+Fiber 是 React 的一种新的调度算法，它通过创建一个“Fiber 树”（或者说是虚拟的树结构）来表示 UI 元素的渲染过程。每个 Fiber 对应一个渲染任务，它包含了该任务的信息（比如该任务的优先级、子任务等）。
+
+**基本工作流程：**
+
+1. **Fiber 树的构建**：React 在渲染时会创建一个 Fiber 树，每个 Fiber 节点代表一个 React 元素，包含组件的信息、状态以及渲染任务。
+2. **调度机制**：Fiber 通过调度器将渲染任务分割成多个较小的单元。每个任务被赋予一个优先级，这些任务可以根据任务的优先级来处理。例如，用户交互相关的更新（如点击、输入等）通常会有更高的优先级，而非关键的更新（如数据加载）会有较低的优先级。
+3. **分片执行**：Fiber 将渲染过程分为多个“小片段”，每个片段的执行时间非常短，以避免长时间的阻塞。Fiber 允许任务在每一帧之间暂停，待浏览器空闲时继续执行，保持 UI 的响应性。
+4. **空闲时间段的执行**：Fiber 会检测浏览器的空闲时间并根据优先级选择性地执行任务。浏览器的空闲时间通常通过 `requestIdleCallback` API 来捕捉，React 会在此时调度低优先级的任务（如动画、非关键数据更新等）。
+
+### **如何实现空闲时间段执行任务**
+
+React 的 **Fiber** 系统利用以下技术来在浏览器的空闲时间执行任务：
+
+1. **任务队列**：所有的渲染任务会被放入一个任务队列（或称为工作队列）。每个任务都有优先级，React 会先执行优先级高的任务（比如用户输入、点击事件等），再执行优先级低的任务（如背景数据加载）。
+2. **调度算法（Scheduler）**：React 使用 **Scheduler** 来管理这些任务，它根据当前的任务优先级和浏览器的空闲时间，决定什么时候执行哪些任务。调度器会在每一帧执行后判断是否有更多任务可以执行。
+3. **空闲时间检测**：通过 `requestIdleCallback`（浏览器 API）或者 React 的内部机制，React 会检测到浏览器是否处于空闲状态，如果是，就会调度低优先级任务。
+4. **`requestIdleCallback` API**：
+    - 这个浏览器 API 用来在浏览器空闲时运行某些低优先级的操作。React 可以在这段时间里完成不那么重要的任务，例如更新后台状态或进行一些非紧急的 UI 渲染。
+5. **`yield` 和 `setTimeout`**：React 可以使用 `setTimeout` 等方式将渲染工作分成更小的部分，每次执行一小段，然后返回控制权给浏览器，这样就可以在空闲时段继续渲染。
+
+### Fiber更新机制
 
 1. 任务拆分：把组件的渲染和更新分解成小任务。
 
@@ -1036,15 +1167,15 @@ fiber有一个父 Fiber 和子 Fiber，形成一个链式结构
 
 1. 协调器：调器负责调度任务、处理中断、进行优先级排序等。
 
-   
 
-   **优势**：Fiber 更新机制带来了以下优势：
 
-   ●	更好的性能：通过任务拆分、优先级排序和并发执行，提高了应用的性能和响应性。
+**优势**：Fiber 更新机制带来了以下优势：
 
-   ●	暂停和恢复：允许在更新过程中暂停，避免长时间的渲染阻塞。
+●	更好的性能：通过任务拆分、优先级排序和并发执行，提高了应用的性能和响应性。
 
-   ●	错误处理：增强了错误处理能力，提高了应用的稳定性。
+●	暂停和恢复：允许在更新过程中暂停，避免长时间的渲染阻塞。
+
+●	错误处理：增强了错误处理能力，提高了应用的稳定性。
 
 ### Fiber 架构的流程
 
@@ -1080,30 +1211,31 @@ fiber有一个父 Fiber 和子 Fiber，形成一个链式结构
 
 1. **功能**
 
-   - `requestIdleCallback` 允许开发者在浏览器有空闲时间时执行一些非关键任务,而不会阻塞关键任务的执行。
-   - 这对于需要在后台执行一些耗时操作的应用程序非常有用,可以提高用户体验。
+   >  在浏览器空闲时间时执行一些非关键任务,而不会阻塞关键任务的执行。
+
+    - 这对于需要在后台执行一些耗时操作的应用程序非常有用,可以提高用户体验。
 
 2. **使用方法**
 
-   - `window.requestIdleCallback(callback, options)`
-   - `callback` 函数是在浏览器空闲时被调用的,它会传入一个 `IdleDeadline` 对象作为参数。
-   - `options` 对象可以设置 `timeout` 属性,指定任务在超时后仍然会被执行。
+    - `window.requestIdleCallback(callback, options)`
+    - `callback` 函数是在浏览器空闲时被调用的,它会传入一个 `IdleDeadline` 对象作为参数。
+    - `options` 对象可以设置 `timeout` 属性,指定任务在超时后仍然会被执行。
 
 3. **IdleDeadline 对象**
 
    对象包含以下属性:
 
-   - `timeRemaining()`: 返回浏览器还有多少空闲时间(单位为毫秒)。
-   - `didTimeout`: 表示任务是否因超时而被执行。
+    - `timeRemaining()`: 返回浏览器还有多少空闲时间(单位为毫秒)。
+    - `didTimeout`: 表示任务是否因超时而被执行。
 
 4. **取消执行**
 
-   - 可以使用 `window.cancelIdleCallback(id)` 来取消一个已经注册的 `requestIdleCallback` 任务。
+    - 可以使用 `window.cancelIdleCallback(id)` 来取消一个已经注册的 `requestIdleCallback` 任务。
 
 5. **兼容性**
 
-   - `requestIdleCallback` 是一个相对较新的 API,在某些旧版浏览器中可能不支持。
-   - 可以使用 polyfill 或者回退到 `setTimeout` 等替代方案。
+    - `requestIdleCallback` 是一个相对较新的 API,在某些旧版浏览器中可能不支持。
+    - 可以使用 polyfill 或者回退到 `setTimeout` 等替代方案。
 
 ### React的栈调合
 
@@ -1132,30 +1264,22 @@ Immutable 数据结构是一种一旦创建就不能被修改的数据结构。�
 
 ### diff算法
 
-高效地比较新旧 Virtual DOM 树，并找出最小的变更来更新真实 DOM。
+React 的 Diff 算法主要通过以下步骤实现：
 
-基于三个假设：
+1. 从根节点开始，递归比较新旧dom树的节点。
+2. 如果节点类型不同，直接销毁旧节点并创建新节点，如果节点类型相同，更新节点的属性（如 `className`、`style` 等）。
+3. **比较子节点**：
+    - 对于子节点列表，React 会通过 `key` 属性来识别哪些节点是新增的、哪些是移动的、哪些是删除的。
+    - 如果没有 `key`，React 会按照顺序比较子节点，这可能导致性能问题。
+4. **生成更新操作**：
+    - 根据比较结果，生成最小的更新操作（如插入、移动、删除等），并应用到真实 DOM 上。
 
-1. **同级比较**：React 只会比较同一层级的节点。
-2. **类型相同**：如果两个节点类型相同（例如两个 `<div>`），React 会比较它们的属性（props）来决定是否需要更新。
-3. **递归子节点**：当节点类型不同，React 会卸载旧节点及其子节点，并挂载新节点。
+### **Diff 算法的局限性**
 
-从源码层面来看，分为两个阶段：
-
-1. Reconciliation（协调）
-
-在协调阶段，React 会遍历新旧 Virtual DOM 树，并使用 diff 算法来比较它们。这个过程主要发生在 `ReactReconciler.js` 文件中。React 会为每个节点创建一个 `workInProgress` 树，这个树是基于旧树的结构，但会根据新树的属性进行更新。
-
-2. Update（更新）
-
-一旦 diff 完成，React 会进入更新阶段，这个阶段会根据 diff 的结果来更新真实 DOM。这个过程主要发生在 `ReactFiberReconciler.js` 文件中。React 会根据 `workInProgress` 树来决定哪些真实 DOM 需要更新。
-
-其中 `reconcileChildFibers` 函数是核心。这个函数会根据新旧节点的类型来决定如何进行 diff：
-
-- **如果新旧节点类型相同**：React 会比较它们的属性（props），如果属性有变化，React 会更新属性。
-- **如果新旧节点类型不同**：React 会卸载旧节点，并创建一个新节点。
-
-
+1. **跨层级移动**：
+    - React 不会跨层级移动节点。如果节点从一个层级移动到另一个层级，React 会销毁旧节点并创建新节点。
+2. **列表渲染的性能**：
+    - 如果没有 `key`，React 会按照顺序比较子节点，这可能导致性能问题。
 
 ### 双缓存模式
 
@@ -1196,8 +1320,8 @@ JS库 提供了UI层面的解决方案
 
 - 声明试编程
 
-  - 编程范式
-  - 命令式编程 按照流程一步步的教电脑怎么做
+    - 编程范式
+    - 命令式编程 按照流程一步步的教电脑怎么做
 
   ```js
   const map = new Map.map(document.getElementById(map),{
@@ -1222,24 +1346,24 @@ JS库 提供了UI层面的解决方案
 
 - Component
 
-  - 一切皆为组件
+    - 一切皆为组件
 
-  - 可以是一个函数或者是一个类
+    - 可以是一个函数或者是一个类
 
 - 特点
 
-  - 可组合
-  - 可重用
-  - 可维护
+    - 可组合
+    - 可重用
+    - 可维护
 
 - 优势
 
-  - 高效：DOM模拟不直接操作DOM
-  - 灵活 和已知的框架或者框架很好的配合
-  - 跨浏览器兼容：
-  - 声明试设计
-  - 组件式开发：一切都是component 提高复用率
-  - 单向数据流。速度快 更安全
+    - 高效：DOM模拟不直接操作DOM
+    - 灵活 和已知的框架或者框架很好的配合
+    - 跨浏览器兼容：
+    - 声明试设计
+    - 组件式开发：一切都是component 提高复用率
+    - 单向数据流。速度快 更安全
 
 ### State 和props 有什么区别
 
@@ -1378,7 +1502,7 @@ React引入css
 - 在组件中直接使用	编写简单
 - 在组件中引入css文件     作用于全局
 - Module.css文件        解决局部作用于问题 写法驼峰
-- css in js （styled-components emotion 库。    
+- css in js （styled-components emotion 库。
 
 ### 高阶组件的理解？应用场景？
 
@@ -1594,51 +1718,51 @@ function HOC(WarppedComponent) {
 
 属性代理：从组合角度出发， 外-> 内 传递props
 
-反向继承：从继承角度出发 内-> 外 render props state 
+反向继承：从继承角度出发 内-> 外 render props state
 
 ### `Render Props` 和 `HOC`区别
 
 1. **实现方式**：
-   - `Render Props`：将函数作为属性传递给子组件，子组件调用函数来获取渲染的内容。
-   - `HOC`： 接受一个组件作为参数，并返回一个新的组件，新组件通常会添加一些额外的功能或属性。
+    - `Render Props`：将函数作为属性传递给子组件，子组件调用函数来获取渲染的内容。
+    - `HOC`： 接受一个组件作为参数，并返回一个新的组件，新组件通常会添加一些额外的功能或属性。
 2. **关注点分离**：
-   - `Render Props`：将渲染逻辑进行分离和复用。
-   - `HOC`：通过包装原始组件来添加额外的行为
+    - `Render Props`：将渲染逻辑进行分离和复用。
+    - `HOC`：通过包装原始组件来添加额外的行为
 3. **代码结构**：
-   - `Render Props`：可能会导致属性中包含较多的函数，代码结构相对较为复杂。
-   - `HOC`：创建一个新的组件，代码结构相对清晰。
+    - `Render Props`：可能会导致属性中包含较多的函数，代码结构相对较为复杂。
+    - `HOC`：创建一个新的组件，代码结构相对清晰。
 4. **适用场景**：
-   - `Render Props`：适用于需要动态决定子组件渲染内容的情况，或者需要在不同组件之间共享渲染逻辑的情况。
-   - `HOC`：适用于需要对组件进行通用功能增强的情况，如添加状态管理、路由处理等。
+    - `Render Props`：适用于需要动态决定子组件渲染内容的情况，或者需要在不同组件之间共享渲染逻辑的情况。
+    - `HOC`：适用于需要对组件进行通用功能增强的情况，如添加状态管理、路由处理等。
 
 
 
 ### React如何实现组件间过渡动画？
 
-- React-transition-group. 
+- React-transition-group.
 
-  - 进入 添加 enter or enter-active
+    - 进入 添加 enter or enter-active
 
-  - 离开 添加 exit exit-active
+    - 离开 添加 exit exit-active
 
 - cssTransition 过渡动画效果
 
   in true
 
-  - Xxx-enter xxx-enter-active
+    - Xxx-enter xxx-enter-active
 
-  - -enter-done
+    - -enter-done
 
-  In false 
+  In false
 
-  - Xxx-exit xxx-exit-active
+    - Xxx-exit xxx-exit-active
 
 - SwitchTransition 切换
 
 - TranstitionGroup.动画组 cssTransition放入，感受到变化时先保存移除的节点 当动画真正结束后才真移除，先插入到节点先渲染dom 然后在做动画，删除
 
-  - 插入节点。先渲染dom 在做动画
-  - 删除节点 先做动画 在删除dom
+    - 插入节点。先渲染dom 在做动画
+    - 删除节点 先做动画 在删除dom
 
 
 
@@ -1648,19 +1772,19 @@ function HOC(WarppedComponent) {
 
 - 虚拟Dom不回进行重排重会，真实dom频繁重排重会
 - 消耗
-  - 虚拟 虚拟dom增删改 真实dom差异增删改 之后 进行重排重会
-  - 真实 真实dom 完全增删改 重排重会
+    - 虚拟 虚拟dom增删改 真实dom差异增删改 之后 进行重排重会
+    - 真实 真实dom 完全增删改 重排重会
 
 优缺点
 
 - 真实dom
-  - 优势易用
-  - 缺点 效率低 性能差
+    - 优势易用
+    - 缺点 效率低 性能差
 - 虚拟DOM
-  - 简单方便
-  - 性能方案 避免了大量的重排重会操作
-  - 跨平台
-  - 缺点 性能要求极高没办法优化 首次渲染大量dom速度稍慢
+    - 简单方便
+    - 性能方案 避免了大量的重排重会操作
+    - 跨平台
+    - 缺点 性能要求极高没办法优化 首次渲染大量dom速度稍慢
 
 ### 子组件如何阻止自己渲染？函数组件如何阻止自己渲染？
 
@@ -1691,55 +1815,55 @@ export default MyComponent;
 ### React有哪些状态
 
 1. **组件状态 (State)**
-   - 这是组件内部自己维护的状态,可以通过 `this.state` 访问和更新。
-   - 组件状态是最基本和常用的状态管理方式,用于存储组件需要的数据。
+    - 这是组件内部自己维护的状态,可以通过 `this.state` 访问和更新。
+    - 组件状态是最基本和常用的状态管理方式,用于存储组件需要的数据。
 2. **Props**
-   - Props 是父组件传递给子组件的数据,子组件可以读取但不能直接修改。
-   - Props 是单向数据流,父组件负责更新子组件的 Props。
+    - Props 是父组件传递给子组件的数据,子组件可以读取但不能直接修改。
+    - Props 是单向数据流,父组件负责更新子组件的 Props。
 3. **Context**
-   - Context 提供了一种在组件树间共享状态的方式,避免了通过 props 逐层传递的麻烦。
-   - Context 适用于一些跨层级共享的全局状态,如主题、用户信息等。
+    - Context 提供了一种在组件树间共享状态的方式,避免了通过 props 逐层传递的麻烦。
+    - Context 适用于一些跨层级共享的全局状态,如主题、用户信息等。
 4. **Redux 状态**
-   - Redux 是一个独立的状态管理库,提供了一套完整的状态管理机制。
-   - Redux 状态存储在 store 中,通过 action 和 reducer 进行状态更新。
+    - Redux 是一个独立的状态管理库,提供了一套完整的状态管理机制。
+    - Redux 状态存储在 store 中,通过 action 和 reducer 进行状态更新。
 5. **URL 状态**
-   - URL 中的查询参数也可以看作是一种状态,可以使用 React Router 等库进行管理。
-   - URL 状态对于记录和共享应用状态非常有用。
+    - URL 中的查询参数也可以看作是一种状态,可以使用 React Router 等库进行管理。
+    - URL 状态对于记录和共享应用状态非常有用。
 6. **离线状态**
-   - 一些应用需要管理用户的离线状态,比如 PWA 应用。
-   - 可以使用 Service Worker、IndexedDB 等 API 来管理离线状态。
+    - 一些应用需要管理用户的离线状态,比如 PWA 应用。
+    - 可以使用 Service Worker、IndexedDB 等 API 来管理离线状态。
 
 
 
 ### Context 和redux区别
 
 1. **设计目标**
-   - Context 是 React 内置的功能,旨在解决跨组件传递数据的问题。
-   - Redux 是一个独立的状态管理库；
+    - Context 是 React 内置的功能,旨在解决跨组件传递数据的问题。
+    - Redux 是一个独立的状态管理库；
 2. **状态存储**
-   - Context 状态存储在组件树的上下文中,状态是分散的。
-   - Redux 将所有状态集中存储在 store 中,提供单一数据源的概念。
+    - Context 状态存储在组件树的上下文中,状态是分散的。
+    - Redux 将所有状态集中存储在 store 中,提供单一数据源的概念。
 3. **更新机制**
-   - Context 通过 Provider 和 Consumer 组件进行状态更新。
-   - Redux 使用 action 和 reducer 来管理状态的更新。
+    - Context 通过 Provider 和 Consumer 组件进行状态更新。
+    - Redux 使用 action 和 reducer 来管理状态的更新。
 4. **复杂度**
-   - 适用于简单的跨组件状态共享场景。
-   - 适用于更复杂的状态管理需求。
+    - 适用于简单的跨组件状态共享场景。
+    - 适用于更复杂的状态管理需求。
 
 ### useReducer和useState区别
 
 1. **状态管理**
-   - `useState`: 用于管理简单的、独立的状态。
-   - `useReducer`: 用于管理复杂的、相互依赖的状态。
+    - `useState`: 用于管理简单的、独立的状态。
+    - `useReducer`: 用于管理复杂的、相互依赖的状态。
 2. **状态更新**
-   - `useState`: 直接调用状态更新函数来更新状态。
-   - `useReducer`: 通过 `dispatch` 函数分发 action 对象来更新状态。
+    - `useState`: 直接调用状态更新函数来更新状态。
+    - `useReducer`: 通过 `dispatch` 函数分发 action 对象来更新状态。
 3. **初始状态**
-   - `useState`: 初始状态可以是任意类型的值。
-   - `useReducer`: 初始状态必须与 reducer 函数的返回值类型一致。
+    - `useState`: 初始状态可以是任意类型的值。
+    - `useReducer`: 初始状态必须与 reducer 函数的返回值类型一致。
 4. **适用场景**
-   - `useState`: 适用于管理简单、独立的状态,如计数器、表单输入等。
-   - `useReducer`: 适用于管理复杂、相互依赖的状态,如表单验证、分页等。
+    - `useState`: 适用于管理简单、独立的状态,如计数器、表单输入等。
+    - `useReducer`: 适用于管理复杂、相互依赖的状态,如表单验证、分页等。
 
 ### useContext使用
 
@@ -1858,39 +1982,39 @@ function ChildComponent() {
 ### useContext和useReducer区别
 
 1. **功能**:
-   - `useContext`: 用于访问 React 的上下文 (context) 对象,可以在组件树中共享状态和行为。
-   - `useReducer`: 是 useState 的替代方案,用于通过 reducer 函数来管理复杂的状态逻辑。
+    - `useContext`: 用于访问 React 的上下文 (context) 对象,可以在组件树中共享状态和行为。
+    - `useReducer`: 是 useState 的替代方案,用于通过 reducer 函数来管理复杂的状态逻辑。
 2. **状态管理**:
-   - `useContext`: 通过在组件树中共享 context 对象来管理状态。context 可以在多个组件中使用,避免了prop drilling。
-   - `useReducer`: 通过 reducer 函数来管理组件内部的状态。通常用于处理复杂的状态逻辑。
+    - `useContext`: 通过在组件树中共享 context 对象来管理状态。context 可以在多个组件中使用,避免了prop drilling。
+    - `useReducer`: 通过 reducer 函数来管理组件内部的状态。通常用于处理复杂的状态逻辑。
 3. **状态更新**:
-   - `useContext`: 更新 context 对象会通知所有使用该 context 的组件进行重新渲染。
-   - `useReducer`: 更新状态时会触发当前组件的重新渲染,但不会影响其他组件。
+    - `useContext`: 更新 context 对象会通知所有使用该 context 的组件进行重新渲染。
+    - `useReducer`: 更新状态时会触发当前组件的重新渲染,但不会影响其他组件。
 4. **适用场景**:
-   - `useContext`: 适用于应用程序级别的状态管理,如主题、当前登录用户等。
-   - `useReducer`: 适用于组件内部的复杂状态管理,如表单状态、多个状态之间的依赖关系等。
+    - `useContext`: 适用于应用程序级别的状态管理,如主题、当前登录用户等。
+    - `useReducer`: 适用于组件内部的复杂状态管理,如表单状态、多个状态之间的依赖关系等。
 5. **结合使用**:
-   - `useContext` 和 `useReducer` 可以结合使用,`useReducer` 可以管理组件内部的状态,`useContext` 可以在组件树中共享这些状态。
+    - `useContext` 和 `useReducer` 可以结合使用,`useReducer` 可以管理组件内部的状态,`useContext` 可以在组件树中共享这些状态。
 
 
 
 ### useReducer和redux区别
 
 1. **实现方式**:
-   - `useReducer`: 是 React 内置的 Hook,通过 reducer 函数来管理组件内部的状态。状态更新时会触发组件的重新渲染。
-   - Redux: 是一个独立的状态管理库,提供了 `createStore`、`dispatch`、`subscribe` 等 API 来管理全局状态。状态更新时会通知所有订阅的组件进行重新渲染。
+    - `useReducer`: 是 React 内置的 Hook,通过 reducer 函数来管理组件内部的状态。状态更新时会触发组件的重新渲染。
+    - Redux: 是一个独立的状态管理库,提供了 `createStore`、`dispatch`、`subscribe` 等 API 来管理全局状态。状态更新时会通知所有订阅的组件进行重新渲染。
 2. **状态管理范围**:
-   - `useReducer`: 主要用于管理组件内部的状态逻辑,状态范围相对较小。
-   - Redux: 主要用于管理应用程序级别的全局状态,状态范围较大,适用于复杂的应用程序。
+    - `useReducer`: 主要用于管理组件内部的状态逻辑,状态范围相对较小。
+    - Redux: 主要用于管理应用程序级别的全局状态,状态范围较大,适用于复杂的应用程序。
 3. **状态更新机制**:
-   - `useReducer`: 状态更新时只会触发当前组件的重新渲染,不会影响其他组件。
-   - Redux: 状态更新时会通知所有订阅该状态的组件进行重新渲染。
+    - `useReducer`: 状态更新时只会触发当前组件的重新渲染,不会影响其他组件。
+    - Redux: 状态更新时会通知所有订阅该状态的组件进行重新渲染。
 4. **代码结构**:
-   - `useReducer`: 状态管理逻辑集中在 reducer 函数中,组件内部可以直接访问和更新状态。
-   - Redux: 需要创建 store、reducer、action 等多个模块,代码结构相对更加复杂。
+    - `useReducer`: 状态管理逻辑集中在 reducer 函数中,组件内部可以直接访问和更新状态。
+    - Redux: 需要创建 store、reducer、action 等多个模块,代码结构相对更加复杂。
 5. **适用场景**:
-   - `useReducer`: 适用于组件内部的状态管理,尤其是在处理复杂的状态逻辑时。
-   - Redux: 适用于大型应用程序的全局状态管理,可以方便地进行状态追踪和时间旅行调试。
+    - `useReducer`: 适用于组件内部的状态管理,尤其是在处理复杂的状态逻辑时。
+    - Redux: 适用于大型应用程序的全局状态管理,可以方便地进行状态追踪和时间旅行调试。
 
 
 
@@ -1969,7 +2093,7 @@ d. store.subscribe监听变化。之后store通知所有订阅
 
 ### Redux中的异步请求怎么处理
 
- `redux-thunk` 中间件
+`redux-thunk` 中间件
 
 - createStore时使用，applyMiddleware(thunk)
 - 编写异步action creators，接收dispatch`和`getState 并在适当的时候调用dispatch来发送同步action
@@ -2049,27 +2173,27 @@ export default ConnectedComponent;
 ### Redux 和mobx
 
 1. **状态管理模式**:
-   - **Redux**: 遵循单向数据流,状态存储在单一的 store 中。
-   - **MobX**: 采用响应式编程的理念,状态分散在各个组件,通过观察者模式进行更新。
+    - **Redux**: 遵循单向数据流,状态存储在单一的 store 中。
+    - **MobX**: 采用响应式编程的理念,状态分散在各个组件,通过观察者模式进行更新。
 2. **状态更新机制**:
-   - **Redux**: 通过 action 和 reducer 函数来更新状态,更新过程是显式的。
-   - **MobX**: 通过直接修改可观察的状态对象来更新状态,更新过程是隐式的。
+    - **Redux**: 通过 action 和 reducer 函数来更新状态,更新过程是显式的。
+    - **MobX**: 通过直接修改可观察的状态对象来更新状态,更新过程是隐式的。
 3. **代码量**:
-   - **Redux**: 需要编写大量的样板代码,。
-   - **MobX**: 需要标记可观察的状态和使用装饰器即可。
+    - **Redux**: 需要编写大量的样板代码,。
+    - **MobX**: 需要标记可观察的状态和使用装饰器即可。
 4. **性能**:
-   - **Redux**: 不可变数据和显式更新机制,在大型应用中通常有更好的性能表现。
-   - **MobX**: 隐式机制,在某些场景下可能会产生性能问题。
+    - **Redux**: 不可变数据和显式更新机制,在大型应用中通常有更好的性能表现。
+    - **MobX**: 隐式机制,在某些场景下可能会产生性能问题。
 
 
 
-### 用户如何根据不同的权限查看不同的页面	
+### 用户如何根据不同的权限查看不同的页面
 
 - Js.  Ajax.  role -> menulist json 展示有权限菜单
 
 - React-router onEnter
 
-  - ```js
+    - ```js
     <Router path="/home" componnt={App} onEnter={(nextState,repalace)=> {
       if(nextState.location.pathename !== '/' {
          // 根据参数判断用户信息
@@ -2102,6 +2226,8 @@ export default ConnectedComponent;
 3. 浏览器的前进和后退功能需要额外的处理。
 4. JavaScript被禁用，SPA将无法正常工作。
 
+
+
 ### 多页应用
 
 一种传统的Web应用，每个页面的加载都会请求服务器，服务器返回一个新的HTML文档
@@ -2130,38 +2256,38 @@ SEO 主要涉及以下几个方面:
 1. **关键词优化**
 2. **内容优化**
 3. **技术优化**
-   - 优化网站的技术结构,如页面加载速度、移动端适配等。
-   - **sitemap（网站地图**） ： 帮助搜索引擎更好地了解网站的结构和内容,更快速、全面地抓取和索引网站页面
-   - **RSS**： 帮助搜索引擎快速发现网站的新内容,提高内容被收录的速度
-   - 语义化布局
-   - SSR,静态页面部署
+    - 优化网站的技术结构,如页面加载速度、移动端适配等。
+    - **sitemap（网站地图**） ： 帮助搜索引擎更好地了解网站的结构和内容,更快速、全面地抓取和索引网站页面
+    - **RSS**： 帮助搜索引擎快速发现网站的新内容,提高内容被收录的速度
+    - 语义化布局
+    - SSR,静态页面部署
 
 ### React 和React native区别
 
 1. **目标平台**:
-   - React 是一个用于构建 Web 应用程序的 JavaScript 库。
-   - React Native 是一个用于构建跨平台移动应用程序的框架,可以在 iOS 和 Android 上运行。
+    - React 是一个用于构建 Web 应用程序的 JavaScript 库。
+    - React Native 是一个用于构建跨平台移动应用程序的框架,可以在 iOS 和 Android 上运行。
 2. **UI 组件**:
-   - React 使用 HTML 元素作为 UI 组件,如 `div`、`span`、`button` 等。
-   - React Native 使用原生移动平台的 UI 组件,如 `View`、`Text`、`Image` 等,这些组件直接映射到原生的 UI 元素。
+    - React 使用 HTML 元素作为 UI 组件,如 `div`、`span`、`button` 等。
+    - React Native 使用原生移动平台的 UI 组件,如 `View`、`Text`、`Image` 等,这些组件直接映射到原生的 UI 元素。
 3. **开发体验**:
-   - React 开发者可以使用浏览器的开发者工具进行调试和测试。
-   - React Native 开发者需要使用特定于移动平台的开发工具,如 Xcode 和 Android Studio。
+    - React 开发者可以使用浏览器的开发者工具进行调试和测试。
+    - React Native 开发者需要使用特定于移动平台的开发工具,如 Xcode 和 Android Studio。
 
 ### react native和hybrid区别
 
 1. **架构**:
-   - React Native  跨平台的移动开发框架。
-   - Hybrid 应用程序通常由一个 Web 视图(WebView)和原生代码组成,。
+    - React Native  跨平台的移动开发框架。
+    - Hybrid 应用程序通常由一个 Web 视图(WebView)和原生代码组成,。
 2. **性能**:
-   - React Native 应用程序的性能更接近原生应用程序
-   - Hybrid 应用程序的性能取决于 WebView 的实现和优化程度
+    - React Native 应用程序的性能更接近原生应用程序
+    - Hybrid 应用程序的性能取决于 WebView 的实现和优化程度
 3. **用户体验**:
-   - React Native 它使用原生的 UI 组件和交互方式。
-   - Hybrid 使用 Web 技术构建的 UI 和交互方式。
+    - React Native 它使用原生的 UI 组件和交互方式。
+    - Hybrid 使用 Web 技术构建的 UI 和交互方式。
 4. **发布和部署**:
-   - React Native 应用程序需要通过应用商店发布到移动设备上。
-   - Hybrid 可以像 Web 应用程序一样部署到服务器上,并通过 WebView 在移动设备上访问。
+    - React Native 应用程序需要通过应用商店发布到移动设备上。
+    - Hybrid 可以像 Web 应用程序一样部署到服务器上,并通过 WebView 在移动设备上访问。
 
 ### URL SCHME
 
@@ -2175,14 +2301,14 @@ SEO 主要涉及以下几个方面:
 ### rn和hybrid怎么通信
 
 1. 原生模块:
-   - 创建原生模块,可以实现在 JS代码和原生代码之间进行双向通信。
-   - 在 Hybrid可以通过这些原生模块来调用 RN应用程序的功能,并接收返回的数据。
+    - 创建原生模块,可以实现在 JS代码和原生代码之间进行双向通信。
+    - 在 Hybrid可以通过这些原生模块来调用 RN应用程序的功能,并接收返回的数据。
 2. **通过 WebView**:
-   - Hybrid 可以使用 WebView 组件来嵌入 RN中。
-   - React Native 应用程序可以通过 `postMessage` 和 `onMessage` 事件来与 WebView 中的 Hybrid 应用程序进行通信。
+    - Hybrid 可以使用 WebView 组件来嵌入 RN中。
+    - React Native 应用程序可以通过 `postMessage` 和 `onMessage` 事件来与 WebView 中的 Hybrid 应用程序进行通信。
 3. 事件机制:
-   - 可以在 RN 和 Hybrid 之间建立一个事件总线,用于发送和接收事件。
-   - 事件总线可以基于 Js 事件机制或者原生平台的事件机制实现。
+    - 可以在 RN 和 Hybrid 之间建立一个事件总线,用于发送和接收事件。
+    - 事件总线可以基于 Js 事件机制或者原生平台的事件机制实现。
 4. **通过共享数据存储**: 可以使用共享的数据存储方式
 5. 网络请求
 6. js桥街模式
@@ -2197,91 +2323,105 @@ SEO 主要涉及以下几个方面:
 ### hybrid对比rn有很么优势
 
 1. **更快的开发周期**:
-   - Hybrid 应用程序的开发周期通常比原生应用程序和 React Native 应用程序更快,可以访问大量成熟的 Web 开发工具和框架
+    - Hybrid 应用程序的开发周期通常比原生应用程序和 React Native 应用程序更快,可以访问大量成熟的 Web 开发工具和框架
 2. **更容易维护和更新**:
-   - 可以直接在 Web 代码中进行更改,而无需重新提交应用程序到应用商店。
+    - 可以直接在 Web 代码中进行更改,而无需重新提交应用程序到应用商店。
 3. **离线支持**:
-   - Hybrid 应用程序可以利用 Web 技术的离线支持功能,如 Service Worker、IndexedDB 等,提供更好的离线体验。
+    - Hybrid 应用程序可以利用 Web 技术的离线支持功能,如 Service Worker、IndexedDB 等,提供更好的离线体验。
 4. **更好的 SEO 支持**:
-   - Hybrid 应用程序的 Web 组件可以更好地支持 SEO 优化,因为它们可以直接被搜索引擎索引。
+    - Hybrid 应用程序的 Web 组件可以更好地支持 SEO 优化,因为它们可以直接被搜索引擎索引。
 
 ### React Native Debugger怎么检测
 
 1. **使用 Perf Monitor 功能**
-   - 在 React Native Debugger 的菜单栏中,选择 `Debug` -> `Start Perf Monitoring`
-   - 这将开始记录应用的性能指标,包括帧率、CPU 占用率、内存占用等
+    - 在 React Native Debugger 的菜单栏中,选择 `Debug` -> `Start Perf Monitoring`
+    - 这将开始记录应用的性能指标,包括帧率、CPU 占用率、内存占用等
 2. **分析性能数据**
-   - 在 Perf Monitor 窗口中,可以查看实时的性能数据曲线
-   - 找到性能出现问题的区域,点击查看更多细节信息
-   - 例如,可以查看某个区域的组件树信息,定位导致性能问题的具体组件
+    - 在 Perf Monitor 窗口中,可以查看实时的性能数据曲线
+    - 找到性能出现问题的区域,点击查看更多细节信息
+    - 例如,可以查看某个区域的组件树信息,定位导致性能问题的具体组件
 3. **分析组件渲染性能**
-   - 在react中，查看每个组件的渲染时间，识别渲染时间过长的组件,可能是性能瓶颈所在，还可以查看组件的 update 频率、DOM 变更情况等
+    - 在react中，查看每个组件的渲染时间，识别渲染时间过长的组件,可能是性能瓶颈所在，还可以查看组件的 update 频率、DOM 变更情况等
 4. **分析网络请求性能**
-   - 在 Network 面板中,查看应用的网络请求情况，优化网络请求逻辑
+    - 在 Network 面板中,查看应用的网络请求情况，优化网络请求逻辑
 5. **检查内存使用情况**
-   - 在 Memory 面板中,查看应用的内存占用，观察内存使用曲线,识别内存泄漏或暴涨的问题，可以查看具体的内存分配情况,定位内存问题的源头
+    - 在 Memory 面板中,查看应用的内存占用，观察内存使用曲线,识别内存泄漏或暴涨的问题，可以查看具体的内存分配情况,定位内存问题的源头
 
 ### React怎么检测性能问题
 
 1. **React DevTools Profiler**
-   - React 官方提供的性能分析工具
-   - 可以记录组件的渲染时间、更新次数等性能指标
-   - 通过分析数据可以找到性能瓶颈所在的组件
+    - React 官方提供的性能分析工具
+    - 可以记录组件的渲染时间、更新次数等性能指标
+    - 通过分析数据可以找到性能瓶颈所在的组件
 2. **Performance API**
-   - 浏览器提供的性能监测 API
-   - 可以记录页面加载、脚本执行、网络请求等各个环节的性能数据
-   - 可以通过 `window.performance` 对象访问这些数据
+    - 浏览器提供的性能监测 API
+    - 可以记录页面加载、脚本执行、网络请求等各个环节的性能数据
+    - 可以通过 `window.performance` 对象访问这些数据
 3. **User Timing API**
-   - 浏览器提供的更细粒度的性能监测 API
-   - 可以手动在代码中添加性能测量点,记录特定操作的耗时
-   - 可以通过 `window.performance.mark()` 和 `window.performance.measure()` 来使用
+    - 浏览器提供的更细粒度的性能监测 API
+    - 可以手动在代码中添加性能测量点,记录特定操作的耗时
+    - 可以通过 `window.performance.mark()` 和 `window.performance.measure()` 来使用
 4. **Lighthouse**
-   - Google 开源的一款网页性能分析工具
-   - 可以对页面进行全面的性能、可访问性、SEO 等方面的评测
-   - 生成的报告可以帮助开发者快速发现性能问题并进行优化
+    - Google 开源的一款网页性能分析工具
+    - 可以对页面进行全面的性能、可访问性、SEO 等方面的评测
+    - 生成的报告可以帮助开发者快速发现性能问题并进行优化
 
 ### React项目性能优化
 
-1. **`React.memo`** 
+1. **`React.memo`**
 
-   - 默认包裹组件对props浅比较，确定是否更新，也可使用自定义 React.memo(MyComponent, (prevProps, nextProps) 
-   - **浅比较**是指比较两个对象的引用是否相同,而不是比较对象的内容是否相同
+    - 默认包裹组件对props浅比较，确定是否更新，也可使用自定义 React.memo(MyComponent, (prevProps, nextProps)
+    - **浅比较**是指比较两个对象的引用是否相同,而不是比较对象的内容是否相同
 
 2. `React.lazy` 和 `Suspense` 实现动态组件导入和加载
 
 3. **使用 `React.PureComponent`**
 
-   - 对组件的 props 和 state 进行浅比较
+    - 对组件的 props 和 state 进行浅比较
 
-   - ```react
+    - ```react
      class MyComponent extends React.PureComponent {
      ```
 
 4. **使用 `useCallback` 和 `useMemo` Hooks 缓存计算结果**
 
-   - `useCallback` 缓存函数引用,`useMemo` 缓存计算结果,减少重复计算。
+    - `useCallback` 缓存函数引用,`useMemo` 缓存计算结果,减少重复计算。
 
 5. **使用 `windowing` 或 `virtualization` 技术优化长列表性能**
 
-   - 仅渲染可见区域,减少 DOM 操作。
+    - 仅渲染可见区域,减少 DOM 操作。
 
 6. **使用 `React.Fragment` 减少 DOM 节点**
 
-   - 使用 `React.Fragment` 可以在不添加额外 DOM 节点的情况下对子元素进行分组。
+    - 使用 `React.Fragment` 可以在不添加额外 DOM 节点的情况下对子元素进行分组。
 
 7. **使用 `React.Profiler` 进行性能分析**
 
-   - `React.Profiler` 可以帮助你识别应用程序中的性能瓶颈。
+    - `React.Profiler` 可以帮助你识别应用程序中的性能瓶颈。
 
 8. **使用 `shouldComponentUpdate` 生命周期方法使用nextProps, nextState进行 Props 和 State 的浅层比较**
 
-   - 通过比较 props 和 state 的变化,决定是否需要重新渲染组件。
+    - 通过比较 props 和 state 的变化,决定是否需要重新渲染组件。
 
 9. **使用 `React.StrictMode` 发现隐藏的性能问题**
 
-   - `React.StrictMode` 可以帮助你发现应用程序中的一些潜在问题,例如意外的副作用。
+    - `React.StrictMode` 可以帮助你发现应用程序中的一些潜在问题,例如意外的副作用。
 
 10. **大组件拆分成小组，优势在于小组件内的state更新后不在影响大组件的render**
+
+### useMemo` 和 `useCallback
+
+useMemo:
+
+当计算过程很耗时且只在某些依赖项发生变化时才需要重新计算。
+
+比如过滤、排序、大量数据处理等。
+
+UseCallback:
+
+当你需要将一个函数传递给子组件，并且希望子组件只在依赖项变化时重新渲染，而不是每次都重新渲染。
+
+比如在 `React.memo` 或 `useEffect` 中传递回调函数时。
 
 ### react.lazy的原理
 
@@ -2308,18 +2448,18 @@ SEO 主要涉及以下几个方面:
 
 ### react的路由有哪几种模式
 
-- **HashRouter**：使用 URL 的哈希部分（即#后面的部分）来处理路由，无需服务器配置，兼容性良好，路由信息保存在哈希部分。 
+- **HashRouter**：使用 URL 的哈希部分（即#后面的部分）来处理路由，无需服务器配置，兼容性良好，路由信息保存在哈希部分。
 - **BrowserRouter**：使用 HTML5 的 History API 来管理路由，无需哈希部分，使用 History API 实现路由导航和状态管理，需要服务器配置
 - **MemoryRouter**：将路由状态存储在内存中，适用于不需要浏览器 URL 导航的情况。
-- **NativeRouter**：用于在 React Native 应用中进行导航和路由管理。 
+- **NativeRouter**：用于在 React Native 应用中进行导航和路由管理。
 - **StaticRouter**：用于在服务器端渲染或静态网站生成时进行路由管理。
 
 ### 利用跳转到一个页面，都有哪些方法
 
-**在浏览器中**： 
+**在浏览器中**：
 
-- **直接设置 `location.href`**：`location.href = 'newPage.html';` 
-- **使用 `location.assign()`**：`location.assign('newPage.html');` 
+- **直接设置 `location.href`**：`location.href = 'newPage.html';`
+- **使用 `location.assign()`**：`location.assign('newPage.html');`
 
 **在 React 中**：
 
@@ -2341,6 +2481,56 @@ SEO 主要涉及以下几个方面:
 而 `<a>` 标签则是 HTML 中的标准链接标签，用于链接导航。
 
 在使用 React Router 时，通常建议使用 `<Link>` 标签来实现路由功能，以充分利用其与路由系统的集成和优化。但在某些情况下，可能仍然需要使用 `<a>` 标签来链接到外部资源或执行其他与路由无关的操作。
+
+### 在react项目开发中，是否可以用不用react-router使用浏览器原声的history路由来组织页面路由？
+
+可以，可以使用 `history` 库来手动管理路由。
+
+```javascript
+import { createBrowserHistory } from 'history';
+
+const history = createBrowserHistory();
+
+history.listen((location, action) => {
+    console.log('Route changed:', location.pathname);
+});
+
+history.push('/new-route');
+```
+
+### 
+
+### React如何进行路由变化监听？
+
+在 React 中，可以使用 `react-router-dom` 提供的 `useHistory` 或 `useLocation` 钩子来监听路由变化。
+
+```javascript
+import { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+
+function App() {
+    const history = useHistory();
+
+    useEffect(() => {
+        const unlisten = history.listen((location, action) => {
+            console.log('Route changed:', location.pathname);
+        });
+        return () => unlisten();
+    }, [history]);
+
+    return <div>App</div>;
+}
+```
+
+### **React-router 和原生路由区别？**
+
+- **React-router**：
+    - 基于组件化的路由管理。
+    - 支持动态路由、嵌套路由。
+    - 通过 `history` API 实现无刷新跳转。
+- **原生路由**：
+    - 基于 `window.location` 和 `hashchange` 事件。
+    - 需要手动管理路由状态。
 
 ### 从一个路由页面跳转到另一个路由页面，我在前一个路由页面有一个请求还没有结束，应该怎么办？
 
@@ -2393,7 +2583,7 @@ function App() {
 
 在使用 React Profiler 进行性能分析时，你需要在浏览器中打开 React DevTools，并选择 Profiler 选项卡。然后，你可以启用性能分析并观察 Profiler 中显示的性能统计信息，包括组件的渲染次数、渲染时间等。
 
-### 注意事项
+注意事项
 
 - React Profiler 仅在开发模式下可用，生产环境中的使用请参考官方文档。
 - Profiler 仅在提交阶段收集性能数据，因此它不能定位非提交阶段的性能问题。
@@ -2490,3 +2680,38 @@ return (
 受控组件 ： 实现表单
 
 非受控组件： 即时现场验证
+
+### 按需加载？分批渲染？图片懒加载？
+
+- **按需加载**：使用 `React.lazy` 和 `Suspense` 实现组件按需加载。
+- **分批渲染**：使用虚拟列表或分页技术分批渲染数据。
+- **图片懒加载**：使用 `IntersectionObserver` 实现图片懒加载。
+
+```javascript
+const LazyComponent = React.lazy(() => import('./LazyComponent'));
+
+function App() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <LazyComponent />
+        </Suspense>
+    );
+}
+```
+
+### **不可变类型用过吗？**
+
+- **不可变类型** 是指在创建后不能被修改的数据类型。在 JavaScript 中，基本类型（如 string、number）是不可变的，而引用类型（如 object、array）是可变的。
+
+- **在 React 中的应用**：
+
+    - 使用不可变数据可以避免意外的副作用，简化状态管理。
+
+    - 常见的不可变数据操作库有 **Immer** 和 **Immutable.js**。
+
+    - 示例：
+
+      ```javascript
+      const state = { count: 0 };
+      const newState = { ...state, count: state.count + 1 }; // 不可变更新
+      ```

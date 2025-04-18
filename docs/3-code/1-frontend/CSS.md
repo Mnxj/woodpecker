@@ -2,16 +2,16 @@
 
 ```css
 @keyframes rotate-and-move {
-  0% {
-    transform: rotate(0deg) translateX(0);
-  }
-  100% {
-    transform: rotate(360deg) translateX(100%);
-  }
+   0% {
+      transform: rotate(0deg) translateX(0);
+   }
+   100% {
+      transform: rotate(360deg) translateX(100%);
+   }
 }
 
 .element {
-  animation: rotate-and-move 5s linear infinite;
+   animation: rotate-and-move 5s linear infinite;
 }
 ```
 
@@ -19,48 +19,48 @@
 
 ```css
 <div class="triangle"></div>
-    <p></p>
-    <div class="trapezoid1"></div>
-    <p></p>
-    <div class="hexagon"></div>
-    <p></p>
-   <div class="circle"></div>
-       .triangle {
-  width: 200px;
-  height: 100px;
-  background-color: #4CAF50;
-  clip-path: polygon( 50% 0%, 0% 100%, 100% 100%);
-         
-}
-        .trapezoid1 {
-  width: 200px;
-  height: 100px;
-  background-color: #4CAF50;
-  clip-path: polygon( 20% 0%, 80% 0%, 100% 100%, 0% 100%);
+<p></p>
+<div class="trapezoid1"></div>
+<p></p>
+<div class="hexagon"></div>
+<p></p>
+<div class="circle"></div>
+                      .triangle {
+                         width: 200px;
+                         height: 100px;
+                         background-color: #4CAF50;
+                         clip-path: polygon( 50% 0%, 0% 100%, 100% 100%);
+
+                      }
+.trapezoid1 {
+   width: 200px;
+   height: 100px;
+   background-color: #4CAF50;
+   clip-path: polygon( 20% 0%, 80% 0%, 100% 100%, 0% 100%);
 }
 .hexagon {
-    width: 200px;
-  height: 100px;
-  background-color: #4CAF50;
-  clip-path: polygon( 50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+   width: 200px;
+   height: 100px;
+   background-color: #4CAF50;
+   clip-path: polygon( 50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
 }
 .circle {
-    width: 200px;
-  height: 200px;
-  background-color: #ccc;
-  border-radius: 50%;
+   width: 200px;
+   height: 200px;
+   background-color: #ccc;
+   border-radius: 50%;
 }
 
 
 //三角形  或者使用微元素
-.triangle {
-  width: 0;
-  height: 0;
-  border-top: 50px solid transparent;
-  border-right: 50px solid red;
-  border-bottom: 50px solid transparent;
-  border-left: 50px solid transparent;
-}
+  .triangle {
+     width: 0;
+     height: 0;
+     border-top: 50px solid transparent;
+     border-right: 50px solid red;
+     border-bottom: 50px solid transparent;
+     border-left: 50px solid transparent;
+  }
 <div class="triangle"></div>
 ```
 
@@ -195,7 +195,7 @@
    }
    ```
 
-   
+
 
 2. flex布局
 
@@ -259,10 +259,10 @@
 
 ```js
 .grid-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 创建三列，每列等宽 */
-  grid-template-rows: repeat(3, 1fr); /* 创建三行，每行等高 */
-  gap: 10px; /* 设置网格项之间的间隔 */
+   display: grid;
+   grid-template-columns: repeat(3, 1fr); /* 创建三列，每列等宽 */
+   grid-template-rows: repeat(3, 1fr); /* 创建三行，每行等高 */
+   gap: 10px; /* 设置网格项之间的间隔 */
 }
 ```
 
@@ -287,17 +287,15 @@
 
 **使用 Grid + align-content:center + align-items:center 布局**
 
-**使用height:100px, line-height:100px布局**
-
 ### 水平垂直对齐
 
 使用 子元素,`position：absolute + top:50% + left:50% + transform:translate(-50%,-50%)` 属性
 
 ```css
     position: absolute; /* 相对于 .container 定位 */
-    top: 50%; /* 将元素的顶部定位到父容器的50%位置 */
-    left: 50%; /* 将元素的左侧定位到父容器的50%位置 */
-    transform: translate(-50%, -50%); /* 平移元素的50%自身尺寸，从而实现居中效果 */
+top: 50%; /* 将元素的顶部定位到父容器的50%位置 */
+left: 50%; /* 将元素的左侧定位到父容器的50%位置 */
+transform: translate(-50%, -50%); /* 平移元素的50%自身尺寸，从而实现居中效果 */
 ```
 
 **使用display:flex, align-items:center + justify-content: center 布局**
@@ -312,13 +310,13 @@
 //单行
 overflow:hidden
 text-overflow:ellipsis[ɪˈlɪpsɪs] //超出省略的展示
-white-space: nowarp; //不换行
+                                   white-space: nowarp; //不换行
 //多行
 
-dispaly: -webkit-box;
+  dispaly: -webkit-box;
 -webkite-box-orient: vertical; [ˈvɜrtɪkl]
--webkite-box-clamp: 3; //行数
-overflow:hidden;
+                               -webkite-box-clamp: 3; //行数
+                                                        overflow:hidden;
 
 js -> split + 正则words  scrollHeight clientHeight 超出从words pop出来
 ```
@@ -352,7 +350,7 @@ js -> split + 正则words  scrollHeight clientHeight 超出从words pop出来
      <p>This is a paragraph of text.</p>
    </body>
    ```
-   
+
 3. **嵌套在 HTML 元素中** 用局部样式。
 
    ```html

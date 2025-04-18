@@ -2,7 +2,7 @@
 
 >  给需要拖拽的元素添加 `draggable="true"` 属性
 
- JavaScript 中,监听以下拖拽相关的事件:
+JavaScript 中,监听以下拖拽相关的事件:
 
 - `dragstart`: 当拖拽开始时触发。
 - `drag`: 拖拽过程中持续触发。
@@ -13,42 +13,42 @@
 ### Canvas API
 
 1. **基础绘制 API**:
-   - `getContext('2d')`: 获取 2D 绘图上下文。
-   - `beginPath()`: 开始一个新的路径。
-   - `moveTo(x, y)`: 将绘图笔移动到指定位置。
-   - `lineTo(x, y)`: 从当前位置绘制一条直线到指定位置。
-   - `stroke()`: 绘制当前路径的边框。
-   - `fill()`: 填充当前路径形成的图形。
-   - `closePath()`: 关闭当前路径,使之成为封闭路径。
+    - `getContext('2d')`: 获取 2D 绘图上下文。
+    - `beginPath()`: 开始一个新的路径。
+    - `moveTo(x, y)`: 将绘图笔移动到指定位置。
+    - `lineTo(x, y)`: 从当前位置绘制一条直线到指定位置。
+    - `stroke()`: 绘制当前路径的边框。
+    - `fill()`: 填充当前路径形成的图形。
+    - `closePath()`: 关闭当前路径,使之成为封闭路径。
 2. **图形绘制 API**:
-   - `rect(x, y, width, height)`: 绘制一个矩形。
-   - `arc(x, y, radius, startAngle, endAngle, anticlockwise)`: 绘制一个圆或圆弧。
-   - `quadraticCurveTo(cp1x, cp1y, x, y)`: 绘制一条二次贝塞尔曲线。
-   - `bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y)`: 绘制一条三次贝塞尔曲线。
+    - `rect(x, y, width, height)`: 绘制一个矩形。
+    - `arc(x, y, radius, startAngle, endAngle, anticlockwise)`: 绘制一个圆或圆弧。
+    - `quadraticCurveTo(cp1x, cp1y, x, y)`: 绘制一条二次贝塞尔曲线。
+    - `bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y)`: 绘制一条三次贝塞尔曲线。
 3. **样式设置 API**:
-   - `strokeStyle = color`: 设置边框颜色。
-   - `fillStyle = color`: 设置填充颜色。
-   - `lineWidth = value`: 设置线宽。
-   - `lineCap = butt|round|square`: 设置线条端点样式。
-   - `lineJoin = bevel|round|miter`: 设置线条连接样式。
-   - `font = value`: 设置字体样式。
-   - `textAlign = start|end|left|right|center`: 设置文本对齐方式。
-   - `textBaseline = top|hanging|middle|alphabetic|ideographic|bottom`: 设置文本基线。
+    - `strokeStyle = color`: 设置边框颜色。
+    - `fillStyle = color`: 设置填充颜色。
+    - `lineWidth = value`: 设置线宽。
+    - `lineCap = butt|round|square`: 设置线条端点样式。
+    - `lineJoin = bevel|round|miter`: 设置线条连接样式。
+    - `font = value`: 设置字体样式。
+    - `textAlign = start|end|left|right|center`: 设置文本对齐方式。
+    - `textBaseline = top|hanging|middle|alphabetic|ideographic|bottom`: 设置文本基线。
 4. **图像操作 API**:
-   - `drawImage(image, x, y)`: 在 Canvas 上绘制图像。
-   - `createImageData(width, height)`: 创建一个新的空白 ImageData 对象。
-   - `getImageData(x, y, width, height)`: 获取 Canvas 区域的像素数据。
-   - `putImageData(imageData, x, y)`: 将 ImageData 对象绘制到 Canvas 上。
+    - `drawImage(image, x, y)`: 在 Canvas 上绘制图像。
+    - `createImageData(width, height)`: 创建一个新的空白 ImageData 对象。
+    - `getImageData(x, y, width, height)`: 获取 Canvas 区域的像素数据。
+    - `putImageData(imageData, x, y)`: 将 ImageData 对象绘制到 Canvas 上。
 5. **转换和变换 API**:
-   - `translate(x, y)`: 移动坐标原点。
-   - `rotate(angle)`: 旋转坐标系。
-   - `scale(x, y)`: 缩放坐标系。
-   - `transform(a, b, c, d, e, f)`: 应用复杂的几何变换。
-   - `setTransform(a, b, c, d, e, f)`: 将当前变换重置为单位矩阵,然后应用新的变换。
+    - `translate(x, y)`: 移动坐标原点。
+    - `rotate(angle)`: 旋转坐标系。
+    - `scale(x, y)`: 缩放坐标系。
+    - `transform(a, b, c, d, e, f)`: 应用复杂的几何变换。
+    - `setTransform(a, b, c, d, e, f)`: 将当前变换重置为单位矩阵,然后应用新的变换。
 6. **其他 API**:
-   - `save()`: 保存当前环境的状态。
-   - `restore()`: 恢复到最近保存的环境状态。
-   - `clearRect(x, y, width, height)`: 清除指定的矩形区域,让它变得完全透明。
+    - `save()`: 保存当前环境的状态。
+    - `restore()`: 恢复到最近保存的环境状态。
+    - `clearRect(x, y, width, height)`: 清除指定的矩形区域,让它变得完全透明。
 
 ### canvas 优化绘制性能。
 
@@ -63,69 +63,69 @@
 ### svg标签属性和操作注意事项
 
 1. **SVG 标签属性**
-   - `width` 和 `height`: 用于设置 SVG 元素的宽度和高度。可以使用像素、百分比等单位。
-   - `viewBox`: 定义 SVG 绘制区域的坐标系统。格式为 `"min-x min-y width height"`。
-   - `preserveAspectRatio`: 控制 `viewBox` 如何适应 `width` 和 `height` 属性指定的区域。
-   - `xmlns`: 声明 SVG 命名空间,通常设置为 `"http://www.w3.org/2000/svg"`。
+    - `width` 和 `height`: 用于设置 SVG 元素的宽度和高度。可以使用像素、百分比等单位。
+    - `viewBox`: 定义 SVG 绘制区域的坐标系统。格式为 `"min-x min-y width height"`。
+    - `preserveAspectRatio`: 控制 `viewBox` 如何适应 `width` 和 `height` 属性指定的区域。
+    - `xmlns`: 声明 SVG 命名空间,通常设置为 `"http://www.w3.org/2000/svg"`。
 2. **SVG 图形元素**
-   - `<rect>`: 用于绘制矩形。可设置 `x`、`y`、`width`、`height`、`rx`、`ry` 等属性。
-   - `<circle>`: 用于绘制圆形。可设置 `cx`、`cy`、`r` 等属性。
-   - `<ellipse>`: 用于绘制椭圆。可设置 `cx`、`cy`、`rx`、`ry` 等属性。
-   - `<line>`: 用于绘制直线。可设置 `x1`、`y1`、`x2`、`y2` 等属性。
-   - `<polyline>`: 用于绘制折线。可设置 `points` 属性,表示各个顶点的坐标。
-   - `<polygon>`: 用于绘制多边形。可设置 `points` 属性,表示各个顶点的坐标。
-   - `<path>`: 用于绘制任意形状。可使用 `d` 属性指定路径数据。
+    - `<rect>`: 用于绘制矩形。可设置 `x`、`y`、`width`、`height`、`rx`、`ry` 等属性。
+    - `<circle>`: 用于绘制圆形。可设置 `cx`、`cy`、`r` 等属性。
+    - `<ellipse>`: 用于绘制椭圆。可设置 `cx`、`cy`、`rx`、`ry` 等属性。
+    - `<line>`: 用于绘制直线。可设置 `x1`、`y1`、`x2`、`y2` 等属性。
+    - `<polyline>`: 用于绘制折线。可设置 `points` 属性,表示各个顶点的坐标。
+    - `<polygon>`: 用于绘制多边形。可设置 `points` 属性,表示各个顶点的坐标。
+    - `<path>`: 用于绘制任意形状。可使用 `d` 属性指定路径数据。
 3. **SVG 文本元素**
-   - `<text>`: 用于显示文本。可设置 `x`、`y`、`fill`、`font-size` 等属性。
-   - `<tspan>`: 用于控制文本的一部分样式。可嵌套在 `<text>` 标签内部。
+    - `<text>`: 用于显示文本。可设置 `x`、`y`、`fill`、`font-size` 等属性。
+    - `<tspan>`: 用于控制文本的一部分样式。可嵌套在 `<text>` 标签内部。
 4. **SVG 样式和交互**
-   - 可以在 SVG 内部使用 CSS 样式,如 `fill`、`stroke`、`font-family` 等。
-   - 可以为 SVG 元素添加事件监听器,如 `click`、`mouseover` 等,实现交互效果。
+    - 可以在 SVG 内部使用 CSS 样式,如 `fill`、`stroke`、`font-family` 等。
+    - 可以为 SVG 元素添加事件监听器,如 `click`、`mouseover` 等,实现交互效果。
 5. **SVG 使用注意事项**
-   - 确保 SVG 标签有正确的 `xmlns` 声明。
-   - 使用相对单位(如百分比)时,要确保父容器有明确的尺寸。
-   - 对于复杂的 SVG 图形,可以考虑使用 `<defs>` 标签预定义复杂的形状。
-   - 为 SVG 元素添加适当的 `id` 或 `class` 属性,方便通过 CSS 或 JavaScript 进行样式和交互操作。
-   - 对于动态 SVG,要注意性能,尽量减少不必要的重绘和回流。
+    - 确保 SVG 标签有正确的 `xmlns` 声明。
+    - 使用相对单位(如百分比)时,要确保父容器有明确的尺寸。
+    - 对于复杂的 SVG 图形,可以考虑使用 `<defs>` 标签预定义复杂的形状。
+    - 为 SVG 元素添加适当的 `id` 或 `class` 属性,方便通过 CSS 或 JavaScript 进行样式和交互操作。
+    - 对于动态 SVG,要注意性能,尽量减少不必要的重绘和回流。
 
 ### canvas和svg
 
-- **Canvas**: 
-  - 基于像素的渲染技术
-  - HTML 元素 没有文档结构,
-  - JS 动态绘制的
-  - 大量的图形元素,表现更好,不需要处理父DOM 结构，
-  - 图形缩放会失真
-- **SVG**: 
-  - 基于矢量的渲染技术。
-  - XML语言,有文档结构,
-  - 用 CSS 和 JavaScript编写
-  - 少量的图形元素效果好,
-  - 可以利用 DOM 操作和 CSS 样式来控制图形。
-  - 图形缩放无损地缩
+- **Canvas**:
+    - 基于像素的渲染技术
+    - HTML 元素 没有文档结构,
+    - JS 动态绘制的
+    - 大量的图形元素,表现更好,不需要处理父DOM 结构，
+    - 图形缩放会失真
+- **SVG**:
+    - 基于矢量的渲染技术。
+    - XML语言,有文档结构,
+    - 用 CSS 和 JavaScript编写
+    - 少量的图形元素效果好,
+    - 可以利用 DOM 操作和 CSS 样式来控制图形。
+    - 图形缩放无损地缩
 
 ### 动画
 
 1. **transition 过渡动画**:
-   - 通过设置 `transition` 属性,可以实现元素在属性变化时的平滑过渡动画。
-   - 常用属性有 `transition-property`、`transition-duration`、`transition-timing-function`、`transition-delay`。
-   - 适用于简单的、单一属性的动画效果。
+    - 通过设置 `transition` 属性,可以实现元素在属性变化时的平滑过渡动画。
+    - 常用属性有 `transition-property`、`transition-duration`、`transition-timing-function`、`transition-delay`。
+    - 适用于简单的、单一属性的动画效果。
 2. **CSS 关键帧动画 (keyframes)**:
-   - 使用 `@keyframes` 规则定义一系列关键帧,描述动画效果随时间变化的过程。
-   - 通过 `animation` 属性控制动画的播放,包括动画名称、持续时间、速度曲线等。
-   - 适用于复杂的、多属性的动画效果。
+    - 使用 `@keyframes` 规则定义一系列关键帧,描述动画效果随时间变化的过程。
+    - 通过 `animation` 属性控制动画的播放,包括动画名称、持续时间、速度曲线等。
+    - 适用于复杂的、多属性的动画效果。
 3. **JavaScript 动画**:
-   - 使用 JavaScript 的 `requestAnimationFrame` 或 `setInterval` 方法来定时更新元素的样式,实现动画效果。
-   - 可以更精细地控制动画的每一帧,实现复杂的动画逻辑。
-   - 适用于需要与交互行为或 DOM 状态变化相关的动画效果。
+    - 使用 JavaScript 的 `requestAnimationFrame` 或 `setInterval` 方法来定时更新元素的样式,实现动画效果。
+    - 可以更精细地控制动画的每一帧,实现复杂的动画逻辑。
+    - 适用于需要与交互行为或 DOM 状态变化相关的动画效果。
 4. **SVG 动画**:
-   - SVG 元素本身支持丰富的动画属性,如 `animate`、`animateMotion` 等。
-   - 可以通过 SVG 的标签或 CSS 属性来定义动画效果。
-   - 适用于需要矢量图形变换的动画效果。
+    - SVG 元素本身支持丰富的动画属性,如 `animate`、`animateMotion` 等。
+    - 可以通过 SVG 的标签或 CSS 属性来定义动画效果。
+    - 适用于需要矢量图形变换的动画效果。
 5. **Canvas 动画**:
-   - 使用 HTML5 的 `<canvas>` 元素,通过 JavaScript 编程实现各种动画效果。
-   - 可以自由控制每一帧的绘制内容,实现复杂的动画逻辑。
-   - 适用于需要大量自定义图形变换的动画效果。
+    - 使用 HTML5 的 `<canvas>` 元素,通过 JavaScript 编程实现各种动画效果。
+    - 可以自由控制每一帧的绘制内容,实现复杂的动画逻辑。
+    - 适用于需要大量自定义图形变换的动画效果。
 
 
 
@@ -149,16 +149,23 @@
 - `<dt>` 描述列表中的项目名称。
 - `<dd>` 详细说明
 - `<ol>` 用于创建有序列表，其中的列表项会按照特定的顺序进行排列。有序列表通常使用数字或字母作为列表项的标记。
-- `<ul>` 创建无序列表，其中的列表项没有特定的顺序。无序列表通常使用项目符号（如圆点、方块等）作为列表项的标记。 
+- `<ul>` 创建无序列表，其中的列表项没有特定的顺序。无序列表通常使用项目符号（如圆点、方块等）作为列表项的标记。
 
 **list-style-type`属性为`none去掉标记**
 
-### Web Components 
+### Web Components
 
-1. **Custom Elements**：可以定义自定义 HTML 标签。
-2. **Shadow DOM**:封装和隔离 DOM 。
-3. **HTML Templates**: 定义可复用的 HTML 模板。
-4. **HTML Imports**: 用于导入和重用 Web Components。
+1. **Custom Elements**：可以定义自定义 HTML 标签，使用 `customElements.define` 注册新的自定义元素。
+2. **Shadow DOM**:封装和隔离 DOM，通过 `attachShadow` 方法创建一个隔离的子树（shadow tree）。
+3. **HTML Templates**: 允许开发者定义模板，它们可以在运行时克隆，并将内容插入到页面中。模板内容在初始加载时不会被渲染，而是等待被克隆。
+4. **HTML Imports**:（目前已弃用）：最初用于加载 HTML 片段，但已被现代 JavaScript 模块（ES Modules）取代。
+
+### **Web Components 的优点**
+
+- **跨框架兼容**：Web Components 可以与任何现代框架或库（如 React、Vue、Angular 等）一起使用。
+- **封装性**：通过 Shadow DOM，可以确保组件的样式和行为不受外部影响，减少样式冲突。
+- **重用性**：具有良好的模块化特性，开发者可以方便地创建和复用 UI 组件。
+- **标准化**：是由浏览器原生支持的标准，意味着它们不依赖于任何第三方库或框架。
 
 ### 从输入url,到页面展示的过程
 
@@ -171,7 +178,7 @@
 - http响应
 - 读取页面内容 解析html源码 生成dom树
 - 解析CSS :浏览器解析外部CSS⽂件和内联样式 生成cssom树
-- DOM树与CSSOM树合成并渲染树：(不可⻅的DOM元素（如 `<head>` 标签内的内容或具有 display: none 属性的元素）不会被包括在渲染树中)
+- DOM树与CSSOM树合成并渲染树：(不可⻅的DOM元素（如 <head> 标签内的内容或具有 display: none 属性的元素）不会被包括在渲染树中)
 - 布局（Reflow）：浏览器计算渲染树中每个节点的位置和⼤⼩
 - 绘制（Painting）：渲染树的节点将被转换成屏幕上的实际像素
 - 合成：将⻚⾯分割成多个层，并在GPU中处理，最后合成到屏幕上。
@@ -189,17 +196,17 @@
 ### hash和history
 
 1. **URL 结构**:
-   - `Hash` 模式使用  hash 部分(`#`)来存储应用状态信息,如`https://example.com/#/page1`。
-   - `History` 模式使用浏览器的历史 API 来管理完整的 URL 路径,如`https://example.com/page1`。
+    - `Hash` 模式使用  hash 部分(`#`)来存储应用状态信息,如`https://example.com/#/page1`。
+    - `History` 模式使用浏览器的历史 API 来管理完整的 URL 路径,如`https://example.com/page1`。
 2. **浏览器兼容性**:
-   - `Hash` 兼容所有浏览器。 History` 仅支持 HTML5 。
+    - `Hash` 兼容所有浏览器。 History` 仅支持 HTML5 。
 3. **刷新行为**:
-   - `Hash` 模式下页面刷新时,页面不会重新加载,只会触发 `hashchange` 事件。
-   - `History` 模式下页面刷新时,页面会重新加载,并触发 `popstate` 事件。
+    - `Hash` 模式下页面刷新时,页面不会重新加载,只会触发 `hashchange` 事件。
+    - `History` 模式下页面刷新时,页面会重新加载,并触发 `popstate` 事件。
 4. **SEO 友好性** `History` 模式下,搜索引擎索到。
 5. **用户体验**:
-   - `Hash` 模式下,URL 中会出现 `#` 号,可能影响用户体验。
-   - `History` 模式下,URL 更加美观,用户体验更好
+    - `Hash` 模式下,URL 中会出现 `#` 号,可能影响用户体验。
+    - `History` 模式下,URL 更加美观,用户体验更好
 
 ### history
 
@@ -280,29 +287,36 @@ history.go(1);   // 前进
 
 React Router 使⽤HTML5 History API来管理前端路由。
 
+### 前端路由发送变化，页面刷新的原理
+
+1. **前端路由**：通过 JavaScript 操控浏览器的 URL 和历史记录，实现页面内容的动态更新，不会刷新整个页面。
+    - 使用 **`history` API** 或 **`hashchange`** 来监听和改变 URL。
+    - 适用于单页应用（SPA）。
+2. **页面刷新**：当浏览器 URL 发生变化时，浏览器会向服务器发起请求，重新加载页面资源，重新渲染整个页面。
+
 ### Data-是做什么
 
 自定义的属性或数据
 
-### 浏览器缓存机制
+### 浏览器缓存机制 （爱诗科技）
 
 **强缓存**：
 
 - 当浏览器第一次请求资源时，服务器会在响应头中设置相关的字段，如 `Cache-Control` 或 `Expires`。如果再次请求该资源且缓存仍在有效期，浏览器会直接从本地缓存中读取，而不会向服务器发送请求。
-  - `Expires` 过期时间
-  - `Cache-Control` 缓存策略
-    - `public`：表示响应可以被任何缓存存储。
-    - `private`：表示响应只能被单个用户的缓存存储，不能被共享缓存存储。
-    - `no-cache`：表示在使用缓存之前，必须先重新验证资源。
-    - `no-store`：表示不允许缓存响应。
-    - `max-age`：指定缓存的有效期，以秒为单位。
+    - `Expires` 过期时间
+    - `Cache-Control` 缓存策略
+        - `max-age=<seconds>`: 资源缓存的最大时间。
+        - `no-cache`: 缓存前需验证资源是否更新。
+        - `no-store`: 禁止缓存。
+        - `public`: 资源可被任何缓存存储。
+        - `private`: 资源仅可被客户端缓存。
 
 
 **协商缓存**：
 
 - 当强缓存失效后，浏览器会发送请求到服务器，服务器会根据请求头中的信息来判断资源是否有更新。常见的协商缓存字段有 `Last-Modified` 和 `ETag`。如果资源没有更新，服务器返回 304 状态码，浏览器继续使用本地缓存；如果有更新，则返回新的资源。
-  - `Last-Modified` 资源的最后修改时间
-  - `ETag`资源的唯一标识符
+    - `Last-Modified` 资源的最后修改时间
+    - `ETag`资源的唯一标识符
 
 
 **本地存储**：
@@ -310,9 +324,22 @@ React Router 使⽤HTML5 History API来管理前端路由。
 - `LocalStorage`：用于持久化存储数据，除非手动清除，数据会一直存在。
 - `SessionStorage`：数据只在当前会话期间有效，关闭浏览器窗口后数据会被清除。
 
+### 缓存验证流程
+
 **内存缓存**：一些频繁访问且体积较小的资源可能会被临时存储在内存中，以加快访问速度。
 
+1. **首次请求**: 服务器返回资源及缓存头（如`Cache-Control`、`ETag`）。
+2. **后续请求**: 浏览器检查缓存是否过期。
+    - 未过期: 直接使用缓存。
+    - 过期: 发送请求，带上`If-None-Match`（基于`ETag`）或`If-Modified-Since`（基于`Last-Modified`）验证资源是否更新。
+3. **服务器响应**:
+    - 资源未更新: 返回`304 Not Modified`，浏览器继续使用缓存。
+    - 资源已更新: 返回新资源及更新后的缓存头。
 
+### 使用建议
+
+- **静态资源**: 使用`Cache-Control: max-age`设置较长缓存时间，结合`ETag`或`Last-Modified`进行验证。
+- **动态资源**: 使用`Cache-Control: no-cache`或`no-store`，避免缓存敏感数据。
 
 ### 骨架图原理
 
@@ -415,3 +442,25 @@ WebGL 的主要用途包括：
 `<meta>` 元素用于提供关于 HTML 文档的元数据，如字符集、页面描述、关键字、作者等
 `<link>` 元素用于链接外部资源，标签本身不直接涉及跨域问题，因为它是用来链接外部资源的
 `<style>` 用于定义页面的内联样式
+
+
+
+### manifest.json
+
+一个 JSON 文件，主要用于描述 Web 应用的一些元信息，并提供一种方式来配置 Progressive Web Apps（PWA）功能。它通常用于增强应用的离线功能、图标、主题颜色、启动模式等，提供更好的安装体验。
+
+**基本作用**
+
+1. **Web App 安装**：允许用户将网站安装到他们的设备（例如桌面或主屏幕）上，像原生应用一样运行。
+2. **自定义外观**：通过设置图标、启动画面、背景颜色等，让 Web 应用在不同设备上呈现出一致的用户体验。
+3. **控制显示模式**：可以设置应用的启动方式（例如全屏、浏览器模式等）。
+
+**常见字段**
+
+- `name`：Web 应用的完整名称。
+- `short_name`：应用的短名称，用于在设备屏幕上显示。
+- `start_url`：指定应用启动时的页面。
+- `display`：定义应用的显示模式（`fullscreen`, `standalone`, `minimal-ui`, `browser`）。
+- `background_color`：应用的背景颜色，通常显示在加载画面。
+- `theme_color`：设置浏览器的 UI 颜色，常见于地址栏。
+- `icons`：提供应用的图标文件，通常提供多种尺寸的图标以适应不同设备。

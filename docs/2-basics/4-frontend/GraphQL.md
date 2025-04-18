@@ -1,6 +1,6 @@
 ### 什么是GraphQL？
 
-API查询语言，由feedback开发，适合复杂系统和多变的需求场景， 
+API查询语言，由feedback开发，适合复杂系统和多变的需求场景，
 
 `核心思想`是用一个API来代替多个API，客户端可以获取所需的所有数据，而不需要调用多个API或者进行多次请求,支持实时数据查询和订阅，
 
@@ -9,9 +9,9 @@ API查询语言，由feedback开发，适合复杂系统和多变的需求场景
 ```json
 query {
   user(id: "123") {
-    name
-    email
-  }
+  name
+  email
+}
 }
 ```
 
@@ -22,9 +22,9 @@ query {
 ```json
 mutation {
   createUser(name: "John Doe", email: "john@example.com") {
-    id
-    name
-  }
+  id
+  name
+}
 }
 ```
 
@@ -35,9 +35,9 @@ mutation {
 ```json
 subscription {
   newUserAdded {
-    id
-    name
-  }
+  id
+  name
+}
 }
 ```
 
@@ -47,17 +47,17 @@ subscription {
 
 ```ts
 type User {
-  id: ID!
-  name: String!
-  email: String!
+    id: ID!
+    name: String!
+    email: String!
 }
 
 type Query {
-  user(id: ID!): User
+    user(id: ID!): User
 }
 
 type Mutation {
-  createUser(name: String!, email: String!): User
+    createUser(name: String!, email: String!): User
 }
 ```
 
@@ -71,22 +71,20 @@ type Mutation {
 
 ```javascript
 const resolvers = {
-  Query: {
-    user(parent, args, context, info) {
-      return users.find(user => user.id === args.id);
+    Query: {
+        user(parent, args, context, info) {
+            return users.find(user => user.id === args.id);
+        }
+    },
+    Mutation: {
+        createUser(parent, args, context, info) {
+            const newUser = { id: users.length + 1, name: args.name, email: args.email };
+            users.push(newUser);
+            return newUser;
+        }
     }
-  },
-  Mutation: {
-    createUser(parent, args, context, info) {
-      const newUser = { id: users.length + 1, name: args.name, email: args.email };
-      users.push(newUser);
-      return newUser;
-    }
-  }
-};
+}; 
 ```
-
-### 
 
 ### 如何在GraphQL中实现实时数据更新？
 

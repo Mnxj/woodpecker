@@ -1,11 +1,11 @@
 ### BFC及其应用
 
-> BFC 独立布局环境 
+> BFC 独立布局环境 ,它代表了一个特定的渲染区域，在这个区域内的元素会按照特定的规则进行布局
 
 1）float属性不为none
 2）position为absolute或fixed
 3）display为inline-block、table-cell、table-caption、flex、inline-flex
-4）overflow不为visible 
+4）overflow不为visible
 
 **最常用是overflow为hidden，这种方式的副作用最小，其他三种方式的副作用较大**
 
@@ -14,6 +14,10 @@
 - 解决浮动元素 令父元素高度坍塌
 - 解决非浮动元素被浮动元素覆盖
 - 外边距垂直方向重合问题
+
+### 兼容性导致高度塌陷的问题
+
+高度塌陷问题可能由于不同浏览器对 CSS 盒模型和浮动处理的实现不同，导致布局计算错误。
 
 ### 消除浮动的方法
 
@@ -34,7 +38,7 @@
 
 - 不能设置高度，由内容宽决定布局，可以和其他内联元素一行显示。
 - 可以设置 `padding` 和 `margin`，但只会影响左右布局，上下边距不会影响到其他元素的位置。
-- **例子**：`<span>`、`<a>` 
+- **例子**：`<span>`、`<a>`
 
 `block`（块级元素）
 
@@ -55,24 +59,24 @@ Flex-direction 决定主轴的⽅向
 
 Flex-wrap 决定容器内项⽬是否可换⾏
 
-Flex-flow：Flex-direction  Flex-wrap 
+Flex-flow：Flex-direction  Flex-wrap
 
 Justify`[ˈdʒʌstəˌfaɪ]`-content 主轴对齐方式
 
 - **flex-start (默认值)**:
-  - Flex 项目沿主轴起始位置对齐。
+   - Flex 项目沿主轴起始位置对齐。
 - **flex-end**:
-  - Flex 项目沿主轴终点位置对齐。
+   - Flex 项目沿主轴终点位置对齐。
 - **center**:
-  - Flex 项目沿主轴中心位置对齐。
+   - Flex 项目沿主轴中心位置对齐。
 - **space-between**:
-  - Flex 项目沿主轴均匀分布,第一个项目在起始位置,最后一个项目在终点位置。
+   - Flex 项目沿主轴均匀分布,第一个项目在起始位置,最后一个项目在终点位置。
 - **space-around**:
-  - Flex 项目沿主轴均匀分布,每个项目两侧的间距相等。
+   - Flex 项目沿主轴均匀分布,每个项目两侧的间距相等。
 - **space-evenly**:
-  - Flex 项目沿主轴均匀分布,每个项目之间的间距相等。
+   - Flex 项目沿主轴均匀分布,每个项目之间的间距相等。
 
-Align-items 交叉轴如何对齐 
+Align-items 交叉轴如何对齐
 
 Align-content 多跟轴线对齐方式
 
@@ -93,7 +97,7 @@ flex: 1 相当于同时设置了 flex-grow: 1、flex-shrink: 1 和 flex-basis: 0
 
 ### 分析opacity:0,visibility:hidden、dispaly:none 优势和使用场景
 
-- Display: none 不占空 不能点击  非继承属性 重排重会 
+- Display: none 不占空 不能点击  非继承属性 重排重会
 - visibility: hidden 占据空间 不能点击 继承属性  重会
 - Opacity:0 占据空间 可点击 重会
 
@@ -136,7 +140,7 @@ flex: 1 相当于同时设置了 flex-grow: 1、flex-shrink: 1 和 flex-basis: 0
    - `visibility`：元素的可见性
 
 
-### Transform 
+### Transform
 
 `transform` 属性可以应用于元素的变换，常见的用例包括：
 
@@ -194,7 +198,7 @@ animation：动画名称 + 动画时间 + 速度曲线 + 是否延迟 + 动画�
 
 ### transition和animation的属性分别有哪些
 
-tarnsition 
+tarnsition
 
 - Transition-property 过渡css属性
 - Transition-duration 完成事件
@@ -261,31 +265,31 @@ animation
 6. **通配符选择器** (`*`)
    - 最低优先级。
 
-群组选择器（div,p）  
+群组选择器（div,p）
 
 - **伪类**：以冒号(:)开头，用于选择处于特定状态的元素。
 
 - 伪元素：以双冒号(::)开头，用于在文档中插入虚构的元素。
 - 相邻选择器：
 
- +选择器。如果需要选择紧接在另一个元素后的元素，而且二者有相同的父元素，可以使用相邻兄弟选择器。
++选择器。如果需要选择紧接在另一个元素后的元素，而且二者有相同的父元素，可以使用相邻兄弟选择器。
 
- ~ 选择器。作用是查找某一个指定元素的后面的所有兄弟结点。
+~ 选择器。作用是查找某一个指定元素的后面的所有兄弟结点。
 
 ### css3新增了哪些东西
 
-- 选择器 
-  - :lang() 语言选择器
-  - :is()接受多个选择器作为参数
-  - 伪类选择器:first-child 父元素的第一个子元素的元素。大小写不敏感
-  - :last-child
-  - 属性选择 ^开头 $结尾 *包含
+- 选择器
+   - :lang() 语言选择器
+   - :is()接受多个选择器作为参数
+   - 伪类选择器:first-child 父元素的第一个子元素的元素。大小写不敏感
+   - :last-child
+   - 属性选择 ^开头 $结尾 *包含
 
 - 盒子模型 border-radius[ˈrediəs] box-shadow border-image
 - 背景 background-size background-origin（padding-box，content-box, border-box） background-clip[klɪp]绘制背景()
 - 文本效果 text-shadow word-wrap（长单词或 URL 地址
 - 渐变 线性渐变 径向渐变
-- 字体@font-face[fes] 
+- 字体@font-face[fes]
 - 2d/3d transform transform-origin
 - 过渡与动画 transition @keyframs animation
 - 媒体查询 @Media
@@ -303,8 +307,8 @@ IE盒模型： padding border content
 
 ### z-index属性什么时候失效？
 
-- 
-  对于静态定位(position: static)的元素，z-index 属性无效。设置为相对定位（position: relative）、绝对定位（position: absolute）或固定定位（position: fixed）
+-
+对于静态定位(position: static)的元素，z-index 属性无效。设置为相对定位（position: relative）、绝对定位（position: absolute）或固定定位（position: fixed）
 - 父元素的 z-index 大于子元素的 z-index  会覆盖子元素。
 - 相同的层叠上下文中，相同的 z-index ，它们的显示顺序将由它们在 HTML 中的先后顺序决定。
 - z-index 属性对于 flex 容器和 flex 项可能不起作用。Flexbox 布局有自己的层叠上下文规则。
@@ -321,7 +325,7 @@ IE盒模型： padding border content
 - cdn 根据网络情况挑选最近的网络资源
 - css压缩 webnpack zip
 - 合理使用缓存 cache-control expires e-tag
-- 减少http请求数 将多个css进行合并 
+- 减少http请求数 将多个css进行合并
 
 ### postcss
 
@@ -522,7 +526,7 @@ Top：0
 
 1.自定义：页面加载时,根据当前设备的屏幕尺寸和分辨率,计算并设置合适的 font-size 值
 
-2.px->转为rem:postcss在postcss.config.js 里面的 plugins 加入 `postcss-pxtorem: { rootValue:16,propList:[*],selectorBlanckList:[]}`
+2.px->转为rem:postcss在postcss.config.js里面的plugins加入postcss-pxtorem: { rootValue:16,propList:[*],selectorBlanckList:[]}
 
 3.webcomponent 定义rem组件
 
@@ -562,21 +566,27 @@ Top：0
 3. 将 CSS 文件引入到 JS 模块中。
 4. Js可以访问和操作模块中的样式规则。
 
- 
+
 
 ### 前端⽔印了解多少？
 
-在⻚⾯上覆盖⼀个position:fixed的div盒⼦，盒⼦透明度设置较低，设置pointer-events: none;样式实现点击穿透，在这个盒⼦内通过js循环⽣成⼩的⽔印div，每个⽔印div内展⽰⼀个要显⽰的⽔印内容。
+- 在⻚⾯上覆盖⼀个`position:fixed`的div盒⼦，盒⼦透明度设置较低，
+- 设置pointer-events: none;样式实现点击穿透，
+- 在这个盒⼦内通过js循环⽣成⼩的⽔印div，每个⽔印div内展⽰⼀个要显⽰的⽔印内容。
 
 
 
-canvas输出背景图： 绘制出⼀个⽔印区域，将这个⽔印通过toDataURL⽅法输出为⼀个图⽚，将这个图⽚设置为盒⼦的背景图，通过backgroud-repeat：repeat；样式实现填满整个屏幕的效果。
+canvas输出背景图：
+
+绘制出⼀个⽔印区域，将这个⽔印通过toDataURL⽅法输出为⼀个图⽚，
+
+将这个图⽚设置为盒⼦的背景图，通过backgroud-repeat：repeat；样式实现填满整个屏幕的效果。
 
 ### 如何处理和优化⼤规模的CSS代码？
 
-1. 使⽤CSS预处理器 可以提供变量、混合、函数和嵌套。
+1. **CSS预处理器** 可以提供变量、混合、函数和嵌套。
 
-2. 模块化，CSS代码分割成多个⼩⽂件，每个⽂件包含特定组件或⻚⾯的样式。
+2. **模块化**CSS代码分割成多个⼩⽂件，每个⽂件包含特定组件或⻚⾯的样式。
 
 3. 减少重排和重绘，压缩CSS⽂件
 
@@ -631,6 +641,51 @@ link支持使用Javascript控制DOM去改变样式；而@import不支持
 
 ### src和href
 
-href标识超文本引用，用在link和a等元素上，href是引用和页面关联，是在当前元素和引用资源之间建立联系
+href标识超文本引用，用在link和a等元素上，是在当前元素和引用资源之间建立联系
 
-src表示引用资源，表示替换当前元素，在请求src资源时会将其指向的资源下载并应用到当前文档中，例如js脚本，img图片和frame等元素。
+src表示引用资源，表示替换当前元素，src资源下载后应用到当前文档中，例如js脚本，img图片和frame等元素。
+
+
+
+### .will-change 性能优化
+
+可以提前告知浏览器哪些属性会发生变化，浏览器可以在后台进行必要的优化，比如提前分配内存、启用硬件加速等。
+
+
+
+当我们设置了`will-change: transform`时，浏览器会为该元素创建一个独立的图层，将这个图层标记为“即将变换”。这样，在进行布局和绘制时，浏览器就可以更高效地处理这个元素，而无需重新计算整个渲染树。
+
+
+
+**iPhone chrome**
+
+在元素提升到复合层后，进行光栅化会导致模糊问题
+
+> 原因是提升复合层后，光栅化的时候，设备比例的变化，导致绘制 图像 的过程变模糊，谷歌是在2016年解决的这个问题，所以现在看来我们会在iphone上发现模糊问题，在安卓机上并不会
+
+
+
+
+
+**1. 不要给大量的元素添加will-change，这会导致创建大量的复合层**
+
+**2. 注意使用的时机，在需要进行重绘/重排行为的时候，才考虑加上will-change，使用完后需要再适当的时机移除，释放浏览器资源**
+
+**3. 是否真的需要will-change，如果页面在性能方面没什么问题，没有必要放个will-change来换取那微乎其微的收益，如果收益客观，可加，如果加与不加，差别不大，没必要**
+
+### tailwind和less区别
+
+**Tailwind CSS**:
+
+- CSS 框架，提供大量预定义的实用类， 无需编译，直接在 HTML 中组合使用，快速构建界面。
+- 主题、颜色：通过 `tailwind.config.js` 文件定制
+- 性能：生成较大的 CSS 文件，但可通过 PurgeCSS 移除未使用的类。
+-  需学习大量实用类，适合快速开发
+
+Leas:
+
+- CSS 预处理器，扩展了 CSS 功能，支持变量、嵌套、混合等,需编译为普通 CSS才能在浏览器中使用。
+- 主题、颜色：变量和混合宏实现
+- 性能： 生成的 CSS 文件大小取决于代码复杂度，通常较小。
+- 需学习预处理器的语法和功能，适合需要复杂样式的项目。
+

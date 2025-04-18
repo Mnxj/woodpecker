@@ -1,8 +1,3 @@
----
-title: "XSS,CSRF,SQL注入"
-sidebar_position: 1
----
-
 ## XSS
 
 > XSS（Cross-Site Scripting）攻击是通过在网页中注入恶意脚本代码，当其他用户浏览该网页时，恶意脚本会在用户的浏览器中执行，从而盗取用户信息、篡改网页内容等。
@@ -31,7 +26,7 @@ Leve2: <script></script>标签都被过滤不能生效, 使用其他标签就可
 
 
 
-Leve3: 
+Leve3:
 
 ```html
 问题1:  会截取路由的第一个参数   
@@ -106,11 +101,11 @@ https://xiaomark.com/
 
 我们修改密码的链接
 
-http://localhost/vulnerabilities/csrf/?password_new=123&password_conf=123&Change=Change#
+http://localhost:80/vulnerabilities/csrf/?password_new=123&password_conf=123&Change=Change#
 
 变成了这个东西
 
-https://sourl.cn/MQkq9G 
+https://sourl.cn/MQkq9G
 
 ### SQL注入
 

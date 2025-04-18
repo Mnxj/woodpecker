@@ -32,107 +32,8 @@ export default function sum(...args) {
     return args.reduce((p,c) => p+c,0)
 }
 //./public/index.html
-    <h1> hello webpack</h1>
-    <script src="../src/main.js"></script>
-```
-
-> 运行index.html 看不到log信息
-
-### 2、打包
-
-```shell
-# init package.json
-npm init -y
-
-# install
-npm i webpack webpack-cli -D
-
-# build
-npx webpack ./src/main.js --mode=development
-
-#./public/index.html
-  <script src="../dist/main.js"></script>
-```
-
-> 日志显示不过会有eval提示 ,dev环境仅能编译js语法，不能压缩
-
-```shell
-# 开发模式不会有eval提示
-npx webpack ./src/main.js --mode=production 
-```
-
-### 基本配置
-
-在开始使用 `webpack`之前，我们需要对`webpack`的配置有一定的认识。
-
-#### 5大核心概念
-
-1. Entry(入口) 提示webpack从哪个文件开始打包
-2. Output（输出） 指示webpack打包完的文件输出到哪里去，如何命名等
-3. Loader(加载器) webpack本身只能处理js\json等资源，其他资源需要借助loader,webpack才能解析
-4. Plugin(插件) 拓展webpack的功能
-5. Mode(模式) development, production
-
-#### 准备Webpack配件文件
-
-在项目根目录新建，webpack.config.js
-
-> 是需要在node.js中运行的所以模块化都是common模块化
-
-```js
-const path = require("path")
-module.exports = {
-    entry: "./src/main.js",
-    output: {
-        path: path.resolve(__dirname, "dist"), //绝对路径
-        filename: "main.js",
-    },
-    // 加载器
-    module: {
-        rules: [
-       ]
-    },
-    plugins: [
-    ],
-    mode: "development",
-}
-```
-## 基本使用
-
-webpack是一个`静态资源打包工具`
-
-输出编译好的文件（bundle），放在浏览器可以直接运行
-
-## 功能介绍
-
-webpack本身功能有限
-
-- 开发模式：仅能编译js中的`ES Module`语法
-- 生产模式：能编译js中的`ES Module`语法，还能压缩JS代码
-
-## 开始使用
-
-### 1、资源目录
-
-```js
-// ./src/main.js
-import count from './js/count'
-import sum from './js/sum'
-
-console.log(count(2,1))
-console.log(sum(1,2,3,4))
-
-//./src/js/sum.js
-export default function count(x,y) {
-    return x-y;
-}
-//./src/js/count.js
-export default function sum(...args) {
-    return args.reduce((p,c) => p+c,0)
-}
-//./public/index.html
-    <h1> hello webpack</h1>
-    <script src="../src/main.js"></script>
+<h1> hello webpack</h1>
+<script src="../src/main.js"></script>
 ```
 
 > 运行index.html 看不到log信息
@@ -243,10 +144,10 @@ module.exports = {
 - 可以链式调用,从下往上，从右往左。
 - `module.rules` 中定义。
 - 常见 Loader:
-  - `babel-loader`: 将 ES6+ 代码转换为 ES5
-  - `css-loader`: 处理 CSS 文件
-  - `file-loader`: 处理图片、字体等文件
-  - `sass-loader`: 将 Sass 代码转换为 CSS
+    - `babel-loader`: 将 ES6+ 代码转换为 ES5
+    - `css-loader`: 处理 CSS 文件
+    - `file-loader`: 处理图片、字体等文件
+    - `sass-loader`: 将 Sass 代码转换为 CSS
 
 **Plugin**:
 
@@ -256,10 +157,10 @@ module.exports = {
 - 解决 Loader 无法实现的其他自定义需求,如文件压缩、资源优化等。
 - 在 `plugins` 数组中定义。
 - 常见 Plugin:
-  - `HtmlWebpackPlugin`: 自动生成 HTML 文件
-  - `MiniCssExtractPlugin`: 将 CSS 从 bundle 中提取为单独的文件
-  - `OptimizeCssAssetsWebpackPlugin`: 优化和最小化 CSS 资源
-  - `webpack.HotModuleReplacementPlugin`: 开启模块热替换功能
+    - `HtmlWebpackPlugin`: 自动生成 HTML 文件
+    - `MiniCssExtractPlugin`: 将 CSS 从 bundle 中提取为单独的文件
+    - `OptimizeCssAssetsWebpackPlugin`: 优化和最小化 CSS 资源
+    - `webpack.HotModuleReplacementPlugin`: 开启模块热替换功能
 
 ### webpack遇到import是什么解析出来的
 
@@ -273,19 +174,19 @@ module.exports = {
 ### vite与webpack的区别
 
 1. **开发服务器**
-   - **Vite** 利用浏览器原生的 ESM 支持,实现了即时热更新(HMR)。
-   - **Webpack**使用 webpack-dev-server,需要进行打包才能提供开发服务。
+    - **Vite** 利用浏览器原生的 ESM 支持,实现了即时热更新(HMR)。
+    - **Webpack**使用 webpack-dev-server,需要进行打包才能提供开发服务。
 2. **构建过程**
-   - **Vite**采用 esbuild 进行打包,速度比 Webpack 快很多。Go 语言编写,编译速度很快。
-   - **Webpack**采用 JavaScript 编写的 webpack,构建时间较长,特别是对于大型项目。
+    - **Vite**采用 esbuild 进行打包,速度比 Webpack 快很多。Go 语言编写,编译速度很快。
+    - **Webpack**采用 JavaScript 编写的 webpack,构建时间较长,特别是对于大型项目。
 3. **依赖预构建**
-   - **Vite** 开发时使用 rollup 进行预构建预构建依赖项,以提高启动速度。
-   - **Webpack** 每次构建时都需要重新解析和打包所有依赖项。
+    - **Vite** 使用 `esbuild` 进行预构建，将依赖的模块打包成单个文件，加快开发服务器的启动速度。
+    - **Webpack** 每次构建时都需要重新解析和打包所有依赖项。
 4. **配置复杂度**
-   - **Vite**    配置相对简单,专注于开发和构建过程。
-   - **Webpack** 配置更加复杂,需要处理更多的功能,如代码分割、懒加载等。
+    - **Vite**    配置相对简单,专注于开发和构建过程。
+    - **Webpack** 配置更加复杂,需要处理更多的功能,如代码分割、懒加载等。
 5. **插件生态**
-   - **Webpack** 比**Vite** 有丰富的插件生态,可以满足更多的需。
+    - **Webpack** 比**Vite** 有丰富的插件生态,可以满足更多的需。
 
 ### rollup和webpack区别
 
@@ -340,7 +241,7 @@ var square = function square(x) {
 
 2. @babel/cli: 命令⾏接⼝
 
-3. @babel/preset-env: 智能预设，允许你使⽤最新的 JavaScript 
+3. @babel/preset-env: 智能预设，允许你使⽤最新的 JavaScript
 
 4. babel-loader: webpack 插件，可以将 Babel 集成到 webpack 构建过程中，
 
@@ -358,13 +259,20 @@ var square = function square(x) {
 
 6.从 Babel 7.4.0 开始，推荐使用 `@babel/preset-env` 的 `useBuiltIns` 选项来自动引入 polyfills(`用于提供旧环境不支持的特性`)。
 
+###  **babel-runtime 作用是啥？**
+
+- **babel-runtime** 是一个 Babel 插件，用于将代码中的 ES6+ 语法（如 `Promise`、`Symbol`）转换为兼容性更好的 ES5 代码。
+- **作用**：
+    - 避免在每个文件中重复引入 polyfill，减少代码体积。
+    - 通过模块化的方式引入 polyfill，避免全局污染。
+
 
 
 ### ESLint
 
 静态代码分析⼯具，⽤于识别JavaScript代码中的模式和错误。它⾮常灵活，可以通过配置⽂件调整规则，使其适应特定项⽬的编码⻛格和质量标准。
 
- 
+
 
 基本配置步骤：
 
@@ -390,7 +298,7 @@ c. 集成到构建过程：将ESLint添加到你的构建脚本中，可以使�
 
 
 
- 
+
 
 ### Eslint 代码检查的过程
 
@@ -400,9 +308,9 @@ c. 集成到构建过程：将ESLint添加到你的构建脚本中，可以使�
 
 3. 报告：遍历之后，会⽣成⼀份报告。说明了它在代码中找到的任何问题。问题被分类为错误或警告。
 
-4. 修复： ESLint 尝试⾃动修复。`editor[哎].codeActionOnSave{source.fixAll: true}`
+4. 修复： ESLint 尝试⾃动修复。editor[哎].codeActionOnSave{source.fixAll: true}
 
-5. 集成：可以集成到 IDE 中，可以在代码编写过程中即时提供反馈。也可以被集成到构建⼯具如 Webpack 
+5. 集成：可以集成到 IDE 中，可以在代码编写过程中即时提供反馈。也可以被集成到构建⼯具如 Webpack
 
 ### 什么是CSS预处理器？它解决了什么问题
 
@@ -511,7 +419,7 @@ width: 100px + 20%;
 >
 > 可以在代码不运⾏的状态下，分析出不需要的代码
 >
-> 
+>
 >
 > 发生在webpack的优化阶段，
 
@@ -655,7 +563,7 @@ new WorkboxPlugin.GenerateSW({
 
 3. 通过钩子的机制，可以在编译过程中只执行必要的逻辑。
 
-   
+
 
 **实现原理**
 
@@ -740,7 +648,7 @@ ES6 的 `import、Webpack 中可以通过配置来将不同路由对应的组件
 
 ### webpack怎么配cdn引入资源
 
-1. **使用 CDN URL 引用资源**	
+1. **使用 CDN URL 引用资源**
 
    ```js
    <!-- 在 HTML 文件中 -->
@@ -777,7 +685,7 @@ ES6 的 `import、Webpack 中可以通过配置来将不同路由对应的组件
    };
    ```
 
-   
+
 
 ### 如何用webpack从0到1搭建一个React项目
 
@@ -900,7 +808,7 @@ ES6 的 `import、Webpack 中可以通过配置来将不同路由对应的组件
 
 - bundle-loader: 将模块放置到⼀个单独的⽂件中，按需加载。
 
-  
+
 
 **webpack如何实现动态加载**
 
@@ -985,10 +893,10 @@ module.exports = {
 4. **使用路由懒加载**。
 5. `babel-plugin-import` 插件可以将组件的导入转换为按需加载的形式。
 
-### `import {button} from 'antd'` 打包的时候只打包button分模块加载怎么做到的
+### import {button} from 'antd' 打包的时候只打包button分模块加载怎么做到的
 
 ```javascript
-1.按需引入`button`,然后二次加工
+1.按需引入button,然后二次加工
 2.import()引入
 3.webpack做一些配置
    module.exports = {
@@ -1019,8 +927,8 @@ module.exports = {
 1. **入口点分割（Entry Points）**：通过配置多个入口点，Webpack 会为每个入口点生成一个独立的包。
 2. **动态导入（Dynamic Imports）**：使用 `import()` 语法动态导入模块，Webpack 会自动将这些模块分割成单独的包。这种方式适用于按需加载功能或组件。
 3. **SplitChunksPlugin**：可以自动分割公共模块、按需加载的模块等。
-   1. splitChunks中的`cacheGroups` 对象用于定义不同的缓存组。定义了一个名为 `commons` 的缓存组，它将所有被至少两个块引用的模块提取到一个名为 `commons` 的公共块中。
-   2. Webpack-merge
+    1. splitChunks中的`cacheGroups` 对象用于定义不同的缓存组。定义了一个名为 `commons` 的缓存组，它将所有被至少两个块引用的模块提取到一个名为 `commons` 的公共块中。
+    2. Webpack-merge
 
 应用场景
 
@@ -1035,11 +943,24 @@ ouput的filename设置[contenthash]站位，webpack默认使用md4生成哈希�
 
 或者使用hashDigest改变算法，hex是md5,hashDigestLength设置生成的hash长度
 
+### webpack打包是hash码如何生成的？
+
+Webpack 打包时生成的 hash 码是通过文件内容计算得出的。可以使用 `[hash]`、`[chunkhash]` 或 `[contenthash]` 来生成不同的 hash。
+
+```javascript
+output: {
+    filename: '[name].[contenthash].js',
+    path: __dirname + '/dist'
+}
+```
+
+### 
+
 ### sideEffects 是如何辅助 webpack 进⾏优化的？
 
 Webpack会检查模块的 sideEffects 字段。如果⼀个模块具有 sideEffects 字段，并且设置为 false ，Webpack会认为该模块没有副作⽤。Webpack会在摇树优化过程中将未使，⽤的导出从该模块中删除，因为它不会影响项⽬的功能
 
- 
+
 
 ### 如何打包运⾏时 chunk，且在项⽬⼯程中，如何去加载这个运⾏时chunk ?
 
@@ -1056,7 +977,7 @@ Webpack会检查模块的 sideEffects 字段。如果⼀个模块具有 sideEffe
 
   声明⽂件。declarationDir : 这是指定声明⽂件的输出⽬录。
 
-- **配置Web pack**： output -> libraryTarget: "umd",  package.json ⽂件中包含 types 或 typings 字段指向⼊⼝ .d.ts ⽂件
+- **配置Webpack**： output -> libraryTarget: "umd",  package.json ⽂件中包含 types 或 typings 字段指向⼊⼝ .d.ts ⽂件
 
 ### .d.ts
 
@@ -1151,7 +1072,7 @@ async function loadModule() {
 //Webpack 会自动处理 CommonJS 模块，无需额外配置
 ```
 
-### HappPack组件共享进程设置
+### HappyPack组件共享进程设置
 
 它通过将任务分解给多个子进程并发执行来加速 JS 的加载和编译过程步
 
@@ -1258,3 +1179,160 @@ HappyPack 的使用在 Webpack 5 中已被 `thread-loader` 所取代。
    ```
 
    适用于计算密集型的 loader，如 `babel-loader`、`ts-loader` 等。对于一些轻量级的 loader，使用 `thread-loader` 可能不会带来明显的性能提升，甚至可能会因为进程间通信的开销而降低性能。
+
+### **如何清理源码里面没有被应用的代码，主要是 JS、TS、CSS 代码？**
+
+- **使用工具**：
+    - **ESLint**：检测未使用的变量和函数。
+    - **Webpack**：通过 `Tree Shaking` 移除未使用的代码。
+    - **PurgeCSS**：移除未使用的 CSS 代码。
+
+### Webpack 构建速度优化是怎么做的,给一些方案，umi/max
+
+1. webpack4使用拆包缓存优化。
+
+- Webpack-bundle-analyzer分析 pnpm run analyze
+
+- 在于`optimization.splitChunks.cacheGroups.vendors`，它的作用是告诉webpack，只要是在`/node_modules`目录下，被引用次数大于等于2次的模块，全都打包到一个叫*vendors*的文件中，而不是像之前那样，被打包到不同的页面文件中。
+
+这样我们就实现了把公共依赖提取到一个单独的文件，以供其他页面引用的目的。
+
+之后，不要忘了在`chunks`配置中加上我们刚刚抽离出来的*vendors*文件。`chunks`代表初始加载时需要加载的文件。*vendors*包含了所有的第三方库，所以初始加载时肯定是需要的
+
+减小1mb;
+
+```js
+chainWebpack: function (config, { webpack }) {
+    config.merge({
+      minimize: true,
+      optimization: {  //webpack配置
+        splitChunks: {
+          chunks: 'all',
+          minSize: 20000,
+          minChunks: 2,
+          cacheGroups: {
+            vendors: {
+              name(module) {
+                const reg = /(echarts|zrender|brace|react-json-view)/;
+                if (reg.test(module.identifier())) {
+                  const [chunkName] = reg.exec(module.identifier()) || [];
+                  return `npm.${chunkName}`;
+                };
+                return 'vendors';
+              },
+              test({ resource }) {
+                return /[\\/]node_modules[\\/]/.test(resource);
+              },
+              priority: 10,
+            },
+          },
+        },
+      },
+    }); 
+```
+
+2. webpack 5
+
+默认开启webpack 5中[cache](https://link.juejin.cn/?target=https%3A%2F%2Fwebpack.js.org%2Fconfiguration%2Fcache%2F%23root)特性，对提升打包速度也很有帮助。
+
+*umi.js*中的第三方依赖，即`/node_modules`目录下的模块，通过`optimization.splitChunks`是拆不出来的，
+
+*umi.js*中包含了多个几乎不更新的第三方依赖，但是当我们更改代码，重新打包，*umi.js*的hash值经常会变化。这就导致了一旦我们发布新版本，用户访问网站，需要重新下载*umi.js*里这些其实并没有发生更新的依赖。
+
+项目必需，又很少更新的第三方库，比如：`antd` / `moment` / `react` / `react-dom`
+
+3. externals
+
+- `externals`用于将一些第三方库排除出打包过程，不出现在最终的打包结果中。再通过其他方式引入它们，比如<script>标签引入。
+
+- `externals`的值是一个对象，其中`key`的值是第三方库的名字，`value`的值是通过<script>标签引入的全局变量的名字。
+-  我们把`antd` / `moment` / `react` / `react-dom` / `xlsx`全部配置到`externals`中，并通过cdn引入它们。这样，就可以实现把它们排除出*umi.js*。每次更新、发布新版本，如果用户之前访问过，有缓存，就不需要重新下载它们了。
+
+```js
+import * as antd from 'antd';
+import _ from 'lodash';
+
+let externalsAntd = {};
+for (const key in antd) {
+  if (Object.hasOwnProperty.call(antd, key)) {
+    externalsAntd[`antd/es/${_.kebabCase(key)}`] = `antd.${key}`;
+  }
+};
+
+const config = {
+  //...other umi config
+  externals: {
+    react: 'React',
+    moment: 'moment',
+    xlsx: 'XLSX',
+    'react-dom': 'ReactDOM',
+    'moment/locale/zh-cn': 'moment.locale',
+    ...externalsAntd,
+  },
+  styles: ['https://cdnjs.cloudflare.com/ajax/libs/antd/4.23.6/antd.min.css'],
+  scripts: [
+    'https://cdnjs.cloudflare.com/ajax/libs/react/16.14.0/umd/react.production.min.js',
+    'https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.14.0/umd/react-dom.production.min.js',
+    'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js',
+    'https://cdnjs.cloudflare.com/ajax/libs/antd/4.23.6/antd.min.js',
+    'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/locale/zh-cn.min.js',
+    'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js',
+  ],
+};
+```
+
+虽然*umi.js*的体积有了明显地降低，但是实际上用户首次访问网站需要加载的文件体积不会减少，甚至还有可能会增加。这是**因为`externals`配置的第三方库，通过cdn引入，是不经过webpack打包的，自然就不支持webpack的tree-shaking。**   所以对于那些可以通过`optimization.splitChunks`单独拆分出来的、支持tree-shaking的依赖，就不建议配置到`externals`了。
+
+即使首次访问加载的文件体积没有减少，但通过cdn引入的依赖，我们之后每次发布新版本，用户都无需再重新下载依赖文件。这是我们配置`externals`的目的所在。
+
+4、runtimeChunk
+
+如果修改了这个页面的代码，重新打包。会发现*umi.js*和*Tracking_detail.js*的hash值都会改变。这就导致，我们虽然只修改了一个页面的代码，却需要重新下载*umi.js* + *Tracking_detail.js*。
+
+这是因为默认情况下，*umi.js*包含整个应用的[runtime和manifest](https://link.juejin.cn?target=https%3A%2F%2Fwebpack.js.org%2Fconcepts%2Fmanifest%2F%23runtime)，`runtime和manifest`包含了打包后的带有hash值的文件名。所以只要有一个文件的hash值改变，都会导致*umi.js*的内容及其hash值的更新，进而导致用户缓存的*umi.js*失效，需要重新下载。
+
+如果我们可以把`runtime和manifest`抽离成单独的文件，每次更改单个页面的代码，就只需要重新下载对应页面的js文件 + 小小的*runtime.js*，并使用缓存的*umi.js*了。
+
+抽离`runtime和manifest`需要用到webpack的`optimization.runtimeChunk`，具体配置如下：
+
+```js
+{
+  //...other umi config
+  chunks: ['runtime~umi', 'vendors', 'umi'],  //添加'runtime~umi'
+  chainWebpack: function (config, { webpack }) {
+    config.merge({
+      optimization: {
+        runtimeChunk: true,  //添加runtimeChunk
+        splitChunks: {
+          //...splitChunks config
+        },
+      },
+    });
+  },
+};
+```
+
+5.开启gzip压缩 （Gzip 压缩通常适用于未经过压缩的资源）
+
+需要Nginx开启Gzip属性
+
+```js
+npm install compression-webpack-plugin
+const CompressionWebpackPlugin = require('compression-webpack-plugin');
+
+// 开启gzip压缩
+config.plugin('CompressionPlugin').use(
+  new CompressionWebpackPlugin({
+    test: /.(js|css)$/,
+    threshold: 10240, // 超过10kb的文件就压缩
+    deleteOriginalAssets: false, // 不删除源文件
+    minRatio: 0.8,
+  }),
+);
+
+```
+
+6. esbuild
+7. mfsu: {},   *// 有缓存时启动 1s+，热更新平均 500ms 内*
+
+8.npx turbo run build --concurrency 4 turbo并行打包

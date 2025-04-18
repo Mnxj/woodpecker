@@ -1,9 +1,13 @@
-### **[1,2,3,4].map(parseInt) 输出：[ 1, NaN, NaN, NaN ]**  
+### **[1,2,3,4].map(parseInt) 输出：[ 1, NaN, NaN, NaN ]**
 
-`parseInt` 函数接受两个参数：
+使用 `parseInt` 时，`parseInt` 的第二个参数是基数（radix），它表示数字的进制。
 
-1. 字符串：要解析的值。
-2. 基数（radix）：一个介于2到36之间的整数，表示字符串中数字的基数，2，10（0），16
+当你这样写 `[1, 2, 3, 4].map(parseInt)` 时，实际上会将数组中的每个元素和其索引传递给 `parseInt`。因此，调用的情况如下：
+
+- `parseInt(1, 0)` → 返回 `1`（0 表示自动推断进制）
+- `parseInt(2, 1)` → 返回 `NaN`（1 进制没有数字 2）
+- `parseInt(3, 2)` → 返回 `NaN`（2 进制没有数字 3）
+- `parseInt(4, 3)` → 返回 `NaN`（3 进制没有数字 4）
 
 ### JS中精度丢失如何解决
 
@@ -15,24 +19,24 @@ Math.round((6.8-0.9)*10); //四舍五入59
 
 大数使用bitInt，字符串表示小数可以避免丢失
 
-### `var a ={b:1}` 存放在那
+### var a ={b:1} 存放在那
 
-对象 `{b: 1}` 存储在堆中，变量 a 存储在栈中，指向堆中的对象
+对象 {b: 1} 存储在堆中，变量 a 存储在栈中，指向堆中的对象
 
-### `var a ={b:{c:1}}` 存放在那
+### var a ={b:{c:1}} 存放在那
 
 `{b: {c: 1}}` 是一个嵌套对象储存在堆，a在栈。
 
 ### 栈和堆的区别
 
-栈：后进先出，大小通常在编译时就确定，栈空间不足，JS引擎会抛出"栈溢出"错误，主要用于存储基本数据类型和引用类型的引用。
+栈：先进后出，大小通常在编译时就确定，栈空间不足，JS引擎会抛出“栈溢出”错误，主要用于存储基本数据类型和引用类型的引用。
 
 堆：动态分配的内存区域，大小没有固定的限制，但受限于系统可用的内存总量，存储引用类型的数据
 
 ### 垃圾回收时栈和堆的区别
 
-- **栈**：栈内存的管理是自动的，遵循后进先出的原则，不需要垃圾回收器介入。当函数执行完毕后，其局部变量和参数所占用的栈空间会自动被释放。
-- **堆**：堆内存的管理需要垃圾回收器介入，因为堆中的数据可以相互引用。垃圾回收器通过标记-清除算法来识别和回收不再被引用的堆内存。
+- **栈**：不需要垃圾回收器介入。当函数执行完毕后，会自动被释放。
+- **堆**：因为堆中的数据可以相互引用。垃圾回收器通过标记-清除算法来识别和回收不再被引用的堆内存。
 
 ### betterscroll
 
@@ -40,35 +44,31 @@ Math.round((6.8-0.9)*10); //四舍五入59
 
 
 
-在外层容器上设置固定高度，使子元素内容的高度能够超出容器并被隐藏。只有当内容的高度超过容器的高度时，才能实现滚动。
-
-
+在外层容器上设置`固定高度`，使子元素内容的高度能够超出容器并被隐藏。只有当内容的高度超过容器的高度时，才能实现滚动。
 
 ⚠️需要确保父元素和子元素的内容已经正确渲染，否则可能会导致滚动不正常。
 
 ### bom和dom
 
-总的来说:
-
-- BOM 浏览器对象模型，把浏览器对象当作一个对象，顶级对象时window,操作浏览器窗口交互，兼容性差（每个浏览器的BOM不同
-- DOM 文档对象模型 把文档当作一个对象，顶级对象是document，操作页面元素，W3C标准规范
+- BOM 浏览器对象模型，把浏览器对象当作一个对象，顶级对象时window,操作`浏览器窗口交互`，兼容性差（每个浏览器的BOM不同
+- DOM 文档对象模型 把文档当作一个对象，顶级对象是document，`操作页面元素`，W3C标准规范
 
 ### window和document区别
 
 1. `window` 对象：
-   - 代表浏览器的窗口或框架。
-   - 可以进行一些全局操作，如打开新窗口、关闭窗口、获取当前窗口的焦点等。
-   - 事件处理程序通常也会绑定到 `window` 对象上，以监听窗口的加载、卸载、大小改变等事件。
+   - 代表浏览器的`窗口或框架`。
+   - 可以进行一些`全局操作`，如打开新窗口、关闭窗口、获取当前窗口的焦点等。
+   - `事件处理`程序通常也会绑定到 `window` 对象上，以监听窗口的加载、卸载、大小改变等事件。
 2. `document` 对象：
    - 代表当前网页的文档内容。它是 `window` 对象的一个属性，可以通过 `window.document` 来访问。
-   - 提供了对网页文档的操作和访问。
-   - 许多 DOM操作都是通过 `document` 对象来实现的。
+   - 提供了对网页文档的操`作和访问`。
+   - 许多`DOM操作`都是通过 `document` 对象来实现的。
 
 ### dom操作
 
 **• 创建节点**
 
-- document.createElement  创建一个新元素 ，div 
+- document.createElement  创建一个新元素 ，div
 - document.createTextNode 创建一个文本节点
 - document.createDocumentFragment 创建⼀个⽂档碎⽚，// 添加多个子节点到DOM中时，使用文档碎片可以减少对DOM的修改次数
 - document.createAttribute 创建属性节点
@@ -107,9 +107,62 @@ Math.round((6.8-0.9)*10); //四舍五入59
 - `getElementsByClassName` 返回的是一个实时更新的 `HTMLCollection` 对象，包含所有匹配指定类名的元素。
 - `querySelector` 返回的是一个 `Element` 对象，代表第一个匹配指定CSS选择器的元素，如果没有找到匹配的元素则返回 `null`。
 
-### querySelector可以选择伪元素吗 
+### querySelector可以选择伪元素吗
 
 不能只直接选择伪元素，可以用div::before的方式
+
+### **DOM 里面，如何判断 A 元素是否是 B 元素的子元素？**
+
+- **使用 `Node.contains`**：
+
+  ```javascript
+  const isChild = B.contains(A);
+  ```
+
+### **判断一个对象是否为空，包含了其原型链上是否有自定义数据或者方法，该如何判定？**
+
+- **使用 `Object.keys` 和 `Object.getOwnPropertyNames`**：
+
+  ```javascript
+  function isEmpty(obj) {
+    return Object.keys(obj).length === 0 && Object.getOwnPropertyNames(Object.getPrototypeOf(obj)).length === 0;
+  }
+  ```
+
+---
+
+### 兄弟节点插入一个新的DOM节点
+
+- **`insertBefore(newNode, referenceNode)`**: 将新的节点 `newNode` 插入到 `referenceNode` 之前。
+
+- **`insertAdjacentElement(position, newNode)`**: 将新的节点 `newNode` 插入到指定位置
+   - `beforebegin`: 在当前元素前面插入。
+   - `afterbegin`: 在当前元素内部的最前面插入。
+   - `beforeend`: 在当前元素内部的最后面插入。
+   - `afterend`: 在当前元素后面插入。
+
+- **`appendChild(newNode)`**: 将 `newNode` 作为子节点添加到父节点的末尾，虽然它不能直接用来插入兄弟节点，但在适当的父元素下也可以通过附加来完成。
+
+### **DocumentFragment API 是什么，有什么使用场景？**
+
+- **DocumentFragment** 是一个轻量级的 DOM 节点容器，用于批量操作 DOM。
+
+- **使用场景**：
+
+   - 批量插入 DOM 节点，减少重绘和重排。
+
+   - 示例：
+
+     ```javascript
+     const fragment = document.createDocumentFragment();
+     for (let i = 0; i < 100; i++) {
+       const div = document.createElement('div');
+       fragment.appendChild(div);
+     }
+     document.body.appendChild(fragment);
+     ```
+
+
 
 ### indexOf的原理
 
@@ -118,7 +171,7 @@ Math.round((6.8-0.9)*10); //四舍五入59
 ### Function 和 Object 的关系
 
 - 所有的函数都是`Object`的实例。
-- `Function`构造函数的实例。
+- `Function`是构造函数的实例。
 - `Function`本身也是一个函数，可以调用自身。
 - `Function`是`Object`的子类型，因此它继承了`Object`的所有属性和方法。
 
@@ -130,18 +183,34 @@ Math.round((6.8-0.9)*10); //四舍五入59
 
 ### load发现在浏览器的加载的什么时机
 
-在浏览器中，`load` 事件会在页面及其所有资源（包括图片、脚本、样式表、iframe等）完全加载完成后触发。这意味着，当页面的 DOM 结构已经构建完成，所有的图片、样式表、脚本文件、iframe 内容等都已经下载并解析完毕时，`load` 事件才会被触发。
+当页面的 DOM 结构构建完成，所有的图片、样式表、脚本文件、iframe 内容等都已经下载并解析完毕时，`load` 事件才会被触发。
 
-`load` 事件通常用于执行那些依赖于页面所有资源都已加载完成的操作，例如：
+例如：
 
 - 初始化第三方脚本或库。
 - 执行依赖于图片尺寸的布局调整。
 - 统计页面加载时间。
 - 启动视频播放或动画。
 
+### 执行上下文
+
+**变量对象**：存储变量和函数声明。
+
+**作用域链**：用于变量查找的链结构。
+
+**`this` 值**：指向当前执行上下文的对象。
+
+### **执行上下文生命周期**
+
+1）创建阶段
+生成变量对象、建立作用域链、确定this的指向
+
+2）执行阶段
+变量赋值、函数的引用、执行其他代码
+
 ### **变量对象**
 
-> 与执行上下文相关的数据作用域，  存储了上下文中定义的变量和函数声明
+> 与执行上下文相关的数据作用域，  存储了上下文中定义的变量和函数声明，
 
 ### 执行栈
 
@@ -154,6 +223,28 @@ Math.round((6.8-0.9)*10); //四舍五入59
 3）当该函数执行结束时，执行上下文从栈中弹出，控制流程到达当前栈中的下一个上下文
 
 4）一旦所有代码执行完毕，JS 引擎从当前栈中移除全局执行上下文
+
+### 全局、函数、Eval执行上下文
+
+执行上下文分为`全局、函数、Eval执行上下文`
+
+1）全局执行上下文（浏览器环境下，为全局的 `window` 对象）
+
+2）函数执行上下文，每当一个函数被调用时, 都会为该函数创建一个新的上下文
+
+3）Eval 函数执行上下文，如eval("1 + 2")
+
+对于每个执行上下文，都有三个重要属性：`变量对象、作用域链(Scope chain)、this`
+
+### **执行上下文的特点：**
+
+1）单线程，只在主线程上运行；
+
+2）同步执行，从上向下按顺序执行；
+
+3）全局上下文只有一个，也就是`window`对象；
+
+4）函数每调用一次就会产生一个新的执行上下文环境。
 
 ### 作用域
 
@@ -174,7 +265,7 @@ Math.round((6.8-0.9)*10); //四舍五入59
 > 给其它对象提供共享属性的对象，函数的实例可以共享原型上的属性和方法
 
 - 对象的proto属性，       指向自己的原型对象
-- 构造函数的rototype属性，指向实例对象的原型对象
+- 构造函数的prototype属性，指向实例对象的原型对象
 - 原型对象的constructor。 指向构造函数
 
 ### 原型链
@@ -195,7 +286,29 @@ Math.round((6.8-0.9)*10); //四舍五入59
 
 
 
-`Array.prototype.myCustomFeature = function() {*// implementation };`
+Array.prototype.myCustomFeature = function() {*// implementation };
+
+### 怎么判断是自己的方法和变量，还是原型上的
+
+- **`hasOwnProperty`**：判断属性是否是对象自身的（不包括原型链上的）。
+
+- **`in`**：判断属性是否存在于对象本身或原型链中。
+
+- **`Object.keys()`**：获取对象自身的所有可枚举属性。
+
+- **`Object.getPrototypeOf()`** + `hasOwnProperty`：检查属性是否在某个特定原型上。
+
+```js
+const obj = {
+  name: 'John'
+};
+
+const prototype = Object.getPrototypeOf(obj);
+console.log(prototype.hasOwnProperty('name')); // false，name是在obj本身定义的，不在原型上
+
+```
+
+
 
 ### __proto__和prototype啥区别
 
@@ -206,8 +319,23 @@ Math.round((6.8-0.9)*10); //四舍五入59
 
 **`__proto__`**：
 
-- 对象的一个内部属性。指向构造函数的原型对象。
-- 对象和构造函数原型之间的链接，使对象可以访问原型上的属性和方法。
+- 内部属性。指向构造函数的原型对象。
+- 对象和构造函数原型之间的链接，
+- 可以访问原型上的属性和方法。
+
+### __proto__、prototype、constructor属性介绍
+
+1）js中对象分为两种，普通对象和函数对象
+
+2）`__proto__`和`constructor`是对象独有的。`prototype`属性是函数独有的，它的作用是包含可以给特定类型的所有实例提供共享的属性和方法；但是在 JS 中，函数也是对象，所以函数也拥有`__proto__`和 `constructor`属性
+
+3）`constructor`属性是对象所独有的，它是一个对象指向一个函数，这个函数就是该对象的构造函数
+`构造函数.prototype.constructor === 该构造函数本身`
+
+4）一个对象的`__proto__`指向其构造函数的`prototype`
+`函数创建的对象.__proto__ === 该函数.prototype`
+
+5）特殊的`Object`、`Function`
 
 ### 那种方式能改变作用域链
 
@@ -280,7 +408,7 @@ const addOneThenDouble = composeCurried(double)(addOne);
 console.log(addOneThenDouble(5)); // 输出 12
 ```
 
-### 如何通过柯里化函数统计函数的执行次数 
+### 如何通过柯里化函数统计函数的执行次数
 
 ```js
 let count = 0; // 初始化计数器
@@ -306,7 +434,9 @@ console.log(countAdd(3, 4)); // 输出 7
 console.log(`Function has been called ${count} times.`); // 输出 Function has been called 2 times.
 ```
 
+### **最新的es属性了解吗**：
 
+- 如可选链操作符（`?.`）、空值合并操作符（`??`）、BigInt 等。
 
 ### 类型转换机制
 
@@ -391,7 +521,7 @@ V8 引擎还采用了一些优化策略来提高垃圾回收的性能和效率�
 
 - V8 通过解释器（如 Ignition）来执⾏ JavaScript 代码。这个过程中，代码不会编译成机器语⾔，⽽是逐⾏解释执⾏。
 
-- 当代码被多次执⾏时，V8 会认为这部分代码是"热点代码"（Hot Spot）
+- 当代码被多次执⾏时，V8 会认为这部分代码是“热点代码”（Hot Spot）
 
 - 此时 JIT 编译器（如 TurboFan）会介⼊，将这部分热点代码编译成机器语⾔。机器语⾔运⾏在 CPU 上⽐解释执⾏要快得多。
 
@@ -476,7 +606,7 @@ V8 引擎还采用了一些优化策略来提高垃圾回收的性能和效率�
 
    - 使用数组的 `map()` 方法遍历数组元素并转换为新数组。
 
-     
+
 
      ```js
      const newArr = arr.map(function(item) {
@@ -520,7 +650,22 @@ V8 引擎还采用了一些优化策略来提高垃圾回收的性能和效率�
      });
      ```
 
+### Axios 拦截，怎么统计请求时长
 
+可以使用 Axios 的请求和响应拦截器来统计请求时长：
+
+```js
+axios.interceptors.request.use(config => {
+  config.startTime = Date.now();
+  return config;
+});
+
+axios.interceptors.response.use(response => {
+  const duration = Date.now() - response.config.startTime;
+  console.log(`请求时长: ${duration}ms`);
+  return response;
+});
+```
 
 ### axios和fetch，ajax区别
 
@@ -533,8 +678,6 @@ V8 引擎还采用了一些优化策略来提高垃圾回收的性能和效率�
 2. **Fetch API**:
 
    - JavaScript 内置的一个用于发送 HTTP 请求和响应处理的 API。
-
-     一种简洁明了的 API。
 
    - 返回一个 Promise,使用 `.then()` 链式调用来处理响应。
 
@@ -565,7 +708,7 @@ V8 引擎还采用了一些优化策略来提高垃圾回收的性能和效率�
 
 ### 如何判断元素是否在可视区域
 
-**getBoundingClientRect()** 
+**getBoundingClientRect()**
 
 - 该方法返回元素相对于视窗的位置信息,包括 top、right、bottom、left 等属性。
 - 可以通过比较这些属性值与视窗大小来判断元素是否在可视区域内。
@@ -769,7 +912,7 @@ console.log('Clicked!');
 如果将第三个参数设置为 true ，则监听器将在捕获阶段触发。
 ```
 
-### 事件总线 
+### 事件总线
 
 采用发布订阅模式，用于在应用程序的不同部分之间进行通信。
 
@@ -799,9 +942,9 @@ console.log('Clicked!');
 
 ### requestAnimationFrame的理解
 
-h5专门用于请求动画的api requestAnimationFrame 
+h5专门用于请求动画的api requestAnimationFrame
 
-处于未激活的状态下 刷新任务被暂停 停止渲染。激活时从暂停的位置开始渲染
+> 处于未激活的状态下 刷新任务被暂停 停止渲染。激活时从暂停的位置开始渲染
 
 1. `requestAnimationFrame` 会在浏览器进行下一次重绘(通常是每秒 60 次)之前执行回调函数
 2. 与浏览器的刷新频率同步:。
@@ -831,6 +974,12 @@ h5专门用于请求动画的api requestAnimationFrame
 - 手写循环递归
 - 浏览器原生支持的 `structuredClone()` 方法使用结构化克隆算法进行深拷贝。
 
+### **事件循环解决什么问题？**
+
+- **单线程阻塞问题**：JavaScript 是单线程的，事件循环通过异步任务调度避免了长时间运行的任务阻塞主线程。
+- **任务优先级**：通过微任务和宏任务的划分，确保高优先级的任务（如 Promise）能够及时执行。
+- **任务调度**：合理地安排同步任务、微任务和宏任务的执行顺序，保证代码的执行效率和正确性。
+
 
 ### 事件轮询机制 Event Loop
 
@@ -840,7 +989,7 @@ h5专门用于请求动画的api requestAnimationFrame
 
 2. 消息队列：异步任务如事件响应、定时器等完成后，回调函数会进⼊消息队列等待执⾏。
 
-   
+
 
 宏任务（setTimeout、setInterval、I/O 操作、UI rendering）
 
@@ -894,6 +1043,21 @@ h5专门用于请求动画的api requestAnimationFrame
 4. Async/Await：
    - 优点：基于 Promise，提供了更简洁和直观的异步编程语法。
    - 缺点：需要在支持 Async/Await 的环境中运行。
+
+### **Ajax 的 callback 和 fetch 的 `.then` 哪个更早？**
+
+- **Ajax 的 callback** 是基于传统的回调函数机制，属于宏任务（macrotask）。
+- **fetch 的 `.then`** 是基于 Promise 的机制，属于微任务（microtask）。
+- **执行顺序**：在事件循环中，微任务（如 `.then`）会比宏任务（如 Ajax 的回调）更早执行。因此，**fetch 的 `.then` 会比 Ajax 的 callback 更早执行**。
+
+---
+
+### **Promise.then 的调度解析**
+
+- **Promise.then** 是微任务（microtask），它会在当前同步代码执行完毕后立即执行，且在宏任务（如 setTimeout、setInterval）之前执行。
+- **调度机制**：
+   - 当 Promise 状态变为 resolved 或 rejected 时，`.then` 或 `.catch` 中的回调会被推入微任务队列。
+   - 在当前调用栈清空后，事件循环会优先处理微任务队列中的任务，然后再处理宏任务队列。
 
 ### 你是怎么理解promise的？
 
@@ -964,7 +1128,7 @@ Promise.resolve = function(x) {
 
 Reject: 返回一个`rejected` 的 Promise 对象
 
-**allSettled**: 接受一个 Promise 对象的数组或可迭代对象,返回一个新的 Promise 对象,其值是一个对象数组,`{status,value}`
+**allSettled**: 接受一个 Promise 对象的数组或可迭代对象,返回一个新的 Promise 对象,其值是一个对象数组,{status,value}
 
 ### Promise缺点
 
@@ -1043,8 +1207,6 @@ Promise.resolve(1)
    - 使用 `Promise.race()` 方法可以并行执行多个 Promise,当其中任何一个 Promise 先 resolved 时,就会执行后续操作。
 4. **异步等待 (Async/Await)**:
    - 使用 `async` 函数和 `await` 关键字可以简化 Promise 的使用,使异步代码看起来更像同步代码。
-5. **错误处理 (Async/Await)**:
-   - 在 `async` 函数中,可以使用 `try/catch` 块来处理异步操作中的错误。
 6. **Promise 组合**:
    - 可以使用 `Promise.all()`, `Promise.race()`, `Promise.allSettled()` 等方法组合多个 Promise,实现更复杂的异步流程控制。
 7. **Promise 转换**:
@@ -1087,16 +1249,20 @@ Promise.resolve(1)
 
 几种方式：
 
-- defer属性   在解析 HTML 文档的同时并行下载脚本，文档解析完毕后才会依次执行defer脚本，不会阻塞页面的渲染
-- Async 属性： 异步加载 不会阻赛页面解析过程 脚本加载完成后 立即执行js脚本 多个async 脚本执行是不可预测
+- `defer`：脚本在文档解析完成后执行，按顺序执行。
+- `async`：脚本在下载完成后立即执行，不保证顺序。
 - 动态创建dom标签方式： 对文档的加载事件进行监听，当文档完成后在动态的创建script标签来引入js脚本
 - setTimeout 延迟加载：脚本
 
+### **假如在defer后面又有了dom元素怎么办**：
+
+- `defer` 脚本会在 DOM 解析完成后执行，因此后面的 DOM 元素会被正常处理。
+
 ### **JS 放在 head 里和放在 body 里有什么区别？**
 
-在 `<head>` 里会在页面加载之前执行 JavaScript 代码，导致页面渲染延迟，
+在 <head> 里会在页面加载之前执行 JavaScript 代码，导致页面渲染延迟，
 
-而放在 `<body>` 里会在页面加载后执行 减少这种影响。
+而放在 <body> 里会在页面加载后执行 减少这种影响。
 
 ### 预加载资
 
@@ -1143,6 +1309,11 @@ onmessage = function(e) {
 
 **计算的运算时长 - 通信时长 > 50ms，推荐使用Web Worker**
 
+### npm yarn
+
+- **npm**：Node.js 的包管理工具。
+- **yarn**：Facebook 开发的包管理工具，支持并行下载。
+
 ### 简单说说对pnpm的理解
 
 > 包管理器,它是 npm 和 yarn 的一种替代方案
@@ -1153,13 +1324,14 @@ onmessage = function(e) {
 
 ### 函数式编程
 
-- 纯函数：⼀个函数的返回结果只依赖于其参数值，且不产⽣副作⽤
-- 不可变性：数据⼀旦创建，就不能改变。
-- ⾼阶函数
+- 纯函数：无副作用，输入相同则输出相同。
+- 高阶函数：接受函数作为参数或返回函数。
+- 不可变数据：避免直接修改数据。
+- 将多个函数组合成一个新函数。
 
 **优点：**
 
-- 更好的管理状态 
+- 更好的管理状态
 - 更简单的复用。
 - 更优雅的组合
 
@@ -1176,25 +1348,18 @@ onmessage = function(e) {
 
 - CSR：客户端渲染
 - SSR: js文件比较大 加载起来比较慢 首屏白屏，如何解决？
-  - SSR服务端渲染， 服务端直接生成html 返回给浏览器渲染首屏内容
+   - SSR服务端渲染， 服务端直接生成html 返回给浏览器渲染首屏内容
 
 服务端渲染页面交互能力有限 实现复杂交互 引入js文件 同构：
 
 CSR SSR html代码是客户端添加的 还是服务端添加
 
-### SSR和CSR渲染不一致咋办 7个
+### SSR和CSR渲染不一致咋办
 
-- 确保服务器和客户端使用`同一个数据`。
-
-- 服务器端和客户端使用相同的代码来`渲染页面`。
-
+- `同一个数据`,`渲染页面`。
 - 在客户端渲染完成后，再次从服务器获取数据，进行比较，如果不一致，则更新客户端的数据。
-- 使用服务端渲染的框架
-
 - 服务器端渲染时，避免使用依赖于 DOM 的代码，服务器端`没有 DOM 环境`
-
 - 服务器端渲染时，只渲染页面的`静态部分`，客户端使用 JS 动态注入剩余的动态内容。
-
 - 在客户端渲染时，使用`水合（Hydration）`过程来将服务器端渲染的静态标记转换为可交互的客户端应用
 
 
@@ -1213,7 +1378,7 @@ js文件的下载：
 
 ### Object.defineProperty
 
-ES5 引入的一个方法，用于直接在对象上定义一个新属性，或者修改对象的现有属性，并返回这个对象。它允许精确地添加或修改对象的属性。
+ES5 引入的一个方法，它允许精确地添加或修改对象的属性。
 
 ```javascript
 Object.defineProperty(obj, prop, descriptor);
@@ -1550,9 +1715,122 @@ console.log(virtualObj.fullName); // John Doe
 
 需要对对象的多个操作进行拦截和自定义，`Proxy` 提供了更强大的功能。
 
+### const定义对象，怎样让对象属性不能改变
+
+1.`Object.freeze()` 可以将一个对象冻结，使得该对象的所有属性变得不可修改、不可添加和不可删除。
+
+```js
+const obj = {
+  name: "Alice",
+  age: 25
+};
+
+// 冻结对象，之后无法修改对象的属性
+Object.freeze(obj);
+
+obj.name = "Bob";  // 无效，属性不能修改
+obj.age = 30;      // 无效，属性不能修改
+delete obj.name;   // 无效，属性不能删除
+
+console.log(obj);  // 输出: { name: 'Alice', age: 25 }
+
+```
+
+
+
+`Object.freeze()` 只是浅冻结，只会冻结对象的第一层属性。如果对象的某个属性本身是一个对象，那个嵌套对象是可变的。为了完全冻结一个对象及其嵌套对象，你需要递归地冻结每个嵌套对象。
+
+```js
+const obj = {};
+
+Object.defineProperty(obj, 'name', {
+  value: 'Alice',
+  writable: false,  // 不允许修改
+  enumerable: true,
+  configurable: true
+});
+
+obj.name = 'Bob';  // 无效，属性不可修改
+console.log(obj.name);  // 输出: Alice
+
+```
+
+
+
+2. `Object.defineProperty()` 和 `Object.defineProperties()` 允许你更精细地控制对象属性的行为，特别是可以设置 `writable`（是否可写）为 `false` 来使属性不可修改。
+
+`Object.defineProperty()` 只会定义一个属性。如果你需要定义多个属性，可以使用 `Object.defineProperties()`。
+
+```js
+const obj = {};
+
+Object.defineProperties(obj, {
+  name: {
+    value: 'Alice',
+    writable: false,
+    enumerable: true,
+    configurable: true
+  },
+  age: {
+    value: 25,
+    writable: false,
+    enumerable: true,
+    configurable: true
+  }
+});
+
+obj.name = 'Bob';  // 无效，属性不可修改
+obj.age = 30;      // 无效，属性不可修改
+
+console.log(obj);  // 输出: { name: 'Alice', age: 25 }
+```
+
+3. `Object.seal()` 会阻止添加和删除对象的属性，但允许修改现有属性的值。它比 `Object.freeze()` 更松散一些，但依然防止了属性的删除和添加。
+
+```js
+const obj = {
+  name: "Alice",
+  age: 25
+};
+
+Object.seal(obj);
+
+obj.name = "Bob";  // 有效，属性值可以修改
+obj.age = 30;      // 有效，属性值可以修改
+delete obj.name;   // 无效，不能删除属性
+obj.city = "Paris";  // 无效，不能添加新属性
+
+console.log(obj);  // 输出: { name: 'Bob', age: 30 }
+```
+
+4. Proxy` 是 ES6 引入的一种强大工具，可以自定义对象的行为。你可以使用 `Proxy` 来拦截对对象的访问，并根据需要控制属性是否可修改。
+
+```js
+const handler = {
+  set(target, prop, value) {
+    if (prop === 'name') {
+      console.log('Cannot change name');
+      return false;  // 阻止对 name 的修改
+    }
+    target[prop] = value;  // 允许其他属性修改
+    return true;
+  }
+};
+
+const obj = new Proxy({ name: 'Alice', age: 25 }, handler);
+
+obj.name = 'Bob';  // 输出: Cannot change name
+obj.age = 30;      // 允许修改
+console.log(obj);  // 输出: { name: 'Alice', age: 30 }
+```
+
+
+
+
+
 ### Reflect
 
- JS内置对象，提供了一种更加简洁和一致的方式来操作对象。它使得 `Proxy` 的使用更加直观，因为 `Proxy` 的陷阱（trap）方法与 `Reflect` 的方法名称相同，参数也相同。这样，你可以直接在 `Proxy` 的陷阱方法中调用 `Reflect` 的方法来执行默认操作。
+JS内置对象，提供了一种更加简洁和一致的方式来操作对象。它使得 `Proxy` 的使用更加直观，与`Proxy` 方法名称相同，参数也相同。这样，你可以直接在 `Proxy` 的陷阱方法中调用 `Reflect` 的方法来执行默认操作。
 
 ### Reflect和Object的区别
 
@@ -1560,7 +1838,7 @@ console.log(virtualObj.fullName); // John Doe
 
 - `Reflect` 与 `Proxy` 配合使用，以提供对对象操作的控制。`Object`用于创建、修改、查询对象的属性和行为。
 
-- `Reflect.defineProperty()` 和 `Object.defineProperty()` 都用于定义属性，但 `Reflect.defineProperty()` 返回一个布尔值，而 `Object.defineProperty()` 返回被操作的对象。
+- `Reflect.defineProperty()` 返回一个布尔值，而 `Object.defineProperty()` 返回被操作的对象。
 
 - `Object`兼容较好，`Reflect` 是 ES6 引入
 
@@ -1588,7 +1866,7 @@ console.log(virtualObj.fullName); // John Doe
 nprogress
 
 - 一个轻量级的进度条插件
-- `Nprogress.configure({showSpinner: false})`
+- Nprogress.configure({showSpinner: false})
 - 监听load（nprogress.done）和readystatechange z状态是interactive progress.start else progress.done
 
 ### js为什么0.1+0.2!=0.3，怎么做能保证精确
@@ -1717,10 +1995,610 @@ Numbe
 
 1. 数据流是响应式编程中的基本元素
 2. 数据流通常是异步的
-3. 以声明式编写代码，即描述"做什么"而不是"怎么做"。
+3. 以声明式编写代码，即描述“做什么”而不是“怎么做”。
 4. 基于事件驱动的模型，事件可以是用户输入、网络请求、定时器等。
 5. 在数据流中，背压是指下游处理者（Subscriber）如何通知上游生产者（Publisher）减缓数据流的速度，以避免处理不过来。
 
 ### object.prototype.tostring.call()
 
 `Object.prototype.toString.call()` 是 JavaScript 中的一个方法调用方式，用于获取一个对象的内部 [[Class]] 属性的字符串表示形式
+
+### 移动端如何实现上拉加载，下拉刷新？
+
+可以使用 `touch` 事件和 `scroll` 事件来实现上拉加载和下拉刷新。
+
+```javascript
+let startY = 0;
+
+document.addEventListener('touchstart', (event) => {
+    startY = event.touches[0].pageY;
+});
+
+document.addEventListener('touchmove', (event) => {
+    const currentY = event.touches[0].pageY;
+    const deltaY = currentY - startY;
+
+    if (deltaY > 50) {
+        console.log('Pull to refresh');
+    } else if (deltaY < -50) {
+        console.log('Pull to load more');
+    }
+});
+```
+
+###  在表单校验场景中，如何实现页面视口滚动到报错的位置？
+
+可以使用 `scrollIntoView` 方法将报错元素滚动到视口中。
+
+```javascript
+const errorElement = document.getElementById('error-field');
+errorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+```
+
+### call apply bind
+
+三者的区别
+
+1）三者都可以显式绑定函数的this指向
+
+2）三者第一个参数都是this要指向的对象，若该参数为undefined或null，this则默认指向全局window
+
+3）传参不同：apply是数组、call是参数列表，而bind可以分为多次传入，实现参数的合并
+
+4）call、apply是立即执行，bind是返回绑定this之后的函数，如果这个新的函数作为构造函数被调用，那么this不再指向传入给bind的第一个参数，而是指向新生成的对象
+
+手写call apply bind
+
+```js
+// 手写call
+Function.prototype.Call = function(context, ...args) {
+  // context为undefined或null时，则this默认指向全局window
+  if (!context || context === null) {
+    context = window;
+  }
+  // 利用Symbol创建一个唯一的key值，防止新增加的属性与obj中的属性名重复
+  let fn = Symbol();
+  // this指向调用call的函数
+  context[fn] = this; 
+  // 隐式绑定this，如执行obj.foo(), foo内的this指向obj
+  let res = context[fn](...args);
+  // 执行完以后，删除新增加的属性
+  delete context[fn]; 
+  return res;
+};
+
+// apply与call相似，只有第二个参数是一个数组，
+Function.prototype.Apply = function(context, args) {
+  if (!context || context === null) {
+    context = window;
+  }
+  let fn = Symbol();
+  context[fn] = this;
+  let res = context[fn](...args "fn");
+  delete context[fn];
+  return res;
+};
+Function.prototype.Bind = function(context, ...args) {
+  if (!context || context === null) {
+    context = window;
+  }
+  let fn = this;
+  let f = Symbol();
+  const result = function(...args1) {
+    if (this instanceof fn) {
+      // result如果作为构造函数被调用，this指向的是new出来的对象
+      // this instanceof fn，判断new出来的对象是否为fn的实例
+      this[f] = fn;
+      this[f](...args1, ...args "f");
+      delete this[f];
+    } else {
+      // bind返回的函数作为普通函数被调用时
+      context[f] = fn;
+      context[f](...args1, ...args "f");
+      delete context[f];
+    }
+  };
+  // 如果绑定的是构造函数 那么需要继承构造函数原型属性和方法
+  // 实现继承的方式: 使用Object.create
+  result.prototype = Object.create(fn.prototype);
+  return result;
+};
+```
+
+### **this的5种绑定方式**
+
+1）默认绑定(非严格模式下this指向全局对象，严格模式下函数内的this指向`undefined`)
+
+2）隐式绑定(当函数引用有上下文对象时, 如 `obj.foo()`的调用方式, foo内的this指向obj)
+
+3）显示绑定(通过call或者apply方法直接指定this的绑定对象, 如`foo.call(obj)`)
+
+4）new构造函数绑定，this指向新生成的对象
+
+5）箭头函数，this指向的是定义该函数时，外层环境中的this，**箭头函数的this在定义时就决定了，不能改变**
+
+### 富文本里面，是如何做到划词的？
+
+- **实现原理**：
+
+   - 使用 `window.getSelection()` 获取用户选中的文本。
+
+   - 通过 `Range` 对象获取选中的 DOM 节点和位置。
+
+   - 在选中的文本上添加高亮样式或自定义操作。
+
+   - 示例：
+
+     ```javascript
+     const selection = window.getSelection();
+     const range = selection.getRangeAt(0);
+     const span = document.createElement('span');
+     span.style.backgroundColor = 'yellow';
+     range.surroundContents(span);
+     ```
+
+### **如何在划词选择的文本上添加右键菜单？**
+
+- **实现步骤**：
+
+   1. 监听 `mouseup` 事件，获取用户选中的文本。
+   2. 监听 `contextmenu` 事件，阻止默认右键菜单。
+   3. 自定义右键菜单并显示在鼠标位置。
+
+   - 示例：
+
+     ```javascript
+     document.addEventListener('mouseup', () => {
+       const selectedText = window.getSelection().toString();
+       if (selectedText) {
+         document.addEventListener('contextmenu', (e) => {
+           e.preventDefault();
+           showCustomMenu(e.clientX, e.clientY);
+         }, { once: true });
+       }
+     });
+     ```
+
+###  **JS 超过 Number 最大值的数该怎么处理？**
+
+- **使用 `BigInt`**：
+
+  ```javascript
+  const bigNum = BigInt(Number.MAX_SAFE_INTEGER) + BigInt(1);
+  ```
+
+---
+
+### == 和 ===区别
+
+使用 `==` 时，JavaScript 会进行类型转换，可能导致意想不到的结果。
+
+使用 `===` 时，不进行类型转换，只有类型和内容都相等时才返回 `true`。
+
+###  `==` 运算符
+
+如果两个值类型相同，则直接比较。
+
+如果类型不同：
+
+- 字符串与数字比较时，将字符串转换为数字。    `NaN`。
+
+  ```js
+  console.log('5' == 5);    // true，'5' 被转换为数字 5
+  console.log('' == 0);     // true，'' 被转换为 0
+  console.log('abc' == 0);  // false，'abc' 无法转换为数字
+  ```
+
+- 布尔值转换为数字进行比较。
+
+  ```js
+  console.log(true == 1);   // true
+  console.log(false == 0);  // true
+  ```
+
+- 对象会被转换为原始值。
+
+  ```js
+  const obj = {
+    valueOf() { return 2; }
+  };
+  console.log(obj == 2); // true，obj 被转换为 2
+  
+  const obj2 = {
+    toString() { return '5'; }
+  };
+  console.log(obj2 == '5'); // true，obj2 被转换为 '5'
+  ```
+
+- `null` 和 `undefined` 仅相等于彼此。
+
+   - `null` 只等于 `undefined`，其他任何比较都返回 `false`。
+
+  ```js
+  console.log(null == undefined); // true
+  console.log(null == 0);          // false
+  console.log(undefined == 0);     // false
+  ```
+
+- 字符串与布尔值
+
+  ```js
+  如果字符串为空（''），则转换为 0
+  如果字符串是数字字符（如 '5'），则转换为对应的数字
+  如果字符串无法转换为数字（如 'abc'），则结果为 NaN
+  ```
+
+
+
+**如何获取url中的query参数**：
+
+- 使用`URLSearchParams`或手动解析`window.location.search`
+
+### || 与 ?? 区别
+
+使用 ?? 时，您只关心变量是否存在（即不是 null 或 undefined），而不关心其是否为假值。
+
+使用 || 时，您希望处理所有假值（如 false、0、''、null、undefined）等。
+
+
+
+### WebRtc
+
+### 工作流程
+
+1. **创建信令服务器**：
+   - 使用 WebSocket 或其他协议实现信令服务器，用于交换 SDP 和 ICE 候选者。
+2. **获取本地媒体流**：
+   - 使用 `getUserMedia` 获取用户的摄像头和麦克风流。
+3. **创建 RTCPeerConnection**：
+   - 创建 `RTCPeerConnection` 对象，用于管理 WebRTC 连接。
+4. **交换 SDP 和 ICE 候选者**：
+   - 通过信令服务器交换 SDP 和 ICE 候选者，建立连接。
+5. **显示远程视频流**：
+   - 将远程视频流显示在页面上。
+
+#### **信令服务器（Node.js + WebSocket）**
+
+```js
+const WebSocket = require('ws');
+const wss = new WebSocket.Server({ port: 8080 });
+
+wss.on('connection', (ws) => {
+  ws.on('message', (message) => {
+    // 广播消息给所有客户端
+    wss.clients.forEach((client) => {
+      if (client !== ws && client.readyState === WebSocket.OPEN) {
+        client.send(message);
+      }
+    });
+  });
+});
+
+console.log('Signaling server running on ws://localhost:8080');
+```
+
+------
+
+#### **客户端代码（HTML + JavaScript）**
+
+```js
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebRTC Video Chat</title>
+</head>
+<body>
+  <video id="localVideo" autoplay muted></video>
+  <video id="remoteVideo" autoplay></video>
+
+  <script>
+    const localVideo = document.getElementById('localVideo');
+    const remoteVideo = document.getElementById('remoteVideo');
+
+    const ws = new WebSocket('ws://localhost:8080');
+    let localStream;
+    let peerConnection;
+
+    const configuration = {
+      iceServers: [
+        { urls: 'stun:stun.l.google.com:19302' }, // 免费 STUN 服务器
+      ],
+    };
+
+    // 获取本地媒体流
+    async function startLocalStream() {
+      try {
+        localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+        localVideo.srcObject = localStream;
+      } catch (error) {
+        console.error('Error accessing media devices:', error);
+      }
+    }
+
+    // 创建 RTCPeerConnection
+    function createPeerConnection() {
+      peerConnection = new RTCPeerConnection(configuration);
+
+      // 添加本地媒体流
+      localStream.getTracks().forEach((track) => {
+        peerConnection.addTrack(track, localStream);
+      });
+
+      // 监听远程媒体流
+      peerConnection.ontrack = (event) => {
+        remoteVideo.srcObject = event.streams[0];
+      };
+
+      // 处理 ICE 候选者
+      peerConnection.onicecandidate = (event) => {
+        if (event.candidate) {
+          ws.send(JSON.stringify({ type: 'candidate', candidate: event.candidate }));
+        }
+      };
+    }
+
+    // 处理信令消息
+    ws.onmessage = async (message) => {
+      const data = JSON.parse(message.data);
+
+      if (data.type === 'offer') {
+        // 收到 Offer，创建 Answer
+        await peerConnection.setRemoteDescription(new RTCSessionDescription(data.offer));
+        const answer = await peerConnection.createAnswer();
+        await peerConnection.setLocalDescription(answer);
+        ws.send(JSON.stringify({ type: 'answer', answer }));
+      } else if (data.type === 'answer') {
+        // 收到 Answer，设置远程描述
+        await peerConnection.setRemoteDescription(new RTCSessionDescription(data.answer));
+      } else if (data.type === 'candidate') {
+        // 添加 ICE 候选者
+        await peerConnection.addIceCandidate(new RTCIceCandidate(data.candidate));
+      }
+    };
+
+    // 发起呼叫
+    async function call() {
+      createPeerConnection();
+
+      // 创建 Offer
+      const offer = await peerConnection.createOffer();
+      await peerConnection.setLocalDescription(offer);
+      ws.send(JSON.stringify({ type: 'offer', offer }));
+    }
+
+    // 初始化
+    startLocalStream();
+  </script>
+
+  <button onclick="call()">Call</button>
+</body>
+</html>
+```
+
+
+
+### 优势
+
+- **实时性**：WebRTC 提供低延迟的音视频通信，适合需要即时反馈的应用（如视频通话、在线游戏等）。
+- **跨平台**：支持多种设备和浏览器，包括桌面和移动设备。
+- **无需插件**：WebRTC 是基于浏览器的技术，用户无需安装额外的插件或软件。
+- **安全性**：WebRTC 默认采用加密传输（SRTP和DTLS），提高了通信的安全性。
+
+### 应用场景
+
+- **视频会议**：如 Zoom、Google Meet 等。
+- **实时聊天**：如 Facebook Messenger、WhatsApp Web 等。
+- **在线教育**：实现师生之间的实时互动。
+- **远程医疗**：医生与患者的实时视频咨询。
+
+
+
+### 为什么会出现变量提升
+
+在JavaScript的执行过程中，代码会分为两个阶段：解析阶段和执行阶段。
+
+- **解析阶段**：在这一阶段，JavaScript引擎会扫描代码并处理变量和函数的声明。所有的变量和函数声明会被提升到其作用域的顶部。
+- **执行阶段**：在这一阶段，代码会按照顺序执行。由于变量和函数的声明已经被提升，执行时可以在声明之前访问它们。
+
+在 JavaScript 中，`Iterator` 是一个用于按顺序访问数据集合元素的对象，通常用于遍历数组、字符串、Map、Set 等集合类型。`Iterator` 使得我们可以逐个访问集合中的元素，而无需了解集合内部的具体实现方式。
+
+### `Iterator`
+
+`Iterator` 是实现了 `next()` 方法的对象。`next()` 方法返回一个对象，这个对象包含两个属性：
+
+- `value`: 当前元素的值
+- `done`: 一个布尔值，表示是否已经遍历完成。如果已经遍历完所有元素，`done` 会是 `true`，否则是 `false`。
+
+使用 `Iterator`
+
+在 JavaScript 中，几乎所有的集合类型（如 `Array`、`Set`、`Map`、`String` 等）都有自己的默认 `Iterator` 实现。你可以通过调用 `.next()` 方法来获取元素。
+
+示例 1：数组的迭代器
+
+```javascript
+const arr = [10, 20, 30];
+const iterator = arr[Symbol.iterator](); // 获取迭代器
+
+console.log(iterator.next()); // { value: 10, done: false }
+console.log(iterator.next()); // { value: 20, done: false }
+console.log(iterator.next()); // { value: 30, done: false }
+console.log(iterator.next()); // { value: undefined, done: true }
+```
+
+示例 2：字符串的迭代器
+
+```javascript
+const str = "hello";
+const iterator = str[Symbol.iterator]();
+
+console.log(iterator.next()); // { value: "h", done: false }
+console.log(iterator.next()); // { value: "e", done: false }
+console.log(iterator.next()); // { value: "l", done: false }
+console.log(iterator.next()); // { value: "l", done: false }
+console.log(iterator.next()); // { value: "o", done: false }
+console.log(iterator.next()); // { value: undefined, done: true }
+```
+
+`for...of` 循环与 `Iterator`
+
+`for...of` 循环背后其实是利用了 `Iterator` 来迭代集合的每个元素。它会自动调用集合的迭代器，直到 `done` 为 `true`。
+
+示例 3：使用 `for...of` 遍历集合
+
+```javascript
+const arr = [10, 20, 30];
+
+for (const value of arr) {
+  console.log(value);
+}
+// 输出:
+// 10
+// 20
+// 30
+```
+
+在 `for...of` 循环中，你不需要显式调用 `next()` 方法，JavaScript 会自动处理。
+
+自定义迭代器
+
+你可以通过实现 `Symbol.iterator` 方法来为自定义对象创建迭代器。例如，下面的例子展示了如何为一个简单的对象定义迭代器：
+
+```javascript
+const myObject = {
+  data: [1, 2, 3, 4],
+  [Symbol.iterator]() {
+    let index = 0;
+    return {
+      next: () => {
+        if (index < this.data.length) {
+          return { value: this.data[index++], done: false };
+        } else {
+          return { done: true };
+        }
+      }
+    };
+  }
+};
+
+for (const value of myObject) {
+  console.log(value); // 输出: 1 2 3 4
+}
+```
+
+其他集合类型的迭代器
+
+`Map` 的迭代器
+
+Map 也提供了迭代器，可以用来遍历键值对。
+
+```javascript
+const map = new Map([
+  ['a', 1],
+  ['b', 2],
+  ['c', 3]
+]);
+
+for (const [key, value] of map) {
+  console.log(key, value);
+}
+// 输出:
+// a 1
+// b 2
+// c 3
+```
+
+`Set` 的迭代器
+
+`Set` 会遍历集合中的所有唯一值：
+
+```javascript
+const set = new Set([1, 2, 3, 3, 4]);
+
+for (const value of set) {
+  console.log(value);
+}
+// 输出:
+// 1
+// 2
+// 3
+// 4
+```
+
+总结
+
+- **`Iterator`** 是一个通过 `next()` 方法逐个访问集合元素的对象。
+- `for...of` 循环会自动使用迭代器来遍历集合。
+- 可以为自定义对象实现 `Symbol.iterator` 方法，来定义自己的迭代器。
+- JavaScript 中的数组、字符串、Map、Set 等都实现了默认的迭代器。
+
+通过这些迭代器，我们可以优雅地遍历各种数据结构，简化代码。
+
+
+
+### 怎么用原生js实现框架中的组件
+
+1. **封装组件**：用类或者函数封装组件。
+2. **状态管理**：在组件中管理自己的状态。
+3. **视图更新**：根据状态更新视图。
+4. **事件处理**：通过事件来响应用户操作。
+
+**组件类 `Counter`**：
+
+- `constructor(selector)`：接受一个选择器，初始化时将组件渲染到指定容器中。
+- `setState(newState)`：更新组件的状态并重新渲染视图。
+- `render()`：根据当前的状态重新渲染组件内容，包括绑定事件处理程序（比如点击按钮时增加计数）。
+
+**事件绑定**：
+
+- 在 `render()` 方法中，我们将一个点击事件绑定到按钮上，当点击时更新状态并触发重新渲染。
+
+**组件的状态管理**：
+
+- `state` 是组件的内部状态，我们通过 `setState()` 方法来更新状态，`render()` 会根据最新的状态来更新 DOM。
+
+**生命周期管理**：
+
+- 这个例子中，生命周期很简单，组件的生命周期就是从初始化（`new Counter()`）到销毁。你可以在 `Counter` 类中扩展更多生命周期钩子（比如组件挂载时、销毁时的逻辑）。
+
+```js
+class Counter {
+  constructor(selector) {
+    this.container = document.querySelector(selector);
+    this.state = { count: 0 };
+    this.render();
+  }
+
+  // 更新状态并重新渲染
+  setState(newState) {
+    this.state = { ...this.state, ...newState };
+    this.render();
+  }
+
+  // 渲染组件视图
+  render() {
+    this.container.innerHTML = `
+      <div>
+        <p>Count: ${this.state.count}</p>
+        <button id="increment">Increment</button>
+      </div>
+    `;
+
+    // 绑定事件
+    this.container.querySelector("#increment").addEventListener("click", () => {
+      this.setState({ count: this.state.count + 1 });
+    });
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  // 初始化 Counter 组件，挂载到 #app 元素上
+  const counter = new Counter("#app");
+});
+
+```
+
+### Js请求和解析那个会阻塞主进程吗？
+
+网络请求不会阻塞主进程，而解析是否阻塞主进程取决于它是同步(JSON.parse())还是异步的。

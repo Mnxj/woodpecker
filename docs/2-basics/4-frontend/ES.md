@@ -1,124 +1,160 @@
 ### ES7
 
-ES7，也称为ECMAScript 2016，是JavaScript语言的一个重要版本，它在ES6的基础上引入了一些新的特性和语法改进，使得JavaScript变得更加强大和灵活。以下是ES7中引入的一些主要新特性：
+**Array.prototype.includes() 方法**：
+比 `indexOf` 更直观，支持 `NaN`，并且不会与 `-1` 产生混淆。
 
-1. **Array.prototype.includes() 方法**：
-   这个方法用于判断数组是否包含某个特定元素，返回一个布尔值表示是否包含。例如：
-   ```javascript
-   let arr = [1, 2, 3, 4, 5];
-   console.log(arr.includes(3)); // true
-   console.log(arr.includes(10)); // false
-   ```
+```javascript
+let arr = [1, 2, 3, 4, 5];
+console.log(arr.includes(3)); // true
+console.log(arr.includes(10)); // false
+```
 
-2. 指数运算符 (Exponentiation Operator)：
-   ES7引入了指数运算符 `**`，用于进行幂运算。例如：
-   ```javascript
-   let result = 2 ** 3; // 相当于 2的3次方
-   console.log(result); // 8
-   ```
+### ES8
 
-3. **Async/Await**：
-   异步函数的语法糖，利用 `async` 和 `await` 关键字可以更方便地处理异步操作，使得代码看起来更像同步代码，提高了代码的可读性和维护性。例如：
-   ```javascript
-   async function fetchData() {
-       try {
-           let response = await fetch('https://api.example.com/data');
-           let data = await response.json();
-           return data;
-       } catch (error) {
-           console.error('Error fetching data:', error);
-           return null;
-       }
-   }
-   ```
+- `async` 和 `await` 使异步操作变得更加简单。
+- Object.values() 和 Object.entries()：
+    - `Object.values()` 方法返回一个给定对象自身的所有可枚举属性值组成的数组。
+    - `Object.entries()` 方法返回一个给定对象自身可枚举属性的键值对数组。
+- String.padStart` 和 `String.padEnd 符串填充指定的字符，直到其达到指定的长度。
 
-4. Object.values() 和 Object.entries()：
-   - `Object.values()` 方法返回一个给定对象自身的所有可枚举属性值组成的数组。
-   - `Object.entries()` 方法返回一个给定对象自身可枚举属性的键值对数组。
+### ES9
+
+**1. 异步迭代（`for-await-of`）**
+
+- **概述**：与同步的 `for-of` 类似，`for-await-of` 用于异步迭代，它允许你迭代一个返回 Promise 的异步可迭代对象。
+
+```
+async function fetchData() {
+  const data = ['a', 'b', 'c'];
+
+  for await (let item of data) {
+    console.log(item);  // 会在每个异步操作完成后逐个输出
+  }
+}
+```
+
+**2. 正则表达式的改进：**
+
+- Unicode 中所有的数字字符可以通过 `\d` 匹配。
+- **`RegExp` 的 `s` 和 `dotAll` 标志**：允许 `.` 匹配换行符。
+
+```js
+const regex = /foo.bar/s;
+console.log(regex.test('foo\nbar'));  // true
+```
+
+### ES10
+
+- **`Array.prototype.flat` 和 `Array.prototype.flatMap`** 先对数组每个元素进行映射，再进行扁平化操作。
+- **`Object.fromEntries()`**
+    - **概述**：将一个键值对数组转换为对象。
+
+### ES11
+
+**`BigInt`**
+
+- **概述**：允许处理任意大小的整数（超出 `Number` 类型的最大值）。
+
+```js
+const bigInt = 1234567890123456789012345678901234567890n;
+console.log(bigInt + 1n);  // 1234567890123456789012345678901234567891n
+```
+
+**2. `Nullish Coalescing Operator (??)`**
+
+- **概述**：提供了一种简便的方式来处理 `null` 或 `undefined` 的情况，只有在左侧操作数为 `null` 或 `undefined` 时，才会返回右侧的值。
+
+```js
+const foo = null ?? 'default';  // 'default'
+const bar = 0 ?? 42;            // 0
+```
+
+**3. `Optional Chaining (?.)`**
+
+- **概述**：允许你在访问深层嵌套的属性时，如果某个值是 `null` 或 `undefined`，避免抛出错误，直接返回 `undefined`。
+
+### ES12
+
+- **`Logical Assignment Operators`**
+
+- **概述**：`&&=`, `||=`, `??=` 这三个操作符用于在条件为真或为假时对变量进行赋值
+- **`WeakRefs`**
+    - **概述**：允许你创建对对象的弱引用，这样对象可以在没有强引用的情况下被垃圾回收。
+- **`Promise.any()`**
+    - **概述**：`Promise.any()` 接受一个 Promise 数组，返回第一个成功的 Promise。如果没有 Promise 成功，则返回一个 `AggregateError` 错误。
 
 ### es6新增   11个
 
 - **let 和 const 声明变量**:
-  - `let` 声明块级作用域变量,可以重新赋值。
-  - `const` 声明块级作用域常量,不可以重新赋值。
+    - `let` 声明块级作用域变量,可以重新赋值。
+    - `const` 声明块级作用域常量,不可以重新赋值。
 - **箭头函数 (Arrow Functions)**:
-  - 提供了更简洁的函数定义语法。
-  - `this` 指向定义时所在的上下文,而不是调用时所在的上下文。
+    - 提供了更简洁的函数定义语法。
+    - `this` 指向定义时所在的上下文,而不是调用时所在的上下文。
 - **模板字符串 (Template Literals)**:
-  - 使用 `` 括起来的字符串,可以包含换行和变量interpolation。
+    - 使用 `` 括起来的字符串,可以包含换行和变量interpolation。
 - **解构赋值 (Destructuring)**:
-  - 可以从数组或对象中提取值,并赋值给变量。
+    - 可以从数组或对象中提取值,并赋值给变量。
 - **默认参数 (Default Parameters)**:
-  - 为函数参数提供默认值。
+    - 为函数参数提供默认值。
 - **剩余参数（rest 参数 (Rest Parameters)）**:
-  - 将不定数量的参数收集到一个数组中。
+    - 将不定数量的参数收集到一个数组中。
 - **扩展运算符 (Spread Operator)**:
-  - 将数组或对象展开为单独的元素。
+    - 将数组或对象展开为单独的元素。
 - **类 (Class)**:
-  - 提供了一种更加面向对象的编程方式。
-  - 包括类的继承、静态方法和getter/setter。
+    - 提供了一种更加面向对象的编程方式。
+    - 包括类的继承、静态方法和getter/setter。
 - **模块 (Modules)**:
-  - 通过 `import` 和 `export` 关键字实现代码的模块化。
+    - 通过 `import` 和 `export` 关键字实现代码的模块化。
 - **Promise**:
-  - 提供了一种更优雅的异步编程方式。
-  - 避免了"回调地狱"的问题。
+    - 提供了一种更优雅的异步编程方式。
+    - 避免了"回调地狱"的问题。
 - **Symbol**:
-  - 引入了一种新的原始数据类型,用于创建唯一的属性键。
+    - 引入了一种新的原始数据类型,用于创建唯一的属性键。
 
 ### ES6 symbol如何使用以及场景
 
 1. **创建 Symbol**
 
-   - 使用 Symbol()函数创建一个新的 Symbol 值:
+    - 使用 Symbol()函数创建一个新的 Symbol 值:
 
-     ```js
-     const mySymbol = Symbol('description');
-     ```
+      ```js
+      const mySymbol = Symbol('description');
+      ```
 
-   - 每次调用 `Symbol()` 都会创建一个新的 Symbol 值,即使描述字符串相同。
+    - 每次调用 `Symbol()` 都会创建一个新的 Symbol 值,即使描述字符串相同。
 
 2. **使用 Symbol 作为对象属性键**
 
-   - Symbol 值可以作为对象的属性键使用,这样可以创建独一无二的属性:
+    - Symbol 值可以作为对象的属性键使用,这样可以创建独一无二的属性:
 
-     ```js
-     const obj = {
-       [mySymbol]: 'hello'
-     };
-     console.log(obj[mySymbol]); // 输出 'hello'
-     ```
-
-3. **Symbol 在对象字面量中的使用**
-
-   - 在对象字面量中使用 Symbol 作为键:
-
-     ```js
-     const sym = Symbol();
-     const obj = {
-       [sym]: 'value'
-     };
-     ```
+      ```js
+      const obj = {
+        [mySymbol]: 'hello'
+      };
+      console.log(obj[mySymbol]); // 输出 'hello'
+      ```
 
 4. **全局 Symbol 注册表**
 
-   - 使用 Symbol.for()方法可以在全局注册表中创建和查找 Symbol:
+    - 使用 Symbol.for()方法可以在全局注册表中创建和查找 Symbol:
 
-     ```js
-     const globalSymbol = Symbol.for('global symbol');
-     const anotherGlobalSymbol = Symbol.for('global symbol');
-     console.log(globalSymbol === anotherGlobalSymbol); // 输出 true
-     ```
+      ```js
+      const globalSymbol = Symbol.for('global symbol');
+      const anotherGlobalSymbol = Symbol.for('global symbol');
+      console.log(globalSymbol === anotherGlobalSymbol); // 输出 true
+      ```
 
 5. **内置 Symbol**
 
-   - JavaScript 提供了一些内置 Symbol,如 `Symbol.iterator`、`Symbol.hasInstance` 等,用于扩展语言的行为。
+    - JavaScript 提供了一些内置 Symbol,如 `Symbol.iterator`、`Symbol.hasInstance` 等,用于扩展语言的行为。
 
 6. **Symbol 的场景**
 
-   - **属性键的唯一性**: 使用 Symbol 作为对象属性键可以确保该属性名是唯一的,不会与其他属性发生冲突。
-   - **私有属性和方法**: 可以使用 Symbol 实现类的私有属性和方法。
-   - **对象扩展**: 在不改变现有代码的情况下,使用 Symbol 为对象添加新的功能。
-   - **消除魔术字符串**: 使用 Symbol 代替字符串可以消除魔术字符串,提高代码的可读性和可维护性。
+    - **属性键的唯一性**: 使用 Symbol 作为对象属性键可以确保该属性名是唯一的,不会与其他属性发生冲突。
+    - **私有属性和方法**: 可以使用 Symbol 实现类的私有属性和方法。
+    - **对象扩展**: 在不改变现有代码的情况下,使用 Symbol 为对象添加新的功能。
+    - **消除魔术字符串**: 使用 Symbol 代替字符串可以消除魔术字符串,提高代码的可读性和可维护性。
 
 ### js数组方法会改变数组结构的方法
 
@@ -234,34 +270,48 @@ console.log(c); // 执行时，c已经被声明为函数，所以输出 function
 
 ### 箭头函数**与普通函数区别**
 
-- 语法：箭头函数使用 `=>` ，普通函数使用 `function` 
+- 语法：箭头函数使用 `=>` ，普通函数使用 `function`
 - `this` 指向：箭头函数中的 `this` 指向定义时所在的上下文，而普通函数中的 `this` 指向在函数调用时的对象。
 - 构造函数：箭头函数不能用作构造函数
 - 原型：箭头函数没有自己的原型对象
 - arguments 对象：箭头函数没有自己的 `arguments` 对象，它访问的是外层函数的 `arguments` 对象。普通函数有自己的 `arguments` 对象，它包含了函数调用时传递的参数。
 - 返回值： 箭头函数可以省略 `return` 关键字
 
+### 箭头为啥没有构造函数
+
+- 设计目标是提供一种简洁、灵活的语法用于回调和内联函数。
+
+- 它没有 `Function.prototype`，因为箭头函数不能作为构造函数使用，也没有自己的 `this` 和 `arguments` 对象。
+
+- 箭头函数仅仅是为了简化代码的书写，并且与常规函数的行为有一些显著区别，因此它没有传统函数的 `prototype` 属性。
+
+### 如果箭头函数使用call or apply or bind会发生什么？
+
+箭头函数的 `this` 是在函数定义时由外部作用域决定的，而不是调用时动态绑定的。
+
+因此，无论你如何使用 `call`、`apply` 或 `bind`，箭头函数的 `this` 仍然会保持为定义时的 `this`。
+
 ### 介绍Set,Map,WeakSet,WeakMap的区
 
 - set
-  - 成员不能重复
-  - 类似于数组
-  - 可以遍历 add delete has 
+    - 成员不能重复
+    - 类似于数组
+    - 可以遍历 add delete has
 - weakSet
-  - 参数只能是对象
-  - 对象都是弱引用 垃圾回收机制不考虑对象对该机制的引用，如果其他对象都不在引用该对象那么垃圾回收机制就会回首，所以没有可以遍历 也没有size属性
-  - 存储dom节点 而不用担心节点被移除造成内存泄漏
+    - 参数只能是对象
+    - 对象都是弱引用 垃圾回收机制不考虑对象对该机制的引用，如果其他对象都不在引用该对象那么垃圾回收机制就会回首，所以没有可以遍历 也没有size属性
+    - 存储dom节点 而不用担心节点被移除造成内存泄漏
 - map
-  - 对象是数据结构，键值对集合 建：多类型
-  - 可以接受数组作为参数 键值对数组
-  - Map 的建 跟内存地址绑定 内存地址不一样视为两个键
-  - 简单类型值 值严格相等 视为一个键
-  - Map的遍历顺序 就是插入顺序
+    - 对象是数据结构，键值对集合 建：多类型
+    - 可以接受数组作为参数 键值对数组
+    - Map 的建 跟内存地址绑定 内存地址不一样视为两个键
+    - 简单类型值 值严格相等 视为一个键
+    - Map的遍历顺序 就是插入顺序
 - WeakMap
-  - WeakMap只接受对象作为键值
-  - 建名是对象的弱引用
-  - 没有遍历操作 无法清空 不支持clear
-  - Get set has delete
+    - WeakMap只接受对象作为键值
+    - 建名是对象的弱引用
+    - 没有遍历操作 无法清空 不支持clear
+    - Get set has delete
 
 
 
@@ -277,15 +327,9 @@ Array.of()将一组值转成数组。array.of(1,2,3)//[1,2,3]
 
 Array,fill 填充数据
 
-Array.find() 
+Array.find()
 
 Array.findIndex()
-
-Includes() 某个数组中是否包含给定的值 [1,2,3].includes(2) //true
-
-Flat(n) 把数组扁平化 n是扁平化次数
-
-FlatMap() 展开一层数组。与flat相反
 
 ### 对象的拓展哪些属性？
 
@@ -346,7 +390,7 @@ FlatMap() 展开一层数组。与flat相反
 
 模块化可以实现： 抽象 封装 复用
 
-采用export.import 
+采用export.import
 
 
 

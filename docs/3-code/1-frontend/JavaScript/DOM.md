@@ -32,4 +32,29 @@ prepend(parentElement, childElement);
 
 
 
-### 
+### 简单的聊天框实现
+
+使用 WebSocket 实现一个简单的聊天框：
+
+```js
+<div id="chat">
+  <div id="messages"></div>
+  <input id="messageInput" type="text" placeholder="Type a message..." />
+  <button id="sendButton">Send</button>
+</div>
+
+<script>
+  const socket = new WebSocket('ws://your-websocket-url');
+
+  socket.onmessage = function(event) {
+    const messagesDiv = document.getElementById('messages');
+    messagesDiv.innerHTML += `<div>${event.data}</div>`;
+  };
+
+  document.getElementById('sendButton').onclick = function() {
+    const input = document.getElementById('messageInput');
+    socket.send(input.value);
+    input.value = '';
+  };
+</script>
+```
