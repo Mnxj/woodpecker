@@ -95,7 +95,6 @@ const config: Config = {
           position: 'left',
           label: '啄木鸟面试题',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/mnxj/woodpecker',
           label: 'GitHub',
@@ -110,7 +109,7 @@ const config: Config = {
           title: 'Interview',
           items: [
             {
-              label: 'Tutorial',
+              label: '啄木鸟面试题目',
               to: '/docs/intro',
             },
           ],
@@ -125,20 +124,12 @@ const config: Config = {
             {
               label: 'Discord',
               href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'X',
-              href: 'https://x.com/docusaurus',
-            },
+            }
           ],
         },
         {
           title: 'More',
           items: [
-            {
-              label: 'Blog',
-              to: '/blog',
-            },
             {
               label: 'GitHub',
               href: 'https://github.com/mnxj/woodpecker',
