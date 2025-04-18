@@ -1,2 +1,0 @@
-  - [Mongodb](/1foundations/data-base/Mongodb.md)
-  - [Redis](/1foundations/data-base/Redis.md)

@@ -1,0 +1,9 @@
+{
+  "label": "基础",
+  "position": 2,
+  "link": {
+    "slug": "basics",
+    "type": "generated-index",
+    "description": "基础"
+  }
+}

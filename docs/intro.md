@@ -1,3 +1,7 @@
+---
+sidebar_position: 1
+---
+
 # Woodpecker 啄木鸟
 
 网站直达: https://woodpecker.clover-blog.cn
@@ -6,26 +10,24 @@
 
 ## 文档结构:
 
-- [基础](/1foundations/index.md)
-- [代码题](/2code/index)
-- [场景题](/3scene-questions/index.md)
-- [面试经验](/Interview-experience/index.md)
-- [好工具分享](/good-share/index.md)
-- [遇到的问题](/issue/index.md)
+- [基础](/docs/basics)
+- [代码题](/docs/code)
+- [场景题](/docs/scenario-questions)
+- [面试经验](/docs/interview-exp)
+- [好工具分享](/docs/good-tools)
+- [遇到的问题](/docs/issue)
 
 
-### **目前共创：**s
+### **目前共创：**
 
-
-<center class ='img'>
+<center class="img">
     <a href='https://github.com/mnxj' target="_blank">
-        <img title="mnxj" alt="mnxj" src="https://avatars.githubusercontent.com/u/63659134?v=4" width="50px">
+        <img title="mnxj" alt="mnxj" src="https://avatars.githubusercontent.com/u/63659134?v=4" width="50px"/>
     </a>
     <a href='https://github.com/lhui' target="_blank">
-        <img title="lhui" alt="lhui" src="https://avatars.githubusercontent.com/u/36818242?v=4" width="50px">
+        <img title="lhui" alt="lhui" src="https://avatars.githubusercontent.com/u/36818242?v=4" width="50px"/>
     </a>
 </center>
-
 
 
 `右上角`可以查看仓库，欢迎大家 `fork`，共同完善
@@ -42,18 +44,18 @@
 
 ```javascript
 const NameMap = {
-    '2code': '代码题',
-    '1foundations': '基础',
-    'front-end': '大前端',
-    '3scene-questions': '场景题',
-    'back-end': '后端',
-    'network': '网络',
-    'test': '测试',
-    'data-base': '数据库',
-    'Interview-experience': '面试经验',
-    'leet-code':'力扣',
-    'good-share': '好工具分享',
-    'issue': '遇到的问题',
+    '3-code': '代码题',
+    '2-basics': '基础',
+    '4-frontend': '大前端',
+    '4-scenario-questions': '场景题',
+    '2-backend': '后端',
+    '6-network': '网络',
+    '8-test': '测试',
+    '3-database': '数据库',
+    '5-interview-exp': '面试经验',
+    '2-leet-code':'力扣',
+    '6-good-tools': '好工具分享',
+    '7-issue': '遇到的问题',
 }
 ```
 

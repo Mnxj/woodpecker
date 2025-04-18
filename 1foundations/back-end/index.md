@@ -1,2 +1,0 @@
-  - [JPA](/1foundations/back-end/JPA/index.md)
-  - [springboot](/1foundations/back-end/springboot/index.md)

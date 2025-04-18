@@ -1,1 +1,0 @@
-  - [miniMax](/Interview-experience/front-end/miniMax.md)
