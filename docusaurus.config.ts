@@ -79,6 +79,10 @@ const config: Config = {
     ],
   ],
 
+
+  themes :[
+    require.resolve("@easyops-cn/docusaurus-search-local"),
+  ],
   themeConfig: {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
