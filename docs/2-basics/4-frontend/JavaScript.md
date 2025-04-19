@@ -1126,7 +1126,7 @@ Promise.resolve = function(x) {
 
 Reject: 返回一个`rejected` 的 Promise 对象
 
-**allSettled**: 接受一个 Promise 对象的数组或可迭代对象,返回一个新的 Promise 对象,其值是一个对象数组,{status,value}
+**allSettled**: 接受一个 Promise 对象的数组或可迭代对象,返回一个新的 Promise 对象,其值是一个对象数组,`{status,value}`
 
 ### Promise缺点
 

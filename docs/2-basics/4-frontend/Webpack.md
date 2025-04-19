@@ -893,7 +893,7 @@ module.exports = {
 4. **使用路由懒加载**。
 5. `babel-plugin-import` 插件可以将组件的导入转换为按需加载的形式。
 
-### import {button} from 'antd' 打包的时候只打包button分模块加载怎么做到的
+### `import {button} from 'antd'` 打包的时候只打包button分模块加载怎么做到的
 
 ```javascript
 1.按需引入button,然后二次加工
