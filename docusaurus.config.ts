@@ -141,7 +141,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Woodenpecker. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Woodpecker. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,
