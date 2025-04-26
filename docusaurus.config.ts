@@ -97,7 +97,7 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: '啄木鸟面试题',
+          label: 'Docs',
         },
         {
           href: 'https://github.com/mnxj/woodpecker',
@@ -113,8 +113,8 @@ const config: Config = {
           title: 'Interview',
           items: [
             {
-              label: '啄木鸟面试题目',
-              to: '/docs/intro',
+              label: 'docs',
+              to: '/docs/basics',
             },
           ],
         },
