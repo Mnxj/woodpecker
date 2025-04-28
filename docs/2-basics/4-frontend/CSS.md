@@ -1,11 +1,22 @@
-### BFC及其应用
+---
+title: "CSS完全指南：从基础到高级特性的全面解析"
+description: "深入探讨CSS的核心概念、布局技术、动画效果和性能优化，帮助开发者掌握现代CSS开发技巧"
+keywords: ["CSS", "布局", "Flexbox", "Grid", "动画", "性能优化", "响应式设计", "BFC", "选择器"]
+---
 
-> BFC 独立布局环境 ,它代表了一个特定的渲染区域，在这个区域内的元素会按照特定的规则进行布局
+# CSS完全指南：从基础到高级特性的全面解析
 
-1）float属性不为none
-2）position为absolute或fixed
-3）display为inline-block、table-cell、table-caption、flex、inline-flex
-4）overflow不为visible
+## 1. CSS基础概念
+
+### 1.1 BFC (Block Formatting Context)
+BFC是CSS布局的核心概念之一，它创建了一个独立的渲染区域，具有特定的布局规则。理解BFC对于解决常见布局问题至关重要。
+
+#### 什么是BFC？
+BFC（块级格式化上下文）是页面中的一个独立容器，容器内部的元素布局不会影响到外部元素。以下情况会创建BFC：
+- float属性不为none
+- position为absolute或fixed
+- display为inline-block、table-cell、flex等
+- overflow不为visible
 
 **最常用是overflow为hidden，这种方式的副作用最小，其他三种方式的副作用较大**
 
@@ -653,7 +664,7 @@ src表示引用资源，表示替换当前元素，src资源下载后应用到�
 
 
 
-当我们设置了`will-change: transform`时，浏览器会为该元素创建一个独立的图层，将这个图层标记为“即将变换”。这样，在进行布局和绘制时，浏览器就可以更高效地处理这个元素，而无需重新计算整个渲染树。
+当我们设置了`will-change: transform`时，浏览器会为该元素创建一个独立的图层，将这个图层标记为"即将变换"。这样，在进行布局和绘制时，浏览器就可以更高效地处理这个元素，而无需重新计算整个渲染树。
 
 
 

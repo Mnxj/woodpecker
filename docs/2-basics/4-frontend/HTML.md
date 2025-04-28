@@ -1,3 +1,32 @@
+---
+title: "HTML完全指南：从基础到高级特性的全面解析"
+description: "深入探讨HTML的核心概念、语义化标签、Canvas和SVG技术，帮助开发者掌握现代HTML开发技巧"
+keywords: ["HTML", "语义化", "Canvas", "SVG", "Web Components", "性能优化", "响应式设计"]
+---
+
+# HTML完全指南：从基础到高级特性的全面解析
+
+## 目录
+1. [HTML基础概念](#html-basics)
+2. [Canvas与SVG](#canvas-svg)
+3. [Web Components](#web-components)
+4. [性能优化](#performance)
+5. [响应式设计](#responsive-design)
+
+## 1. HTML基础概念
+
+### 1.1 语义化标签
+语义化标签是HTML5的重要特性，它让网页结构更加清晰，有助于SEO和可访问性。
+
+#### 常用语义化标签：
+- `<header>`: 页面头部
+- `<nav>`: 导航区域
+- `<main>`: 主要内容
+- `<article>`: 独立文章
+- `<section>`: 文档分区
+- `<aside>`: 侧边栏
+- `<footer>`: 页面底部
+
 ### 怎么让一个元素实现被她可以拖拽?
 
 >  给需要拖拽的元素添加 `draggable="true"` 属性
@@ -218,7 +247,7 @@ JavaScript 中,监听以下拖拽相关的事件:
 ### 在使⽤history进⾏导航时，⻚⾯是否真的发⽣了切换，以及如何实现的
 
 - 在 `browserHistory` 模式下，页面确实发生了切换，因为浏览器会重新加载页面以匹配新的 URL。
-- 在 `hashHistory` 模式下，页面的切换是“虚拟”的，不会触发浏览器的刷新，而是通过 JavaScript 在前端完成的。
+- 在 `hashHistory` 模式下，页面的切换是"虚拟"的，不会触发浏览器的刷新，而是通过 JavaScript 在前端完成的。
 
 ```js
 //history` 库支持两种主要的路由模式：`browserHistory` 和 `hashHistor
