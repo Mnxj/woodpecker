@@ -168,7 +168,7 @@ const config: Config = {
             attributes: {
                 src: 'https://app.rybbit.io/api/script.js',
                 'data-site-id': '375',
-                defer: true,
+                defer: 'true',
             },
         }
     ]
