@@ -4,9 +4,12 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
+const currentLocale = process.env.DOCUSAURUS_CURRENT_LOCALE || 'zh-Hans';
+const isEn = currentLocale === 'en';
+
 const config: Config = {
-    title: 'Woodpecker 啄木鸟',
-    tagline: '啄木鸟',
+    title: isEn ? 'Woodpecker Interview' : 'Woodpecker 啄木鸟',
+    tagline: isEn ? 'Interview question bank' : '啄木鸟',
     favicon: 'img/favicon.ico',
 
     // Set the production url of your site here
@@ -28,7 +31,17 @@ const config: Config = {
     // may want to replace "en" with "zh-Hans".
     i18n: {
         defaultLocale: 'zh-Hans',
-        locales: ['zh-Hans'],
+        locales: ['zh-Hans', 'en'],
+        localeConfigs: {
+            'zh-Hans': {
+                label: '中文',
+                htmlLang: 'zh-Hans',
+            },
+            en: {
+                label: 'English',
+                htmlLang: 'en-US',
+            },
+        },
     },
 
     presets: [
@@ -104,6 +117,10 @@ const config: Config = {
                     label: 'GitHub',
                     position: 'right',
                 },
+                {
+                    type: 'localeDropdown',
+                    position: 'right',
+                },
             ],
         },
         footer: {
@@ -153,14 +170,18 @@ const config: Config = {
             tagName: 'meta',
             attributes: {
                 name: 'keywords',
-                content: '面试,面试题,面试经验,面试技巧,面试准备,面试指南',
+                content: isEn
+                    ? 'interview,interview questions,interview experience,interview tips,interview prep,interview guide'
+                    : '面试,面试题,面试经验,面试技巧,面试准备,面试指南',
             },
         },
         {
             tagName: 'meta',
             attributes: {
                 name: 'description',
-                content: '啄木鸟面试题，帮助你更好地准备面试，提升自己的技术水平。',
+                content: isEn
+                    ? 'Woodpecker Interview — helps you prepare better for interviews and level up your technical skills.'
+                    : '啄木鸟面试题，帮助你更好地准备面试，提升自己的技术水平。',
             },
         },
         {

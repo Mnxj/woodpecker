@@ -1,0 +1,86 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.基础": {
+    "message": "Basics",
+    "description": "The label for category 基础 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.基础.link.generated-index.description": {
+    "message": "Basics",
+    "description": "The generated-index page description for category 基础 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.后端": {
+    "message": "Backend",
+    "description": "The label for category 后端 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.后端.link.generated-index.description": {
+    "message": "Backend",
+    "description": "The generated-index page description for category 后端 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.数据库": {
+    "message": "Database",
+    "description": "The label for category 数据库 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.数据库.link.generated-index.description": {
+    "message": "Database",
+    "description": "The generated-index page description for category 数据库 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.大前端": {
+    "message": "Frontend",
+    "description": "The label for category 大前端 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.大前端.link.generated-index.description": {
+    "message": "Frontend",
+    "description": "The generated-index page description for category 大前端 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.网络": {
+    "message": "Network",
+    "description": "The label for category 网络 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.网络.link.generated-index.description": {
+    "message": "Network",
+    "description": "The generated-index page description for category 网络 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.测试": {
+    "message": "Testing",
+    "description": "The label for category 测试 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.测试.link.generated-index.description": {
+    "message": "Testing",
+    "description": "The generated-index page description for category 测试 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.代码题": {
+    "message": "Coding Problems",
+    "description": "The label for category 代码题 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.JavaScript": {
+    "message": "JavaScript",
+    "description": "The label for category JavaScript in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.React": {
+    "message": "React",
+    "description": "The label for category React in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.力扣": {
+    "message": "LeetCode",
+    "description": "The label for category 力扣 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.场景题": {
+    "message": "Scenario Questions",
+    "description": "The label for category 场景题 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.面试经验": {
+    "message": "Interview Experience",
+    "description": "The label for category 面试经验 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.好工具分享": {
+    "message": "Useful Tools",
+    "description": "The label for category 好工具分享 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.遇到的问题": {
+    "message": "Common Issues",
+    "description": "The label for category 遇到的问题 in sidebar tutorialSidebar"
+  }
+}
